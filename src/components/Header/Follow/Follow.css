@@ -1,0 +1,23 @@
+.follow {
+    display: flex;
+    height: 50px;
+
+}
+
+.follow__item {
+    flex: 1;
+    border: none;
+    background-color: white;
+    position: relative;
+}
+
+.follow__item-active::after {
+    content: "";
+    width: 130px ;
+    height: 5px;
+    border-radius: 8px;
+    background-color: dodgerblue;
+    position: absolute;
+    left: 16px;
+    bottom: 0;
+}

@@ -1,10 +1,14 @@
 import "./App.css";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import ContentContainer from "./components/ContentContainer/ContentContainer";
 
 const App = () => {
   return (
-    <div className="App">
-        <h1>Welcome Pet Lover</h1>
-        <p>hello world</p>
+    <div className="app">
+        <Header />
+        <ContentContainer />
+        <Footer />
     </div>
   );
 }
