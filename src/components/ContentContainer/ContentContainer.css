@@ -1,3 +1,5 @@
 .contentContainer {
+    position: absolute;
+    top: 100px;
     min-height: 600px;
 }

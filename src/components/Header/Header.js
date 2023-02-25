@@ -3,8 +3,8 @@ import Follow from "./Follow/Follow";
 
 const Header = () => {
     return (
-        <div >
-            <div className="header">
+        <div className="header">
+            <div className="header__head">
                 <img src="" alt="avatar"/>
                 <img src="" alt="logo"/>
             </div>
