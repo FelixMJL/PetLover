@@ -8,16 +8,20 @@
     flex: 1;
     border: none;
     background-color: white;
+}
+
+.follow__recommend {
     position: relative;
 }
 
-.follow__item-active::after {
+.follow__recommend-active::after {
     content: "";
-    width: 130px ;
     height: 5px;
     border-radius: 8px;
     background-color: dodgerblue;
     position: absolute;
-    left: 16px;
     bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
 }
