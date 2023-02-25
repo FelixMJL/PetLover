@@ -1,5 +1,4 @@
 import "./Header.css";
-import Follow from "./Follow/Follow";
 
 const Header = () => {
     return (
@@ -8,7 +7,6 @@ const Header = () => {
                 <img src="" alt="avatar"/>
                 <img src="" alt="logo"/>
             </div>
-            <Follow />
         </div>
 
     );
