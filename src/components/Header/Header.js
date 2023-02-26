@@ -26,8 +26,8 @@ const Header = () => {
     return (
         <div className="header">
             <div className="header__head">
-                <img src="" alt="avatar" className="avatar" onClick={extendMenu}/>
-                <img src="" alt="logo" className="logo"/>
+                <img src="" alt="avatar" className="avatarInHeader" onClick={extendMenu}/>
+                <img src="" alt="logo" className="logoInHeader"/>
             </div>
             <div className="porfileMenu" ref={profileMenu}>
                 <div className="porfileMenuHeader">
@@ -45,7 +45,6 @@ const Header = () => {
                                 <p>{userData.following.length} Followings</p>
                                 <p>{userData.followers.length} Followers</p>
                             </div>
-                            
                         </div>
                     )}
                 </div>

@@ -13,11 +13,11 @@
     display: flex;
     align-items: center;
 }
-.avatar {
+.avatarInHeader {
     margin-left: 3vw;
 }
 
-.logo {
+.logoInHeader {
     margin-left: 25vw;
 }
 
