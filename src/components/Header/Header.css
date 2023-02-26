@@ -9,8 +9,51 @@
 .header__head {
     height: 50px;
     background-color: lightblue;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.avatar {
+    margin-left: 3vw;
 }
 
-p {
-    margin: 0;
+.logo {
+    margin-left: 25vw;
+}
+
+.porfileMenu {
+    width: 70vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: -70vw;
+    transition: all 0.5s ease;
+    z-index: 99;
+    background-color: white;
+}
+
+.active {
+    transform: translateX(70vw);
+}
+
+.darkBackground.show {
+    width: 100vw;
+    height: 100vh;
+    background-color: lightgray;
+    opacity: 80%;
+}
+
+.porfileMenuHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.closeProfileMenu {
+    background: none;
+    border: none;
+}
+
+.aboutFollowOfUser {
+    display: flex;
+    justify-content: space-around;
 }
