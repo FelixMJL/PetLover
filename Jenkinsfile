@@ -27,7 +27,7 @@ pipeline {
         } 
 
         stage('upload  to  S3 bucket production and revalidate CDN Cache') {
-            // dev
+            // develop
             when {branch 'Suree/DevOps'}   
             steps {
                 withAWS(credentials: AWS_CRED, region: AWS_REGION){
