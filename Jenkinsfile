@@ -21,7 +21,7 @@ pipeline {
         {
             steps{
              echo "Building compressed files..."
-             sh " npm build"
+             sh " npm run build"
              sh 'ls -la ./build'
             }
         } 
