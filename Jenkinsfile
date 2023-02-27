@@ -33,7 +33,7 @@ pipeline {
                 withAWS(credentials: AWS_CRED, region: AWS_REGION){
                     dir('./build') {
                         echo "deploy static files to S3"
-                        sh "aws s3 sync . s3://${S3_BUCKET_NAME} --delete"
+                        sh "aws s3 sync . s3://${S3_BUCKET} --delete"
                         sh "aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths '/*'"
                     }
                 }
