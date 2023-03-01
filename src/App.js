@@ -1,16 +1,24 @@
+import {Routes, Route} from "react-router-dom";
 import "./App.css";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import ContentContainer from "./components/ContentContainer/ContentContainer";
+import Login from "./views/Login";
+import HomePage from "./views/HomePage";
+import Profile from "./views/Profile";
+import SignUp from "./views/SignUp";
+import Connect from "./views/Connect";
+
 
 const App = () => {
-  return (
-    <div className="app">
-        <Header />
-        <ContentContainer />
-        <Footer />
-    </div>
-  );
+    return (
+        <div className="app">
+                <Routes>
+                    <Route path="/" element={<Login/>}/>
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/homepage/*" element={<HomePage />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/connect" element={<Connect />} />
+                </Routes>
+        </div>
+    );
 }
 
 export default App;
