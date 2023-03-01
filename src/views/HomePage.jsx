@@ -1,8 +1,8 @@
 import {Link, Route, Routes} from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import RecommendForYou from "../components/ContentContainer/RecommendForYou/RecommendForYou";
-import Following from "../components/ContentContainer/Following/Following";
+import RecommendForYou from "../components/RecommendForYou/RecommendForYou";
+import Following from "../components/Following/Following";
 import "./HomePage.css"
 
 const HomePage = () => {
