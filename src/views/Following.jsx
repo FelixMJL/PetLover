@@ -1,10 +1,9 @@
-import {Link} from "react-router-dom";
 import Header from "../components/Header/Header";
+import {Link} from "react-router-dom";
 import Footer from "../components/Footer/Footer";
-import RecommendForYou from "../components/RecommendForYou/RecommendForYou";
-import "./HomePage.css"
+import FollowingUsersPosts from "../components/FollowingUsersPosts/FollowingUsersPosts";
 
-const HomePage = () => {
+const Following = () => {
     return (
         <div>
             <Header/>
@@ -12,10 +11,10 @@ const HomePage = () => {
                 <Link className="item" to="/homepage">Recommend for you</Link>
                 <Link className="item" to="/homepage/following">Following</Link>
             </div>
-            <RecommendForYou/>
+            <FollowingUsersPosts/>
             <Footer/>
         </div>
-    )
+    );
 };
 
-export default HomePage;
+export default Following;
