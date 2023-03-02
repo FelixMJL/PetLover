@@ -5,5 +5,5 @@ export const getUser = async () => {
   const config = {
     headers: {Authorization: `Bearer ${token}`}
   }
-  return await axios.get("http://localhost:3000/api/v1/users/63fa5a782fa5ded2a4790126", config)
+  return await axios.get("http://localhost:8080/api/v1/users/63fa5a782fa5ded2a4790126", config)
 }
