@@ -1,50 +1,28 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { getUsers } from '../services/getUsers';
-
-// const Connect = () => {
-//     return (
-//         <div>
-//             <h1>Connect</h1>
-//         </div>
-//     );
-// };
-
-// export default Connect;
-
-
+import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer/Footer';
+import ConnectUsers from '../components/Connect/ConnectUsers';
 
 const Connect = () => {
-  const [users, setUsers] = useState([]);
+    const navigate = useNavigate();
+    const btnClickHandler = () => {
+    navigate(-1);
+    }
 
-  useEffect(() => {
-    getUsers()
-      .then((data) => {
-        console.log(data);
-        setUsers(data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    return (
+    <div className="connect">
+        <div>
+            <button onClick={btnClickHandler}>btn</button>
+            Connect
+        </div>
+        <div>
+            <h1>Suggested for you</h1>
+        </div>
+        
+        <ConnectUsers />
 
-  return (
-    <div className="App">
-      {users.length ? (
-        <>
-          {users.map((user) => (
-            <div className="user-preview" key={user.username}>
-                <h3>{user.nickname}</h3>
-                <div>@{user.username}</div>
-                <div>{user.introduction}</div>
-            </div>
-          ))}
-        </>
-      ) : (
-        <div>Loading...</div>
-      )}
+        <Footer />
     </div>
-  );
+    );
 }
 
 export default Connect;
