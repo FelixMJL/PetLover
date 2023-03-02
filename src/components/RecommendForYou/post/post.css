@@ -1,0 +1,66 @@
+.post-items{
+    display: flex;
+    font-family: Inter;
+    gap:10px;
+    margin-top:10px;
+    border-bottom:1px solid #EDE7E7;
+    padding: 2vh 5vw;
+}
+a{
+    text-decoration: none;
+}
+.post-items_avatar{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 80px;
+}
+.post-items-r{
+    flex: auto;
+}
+.post-items_names{
+    display: flex;
+    gap: 10px;
+}
+.post-items_names names_nickname{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+}
+.post-items_names names_username{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    color: #536471;
+}
+.content-img_img{
+    border-radius: 20px;
+    margin-top: 15px;
+    max-height: 390px;
+    object-fit: cover;
+    width: auto;
+}
+.content-img_content{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    color: #000000;
+}
+.comments{
+    display: flex;
+    gap: 10px;
+    font-size: larger;
+}
+.comments-number{
+    color:#536471;
+}
+.comments-icon{
+    color: black;
+}
+
+
