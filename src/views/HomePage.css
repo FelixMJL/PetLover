@@ -1,0 +1,10 @@
+.recommend {
+    display: flex;
+}
+
+.item {
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    flex: 1;
+}
