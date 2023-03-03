@@ -1,0 +1,39 @@
+.connect-section {
+  padding: 10px 5.6%;
+}
+
+.connect-title-line {
+  display: flex;
+  align-items: center;
+}
+
+.btn-back {
+  width: 34px;
+  height: 34px;
+  margin-right: 32px;
+  border-radius: 50%;
+  background-color: #D7D7D7;
+  background-image: url("./../../assets/left-arrow.png");
+}
+
+#connect-title {
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 21px;
+  font-family: "Inter";
+}
+
+#connect-subtitle {
+  border-bottom: 1px solid #EDE7E7;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 24.2px;
+  color: #0F1419;
+  padding: 13px 0;
+  font-family: "Inter";
+}
+
+.connect-users {
+  
+}
+

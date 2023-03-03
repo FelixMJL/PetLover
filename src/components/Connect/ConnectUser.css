@@ -1,7 +1,3 @@
-.connect-users {
-  padding: 20px 10px;
-}
-
 .connect-user {
   border-bottom: 1px solid #EDE7E7;
   display: flex;
@@ -10,8 +6,14 @@
   padding: 20px 10px;
 }
 
+.connect-user__description {
+  width: 331px;
+}
+
 .connect-user__description--top {
   display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
 }
 
 .connect-user__avatar {
@@ -19,7 +21,7 @@
   height: 50px;
   top: 120.11px;
   left: 19px;
-  border-radius: 10%;
+  border-radius: 50%;
 }
 
 .connect-user__nickname {
@@ -28,6 +30,7 @@
   font-weight: 700;
   font-size: 15px;
   line-height: 18px;
+  margin-bottom: 5px;
 }
 
 .connect-user__username {
@@ -37,6 +40,16 @@
   font-weight: 500;
   font-size: 15px;
   line-height: 18px;
+}
+
+.btn-follow {
+  font-weight: 700;
+  background-color: #000;
+  color: #FFF;
+  width: 81px;
+  height: 29px;
+  vertical-align: center;
+  border-radius: 20px;
 }
 
 .connect-user__introduction {

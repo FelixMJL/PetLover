@@ -1,6 +1,8 @@
 import './ConnectUser.css';
 
 const ConnectUser = (props) => {
+  const btnClickHandler = () => {};
+
   return (
     <>
       {props.users.length ? (
@@ -23,7 +25,9 @@ const ConnectUser = (props) => {
                       @{user.username}
                     </div>
                   </div>
-                  <button className="btn btn-follow">Follow</button>
+                  <button className="btn btn-follow" onClick={btnClickHandler}>
+                    Follow
+                  </button>
                 </div>
                 <div className="connect-user__introduction">
                   {user.introduction}
