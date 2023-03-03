@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ConnectUser from './ConnectUser';
 import axios from 'axios';
+import arrow from './../../assets/left-arrow.png';
 
 const ConnectUsers = () => {
   const [users, setUsers] = useState([]);
@@ -36,7 +37,9 @@ const ConnectUsers = () => {
     <div className="connect-section">
       <div>
         <div className="connect-title-line">
-          <div className="btn btn-back" onClick={btnClickHandler}></div>
+          <div className="btn btn-back" onClick={btnClickHandler}>
+            <img src={arrow} alt="left-arrow"></img>
+          </div>
           <span id="connect-title">Connect</span>
         </div>
       </div>

@@ -13,7 +13,11 @@
   margin-right: 32px;
   border-radius: 50%;
   background-color: #D7D7D7;
-  background-image: url("./../../assets/left-arrow.png");
+}
+
+.btn-back img {
+  width: 34px;
+  height: 34px;
 }
 
 #connect-title {
