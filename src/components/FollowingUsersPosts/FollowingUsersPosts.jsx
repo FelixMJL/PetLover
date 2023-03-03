@@ -1,5 +1,5 @@
-import "./Following.css"
-import {getFollowing} from "../../../services/getFollowing";
+import "../ContentContainer/Following/Following.css"
+import {getFollowing} from "../../services/getFollowing";
 import { useState, useEffect } from "react";
 import moment from 'moment';
 
@@ -12,33 +12,33 @@ const Following = () => {
     function DataList({ posts }) {
         const list = posts.map((post,i) => 
     <li key={`${i}`}>
-        <div class="post-container">
-            <div class="post-inner-container">
-                <div class="avatar">
+        <div className="post-container">
+            <div className="post-inner-container">
+                <div className="avatar">
                     <img src={post.author.avatar} alt=""/>
                 </div>
-                <div class="post-content-container">
-                    <div class="post-info">
-                        <div class="nickname">
+                <div className="post-content-container">
+                    <div className="post-info">
+                        <div className="nickname">
                             <p><b>{post.author.nickname}</b></p>
                         </div>
-                        <div class="username">
+                        <div className="username">
                             <p>@{post.author.username}</p>
                         </div>
-                        <div class="dot"> · </div>
-                        <div class="post-time">
+                        <div className="dot"> · </div>
+                        <div className="post-time">
                             <p>{moment(post.created_at).fromNow()}</p>
                         </div>
                     </div>
-                    <div class="content">
+                    <div className="content">
                         <p>{post.content}</p>
                     </div>
-                    <div class="post-pic">
+                    <div className="post-pic">
                         <img src={post.photo} alt=""/>
                     </div>
-                    <div class="comment">
+                    <div className="comment">
                         <img src="" alt=""></img>
-                        <p class="comment-count">{post.comments.length}</p>
+                        <p className="comment-count">{post.comments.length}</p>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@ const Following = () => {
             <div>
                 <DataList posts={Array.from(postData)} />
             </div>
-            <div class="foot-space"></div>
+            <div className="foot-space"></div>
         </div>
     );
 };
