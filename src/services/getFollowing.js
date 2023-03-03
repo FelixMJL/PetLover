@@ -5,5 +5,5 @@ export const getFollowing = async () => {
   const config = {
     headers: {Authorization: `Bearer ${token}`}
   }
-  return await axios.get("http://localhost:3000/api/v1//posts/users/63fc8b040fd7d85e43a7e0f3", config)
+  return await axios.get("http://localhost:3000/api/v1/posts/users/63fc8b040fd7d85e43a7e0f3", config)
 }
