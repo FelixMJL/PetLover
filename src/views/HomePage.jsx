@@ -6,7 +6,7 @@ import "./HomePage.css"
 
 const HomePage = () => {
     return (
-        <div>
+        <div className="showAllPosts">
             <Header/>
             <div className="recommend">
                 <Link className="item" to="/homepage">Recommend for you</Link>

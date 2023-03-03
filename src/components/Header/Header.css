@@ -21,7 +21,7 @@
     margin-left: 25vw;
 }
 
-.porfileMenu {
+.profileMenu {
     width: 70vw;
     height: 100vh;
     position: absolute;
@@ -43,7 +43,7 @@
     opacity: 80%;
 }
 
-.porfileMenuHeader {
+.profileMenuHeader {
     display: flex;
     justify-content: space-between;
 }

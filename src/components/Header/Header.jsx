@@ -35,8 +35,8 @@ const Header = () => {
                 <img src="" alt="avatar" className="avatarInHeader" onClick={extendMenu}/>
                 <img src="" alt="logo" className="logoInHeader"/>
             </div>
-            <div className="porfileMenu" ref={profileMenu}>
-                <div className="porfileMenuHeader">
+            <div className="profileMenu" ref={profileMenu}>
+                <div className="profileMenuHeader">
                     <h4>Account info</h4>
                     <button className="closeProfileMenu" onClick={closeMenu}>X</button>
                 </div>
