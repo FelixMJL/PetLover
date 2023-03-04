@@ -1,17 +1,26 @@
 import "../ContentContainer/Following/Following.css"
 import {getFollowing} from "../../services/getFollowing";
 import { useState, useEffect } from "react";
-import moment from 'moment';
+import moment from "moment";
+import reply from "../../assets/reply.png";
 
 const Following = () => {
-    const [postData, setUserData] = useState(0)
+    const [postData, setPostData] = useState(0)
     useEffect(() => {
-        getFollowing().then(user => setUserData(user.data))
-    }, [])
+        const getPostData = async () => {
+            try {
+                const post = await getFollowing();
+                setPostData(post.data);
+            } catch (error) {
+                console.log(error.message);
+            }
+        };
+        getPostData();
+    }, []);
 
     function DataList({ posts }) {
         const list = posts.map((post,i) => 
-    <li key={`${i}`}>
+    <li key={`${post._id}`}>
         <div className="post-container">
             <div className="post-inner-container">
                 <div className="avatar">
@@ -37,7 +46,7 @@ const Following = () => {
                         <img src={post.photo} alt=""/>
                     </div>
                     <div className="comment">
-                        <img src="" alt=""></img>
+                        <img src={reply} alt=""/>
                         <p className="comment-count">{post.comments.length}</p>
                     </div>
                 </div>
@@ -50,7 +59,6 @@ const Following = () => {
 
     return (
         <div>
-            <h1>Following</h1>
             <div>
                 <DataList posts={Array.from(postData)} />
             </div>
