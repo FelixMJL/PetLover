@@ -1,6 +1,6 @@
-import "./Following.css"
+import "./FollowingUsersPosts.css"
 
-const Following = () => {
+const FollowingUsersPosts = () => {
     return (
         <div>
             <h1>Following</h1>
@@ -26,4 +26,4 @@ const Following = () => {
     );
 };
 
-export default Following;
+export default FollowingUsersPosts;
