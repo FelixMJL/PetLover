@@ -10,7 +10,7 @@ const ConnectUsers = () => {
 
   const getUsers = async () => {
     const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmVjMGM4NDYxZTEwYzBkOTRiMjVmMCIsImVtYWlsIjoidGhpbmthYm91dEBnbWFpbC5jb20iLCJpYXQiOjE2Nzc3NTM4MjYsImV4cCI6MTY3Nzg0MDIyNn0.rRxIbBrc5K9gHFBZm25NJRNXFcn0UVQgCluT2fioSeA';
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmVjMGM4NDYxZTEwYzBkOTRiMjVmMCIsImVtYWlsIjoidGhpbmthYm91dEBnbWFpbC5jb20iLCJpYXQiOjE2Nzc4OTYxOTcsImV4cCI6MTY3Nzk4MjU5N30.RrdT0P8TILoW7OGeJqLQ0dR_VFrMGQU5qKTrDRmBsUo';
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };

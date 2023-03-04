@@ -24,6 +24,11 @@
   border-radius: 50%;
 }
 
+.conenct-user__avatar img {
+  width: 30px;
+  height: 30px;
+}
+
 .connect-user__nickname {
   font-family: 'Inter';
   font-style: normal;
