@@ -2,37 +2,28 @@ import './ConnectUsers.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ConnectUser from './ConnectUser';
-import axios from 'axios';
 import arrow from './../../assets/left-arrow.png';
+import {getAllUsers} from "../../services/getAllUsers";
 
 const ConnectUsers = () => {
   const [users, setUsers] = useState([]);
 
-  const getUsers = async () => {
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZmVjMGM4NDYxZTEwYzBkOTRiMjVmMCIsImVtYWlsIjoidGhpbmthYm91dEBnbWFpbC5jb20iLCJpYXQiOjE2Nzc4OTYxOTcsImV4cCI6MTY3Nzk4MjU5N30.RrdT0P8TILoW7OGeJqLQ0dR_VFrMGQU5qKTrDRmBsUo';
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    return await axios.get('http://localhost:4000/api/v1/users', config);
-  };
-
   useEffect(() => {
-    getUsers()
-      .then((data) => {
-        console.log(data);
-        setUsers(data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      const getUsersData = async () => {
+          try {
+              const post = await getAllUsers();
+              setUsers(post.data);
+          } catch (error) {
+              console.log(error.message);
+          }
+      };
+      getUsersData();
   }, []);
 
   const navigate = useNavigate();
   const btnClickHandler = () => {
     navigate(-1);
   };
-
   return (
     <div className="connect-section">
       <div>
