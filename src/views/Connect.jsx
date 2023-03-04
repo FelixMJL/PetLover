@@ -1,9 +1,18 @@
+import Footer from '../components/Footer/Footer';
+import ConnectUsers from '../components/Connect/ConnectUsers';
+
 const Connect = () => {
+    
+
     return (
-        <div>
-            <h1>Connect</h1>
-        </div>
+    <div className="connect">
+        
+        <ConnectUsers />
+
+        <Footer />
+        
+    </div>
     );
-};
+}
 
 export default Connect;
