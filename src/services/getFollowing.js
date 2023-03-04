@@ -1,9 +1,6 @@
 import axios from "axios";
+import {getUserData} from "./getUserData";
 
 export const getFollowing = () => {
-  const userTokenData = JSON.parse(localStorage.getItem("userData"));
-  const config = {
-    headers: {Authorization: `Bearer ${userTokenData.token}`}
-};
-  return axios.get(`http://localhost:8080/api/v1/posts/users/${userTokenData.id}`, config)
+    return axios.get(`http://localhost:8080/api/v1/posts/users/${getUserData().id}`, getUserData().config)
 }

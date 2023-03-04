@@ -27,7 +27,6 @@ const Header = () => {
         };
         getUserData();
     }, [])
-    console.log(userData)
 
     return (
         <div className="header">
