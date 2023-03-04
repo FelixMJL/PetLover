@@ -1,5 +1,5 @@
-import "../ContentContainer/Following/Following.css"
 import {useState, useEffect} from "react";
+import "./FollowingUsersPosts.css"
 import moment from "moment";
 import reply from "../../assets/reply.png";
 import {getFollowing} from "../../services/getFollowing";
