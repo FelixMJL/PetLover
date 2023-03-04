@@ -32,7 +32,7 @@ const Header = () => {
     return (
         <div className="header">
             <div className="header__head">
-                <img src="" alt="avatar" className="avatarInHeader" onClick={extendMenu}/>
+                <img src={userData.avatar} alt="avatar" className="avatarInHeader" onClick={extendMenu}/>
                 <img src="" alt="logo" className="logoInHeader"/>
             </div>
             <div className="profileMenu" ref={profileMenu}>
@@ -43,8 +43,8 @@ const Header = () => {
 
                 <div>
                     {userData && (
-                        <div>
-                            <img src={userData.avator} alt="avatar"></img>
+                        <div className="user-menu">
+                            <img src={userData.avatar} alt="avatar" className="user-menu__avatar"></img>
                             <p>{userData.username}</p>
                             <p>{userData.nickname}</p>
                             <div className="aboutFollowOfUser">

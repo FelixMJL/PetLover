@@ -18,7 +18,7 @@
 }
 
 h2 {
-  font-family: "Quicksand";
+  font-family: "Quicksand", sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 22px;
@@ -60,12 +60,9 @@ h2 {
   background: #E69F4E;
   border-radius: 20px;
   border: none;
- 
 
-  font-family: 'Nunito Sans';
+
+  font-family: 'Nunito Sans', sans-serif;
   margin: 1.5vh 0 17vh 0;
-
-
-
 }
 

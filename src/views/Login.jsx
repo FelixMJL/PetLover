@@ -12,13 +12,11 @@ const Login = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [loginError, setLoginError] = useState("");
-  const [submitState, setSubmitState] = useState(false);
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userData"));
-    if (userData && userData.token && submitState) {
+    if (userData && userData.token) {
       navigate("/homepage");
-      setSubmitState(false)
     }
   }, [navigate]);
 
@@ -69,9 +67,7 @@ const Login = () => {
       }
       if (res.status === 201) {
         localStorage.setItem("userData", JSON.stringify(res.data));
-        setSubmitState(true)
         navigate("/homepage");
-
       }
     });
   };
