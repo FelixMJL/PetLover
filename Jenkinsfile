@@ -4,7 +4,7 @@ pipeline {
    
     parameters {
         text(name: 'CLOUDFRONT_DISTRIBUTION_ID', 
-        defaultValue: 'E3CDPG27R6NV4H', 
+        defaultValue: 'E1UUFYUGMCHH3U', 
         description: 'only modify these when destroy and apply new tf frontend resources')
     }
 
