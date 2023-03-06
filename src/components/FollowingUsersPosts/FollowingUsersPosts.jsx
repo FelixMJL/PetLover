@@ -3,8 +3,9 @@ import "./FollowingUsersPosts.css"
 import moment from "moment";
 import reply from "../../assets/reply.png";
 import {getFollowing} from "../../services/getFollowing";
+import loading from "../../assets/loading.svg";
 
-const Following = () => {
+const FollowingUsersPosts = () => {
     const [postData, setPostData] = useState([])
     useEffect(() => {
         const getPostData = async () => {
@@ -59,12 +60,19 @@ const Following = () => {
 
     return (
         <div>
-            <div>
-                <DataList posts={Array.from(postData)}/>
-            </div>
-            <div className="foot-space"></div>
+            {postData.length ?
+                <>
+                    <div>
+                        <DataList posts={Array.from(postData)}/>
+                    </div>
+                    <div className="foot-space"></div>
+                </>
+                : <div className="loading following-loading">
+                    <img src={loading} alt="loading"/>
+                </div>
+            }
         </div>
     );
 };
 
-export default Following;
+export default FollowingUsersPosts;
