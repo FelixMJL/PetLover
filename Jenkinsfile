@@ -11,7 +11,7 @@ pipeline {
     environment{
         AWS_CRED        = 'AWS' 
         AWS_REGION      = 'ap-southeast-2'
-        S3_BUCKET       = 'petlover-uat'
+        S3_BUCKET       = 'petlover-front-uat'
     }
 
     stages{
