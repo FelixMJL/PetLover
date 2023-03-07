@@ -1,11 +1,14 @@
 pipeline {
     agent any
-    
+
+    options {
+        ansiColor('xterm')
+    }
    
     parameters {
         text(name: 'CLOUDFRONT_DISTRIBUTION_ID', 
-        defaultValue: 'E1UUFYUGMCHH3U', 
-        description: 'only modify these when destroy and apply new tf frontend resources')
+            defaultValue: 'E1UUFYUGMCHH3U', 
+            description: 'only modify these when destroy and apply new tf frontend resources')
     }
 
     environment{
@@ -15,6 +18,18 @@ pipeline {
     }
 
     stages{
+        stage('Snyk Scan') {
+            steps {
+                echo 'Testing...'
+                snykSecurity(
+                    failOnIssues: false,
+                    snykInstallation: 'snyk@latest',
+                    snykTokenId: 'snyk-api-token',
+                    additionalArguments: '--severity-threshold=high'
+                )
+            }
+        }
+
         stage('Install dependency')
         {
             steps{
@@ -37,10 +52,12 @@ pipeline {
             // when {branch 'Suree/DevOps'}   
             steps {
                 withAWS(credentials: AWS_CRED, region: AWS_REGION){
-                    dir('./build') {
-                        echo "deploy static files to S3"
-                        sh "aws s3 sync . s3://${S3_BUCKET} --delete"
-                        sh "aws cloudfront create-invalidation --distribution-id ${params.CLOUDFRONT_DISTRIBUTION_ID} --paths '/*'"
+                    ansiColor('xterm') {
+                        dir('./build') {
+                            echo "deploy static files to S3"
+                            sh "aws s3 sync . s3://${S3_BUCKET} --delete"
+                            sh "aws cloudfront create-invalidation --distribution-id ${params.CLOUDFRONT_DISTRIBUTION_ID} --paths '/*'"
+                        }
                     }
                 }
             }
