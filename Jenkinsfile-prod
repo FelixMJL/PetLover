@@ -43,18 +43,18 @@ pipeline {
             }          
         }
 
-         stage('Deploy to prod confirmation') {
+        stage('Deploy to prod confirmation') {
             steps {
                 timeout(time: 1, unit: 'HOURS'){
-                    input {
-                        message "Do you agree to deploy codes in PRODUCTION environment?"
-                        ok "Yes, I agree."
+                    input (
+                        message: "Do you agree to deploy codes in PRODUCTION environment?",
+                        ok: "Yes, I agree.",
                         // authorized usrs account
                         // submitter "PetLover-dev"
-                        parameters {
-                            string (name: 'PERSON', defaultValue: 'Plz Input Your Name', description:'input leader name')
-                        }
-                    }
+                        parameters:[
+                            string (name: 'PERSON', defaultValue: '', description:'input leader name')
+                        ]
+                    )
                 }
             }
         }
