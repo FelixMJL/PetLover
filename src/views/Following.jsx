@@ -8,8 +8,8 @@ const Following = () => {
         <div>
             <Header/>
             <div className="recommend">
-                <Link className="item" to="/homepage">Recommend for you</Link>
-                <Link className="item" to="/homepage/following">Following</Link>
+                <Link className="item" to="/">Recommend for you</Link>
+                <Link className="item" to="/following">Following</Link>
             </div>
             <FollowingUsersPosts />
             <Footer/>

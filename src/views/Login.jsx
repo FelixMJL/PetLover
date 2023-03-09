@@ -60,7 +60,7 @@ const Login = () => {
       }
       if (res.status === 201) {
         localStorage.setItem("userData", JSON.stringify(res.data));
-        navigate("/homepage");
+        navigate("/");
       }
     });
   };

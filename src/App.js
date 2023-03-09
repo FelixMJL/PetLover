@@ -19,7 +19,7 @@ const App = () => {
             }
             catch (error) {
                 localStorage.clear()
-                navigate("/")
+                navigate("/login")
             }
         };
         authTokenValidation();
@@ -28,10 +28,10 @@ const App = () => {
     return (
         <div className="app">
                 <Routes>
-                    <Route path="/" element={<Login/>}/>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/login" element={<Login/>}/>
                     <Route path="/signup" element={<SignUp />} />
-                    <Route path="/homepage" element={<HomePage />} />
-                    <Route path="/homepage/following" element={<Following />} />
+                    <Route path="/following" element={<Following />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/connect" element={<Connect />} />
                 </Routes>
