@@ -3,7 +3,7 @@ import MyPost from './post/myPost'
 import moment from 'moment'
 import bin from '../../assets/bin.png'
 
-const UserPosts = ({posts, username, nickname, avatar, created_at}) => {
+const UserPosts = ({posts, username, nickname, avatar, created_at, id, currentUserId}) => {
   return(
     <div className='userPosts'>
       {posts && posts.map((post)=>(
@@ -24,7 +24,7 @@ const UserPosts = ({posts, username, nickname, avatar, created_at}) => {
                     </div>
                     <div>
                       <span className='bin'>
-                        <img src={bin} alt='' />
+                       {id === currentUserId ? <img src={bin} alt='' /> : ''}
                       </span>
                     </div>
                   </div>

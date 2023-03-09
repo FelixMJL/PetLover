@@ -10,11 +10,12 @@ import axios from "axios";
 const Profile = () => {
     
     const {id} = useParams()
+    const currentUserId = JSON.parse(localStorage.getItem("userData")).id;
+    console.log('id: ', id, 'currentUserId: ', currentUserId)
     const [userData, setUserData] = useState(0)
     const getUser = () => {
-        return axios.get(`http://localhost:8080/api/v1/users/${id}}`, getUserData().config)
-      }
-      console.log(getUser())
+        return axios.get(`http://localhost:8080/api/v1/users/${id}`, getUserData().config)
+      };
     useEffect(() => {
         const getUserData = async () => {
             try {
@@ -26,14 +27,13 @@ const Profile = () => {
         };
         getUserData();
     }, [])
-    console.log(userData)
 
     const {posts} = userData
 
     return (
         <div>  
             <UserInfo {...userData}/>
-            <UserPosts posts = {posts} {...userData} />
+            <UserPosts posts = {posts} id = {id} currentUserId = {currentUserId} {...userData} />
         </div>
     );
 };
