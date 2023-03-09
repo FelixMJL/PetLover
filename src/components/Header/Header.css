@@ -10,6 +10,8 @@
     width: 34px;
     height: 34px;
     border-radius: 50%;
+    margin-bottom: 8px;
+    margin-top: 15px;
 }
 
 .header__head {
@@ -19,6 +21,7 @@
     display: flex;
     align-items: center;
 }
+
 .avatarInHeader {
     width: 34px;
     height: 34px;
@@ -31,18 +34,20 @@
 }
 
 .profileMenu {
-    width: 80vw;
+    width: 66vw;
     height: 100vh;
     position: absolute;
     top: 0;
-    left: -80vw;
+    left: -70vw;
     transition: all 0.5s ease;
     z-index: 99;
     background-color: white;
+    padding-left: 2vw;
+    padding-right: 2vw;
 }
 
 .active {
-    transform: translateX(80vw);
+    transform: translateX(70vw);
 }
 
 .darkBackground.show {
@@ -62,7 +67,39 @@
     border: none;
 }
 
+.closeProfileMenu img {
+    height: 25px;
+}
+
+.user-menu__username {
+    font-weight: 900;
+    margin-bottom: 3px;
+}
+
 .aboutFollowOfUser {
     display: flex;
-    justify-content: space-around;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.user-menu__profile-list {
+    margin-top: 30px;
+    padding: 5px;
+}
+
+.user-menu__profile-list-items {
+    display: flex;
+    height: 22px;
+    font-size: 22px;
+    font-weight: 600;
+    gap: 30px;
+}
+
+.user-menu__logout {
+    display: flex;
+    height: 20px;
+    font-size: 20px;
+    position:absolute;
+    bottom: 50px;
+    gap: 15px;
 }
