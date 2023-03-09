@@ -23,18 +23,18 @@ const App = () => {
     authTokenValidation();
   }, [navigate]);
 
-  return (
-    <div className="app">
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/following" element={<Following />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/connect" element={<Connect />} />
-      </Routes>
-    </div>
-  );
-};
+    return (
+        <div className="app">
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/profile/:id" element={<Profile />} />
+                    <Route path="/following" element={<Following />} />
+                    <Route path="/connect" element={<Connect />} />
+                </Routes>
+        </div>
+    );
+}
 
 export default App;
