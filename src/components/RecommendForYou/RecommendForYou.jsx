@@ -1,12 +1,13 @@
 import "./RecommendForYou.css";
-import {useState,useEffect} from "react";
+import {useState, useEffect} from "react";
 import Post from "./post/post";
 import {getAllPosts} from "../../services/getAllPosts";
+import loading from "../../assets/loading.svg"
 
 const RecommendForYou = () => {
-    const [posts,setPosts]=useState([])
+    const [posts, setPosts] = useState([])
 
-    useEffect(()=>{
+    useEffect(() => {
         const getPostData = async () => {
             try {
                 const post = await getAllPosts();
@@ -16,20 +17,24 @@ const RecommendForYou = () => {
             }
         };
         getPostData();
-    },[])
-
-    if(!posts){
-        return
-    }
+    }, [])
     return (
-        posts &&posts.map((post)=>(
-            <div key={post._id}>
-                <Post
-                    {...post}
-                />
-            </div>
-        ))
-    );
+        <>
+            {posts.length ?
+                posts.map((post) => (
+                    <div key={post._id}>
+                        <Post
+                            {...post}
+                        />
+                    </div>))
+                :
+                <div className="loading">
+                    <img src={loading} alt="loading"/>
+                </div>
+            }
+        </>
+
+    )
 };
 
 export default RecommendForYou;

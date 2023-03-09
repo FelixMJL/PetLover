@@ -89,3 +89,8 @@ p{
 .foot-space{
     height: 50px;
 }
+
+.following-loading {
+    position: relative;
+    top: 90px;
+}

@@ -1,4 +1,5 @@
 import './ConnectUser.css';
+import loading from "../../assets/loading.svg";
 
 const ConnectUser = (props) => {
   const btnClickHandler = (e) => {
@@ -39,7 +40,9 @@ const ConnectUser = (props) => {
           ))}
         </>
       ) : (
-        <div>Loading...</div>
+          <div className="loading">
+            <img src={loading} alt="loading"/>
+          </div>
       )}
     </>
   );
