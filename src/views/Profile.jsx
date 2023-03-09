@@ -1,14 +1,39 @@
-import {useNavigate} from "react-router-dom";
+import './Profile.css'
+import UserInfo from "../components/UserProfile/UserInfo";
+import UserPosts from "../components/UserProfile/UserPosts";
+import { useState, useEffect } from "react";
+import { getUserData } from '../services/getUserData';
+import { useParams } from 'react-router-dom';
+import axios from "axios";
+
 
 const Profile = () => {
-    const navigate = useNavigate();
-    const btnClickHandler = () => {
-        navigate(-1)
-    }
+    
+    const {id} = useParams()
+    const [userData, setUserData] = useState(0)
+    const getUser = () => {
+        return axios.get(`http://localhost:8080/api/v1/users/${id}}`, getUserData().config)
+      }
+      console.log(getUser())
+    useEffect(() => {
+        const getUserData = async () => {
+            try {
+                const user = await getUser();
+                setUserData(user.data);
+            } catch (error) {
+                console.log(error.message);
+            }
+        };
+        getUserData();
+    }, [])
+    console.log(userData)
+
+    const {posts} = userData
+
     return (
-        <div>
-            <h1>This is Personal Page</h1>
-            <button onClick={btnClickHandler}>Back to Previous Page</button>
+        <div>  
+            <UserInfo {...userData}/>
+            <UserPosts posts = {posts} {...userData} />
         </div>
     );
 };

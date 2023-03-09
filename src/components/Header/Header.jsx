@@ -1,6 +1,8 @@
 import "./Header.css";
 import { useState, useEffect, useRef } from "react";
 import { getUser } from "../../services/getUser";
+import {Link} from "react-router-dom";
+import {getUserData} from "../../services/getUserData";
 
 const Header = () => {
     const profileMenu = useRef(null)
@@ -54,7 +56,10 @@ const Header = () => {
                     )}
                 </div>
                 <div className="UserProfileMenuList">
-                    <h2>Profile</h2>
+                    <h2>
+                    <Link to={`/profile/${getUserData().id}`}>Profile</Link>
+                        
+                    </h2>
                 </div>
 
             </div>
