@@ -95,11 +95,18 @@
     gap: 30px;
 }
 
-.user-menu__logout {
+.user-menu__logoutBtn {
     display: flex;
     height: 20px;
     font-size: 20px;
     position:absolute;
     bottom: 50px;
     gap: 15px;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+}
+
+.user-menu__logoutBtn img {
+    height: 100%;
 }

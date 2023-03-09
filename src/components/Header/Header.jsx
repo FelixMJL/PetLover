@@ -77,9 +77,9 @@ const Header = () => {
           <div className="user-menu__profile-list-items">
             <img src={profileIcon} alt="Profile icon" /> Profile
           </div>
-          <div className="user-menu__logout">
+          <button className="user-menu__logoutBtn" onClick={""}>
             <img src={logoutIcon} alt="Logout icon" /> Logout
-          </div>
+          </button>
         </div>
       </div>
       <div ref={darkBackground} className="darkBackground"></div>
