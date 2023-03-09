@@ -104,6 +104,7 @@
     display: flex;
     height: 20px;
     font-size: 20px;
+    font-weight: 600;
     position: absolute;
     bottom: 50px;
     gap: 15px;
