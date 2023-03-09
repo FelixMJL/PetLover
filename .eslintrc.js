@@ -7,7 +7,7 @@ module.exports = {
       babelrc: false,
       configFile: false,
       // your babel options
-      presets: ['@babel/preset-env'],
+      presets: ['@babel/preset-env', '@babel/preset-react'],
     },
   },
   env: {

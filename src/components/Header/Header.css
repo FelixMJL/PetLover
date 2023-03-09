@@ -89,13 +89,14 @@
 
 .user-menu__profile-list-items {
     display: flex;
+    color: black;
     height: 20px;
     font-size: 20px;
     font-weight: 600;
     gap: 15px;
     border: 0;
     outline: 0;
-    padding-left: 0px;
+    padding-left: 0;
     background-color: transparent;
 }
 
