@@ -4,6 +4,7 @@
     width: 100%;
     height: 50px;
     z-index: 99;
+    font-family: 'Inter', sans-serif;
 }
 
 .user-menu__avatar {
@@ -34,7 +35,7 @@
 }
 
 .profileMenu {
-    width: 66vw;
+    width: 60vw;
     height: 100vh;
     position: absolute;
     top: 0;
@@ -42,8 +43,8 @@
     transition: all 0.5s ease;
     z-index: 99;
     background-color: white;
-    padding-left: 2vw;
-    padding-right: 2vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
 }
 
 .active {
@@ -83,23 +84,26 @@
 }
 
 .user-menu__profile-list {
-    margin-top: 30px;
-    padding: 5px;
+    margin-top: 45px;
 }
 
 .user-menu__profile-list-items {
     display: flex;
-    height: 22px;
-    font-size: 22px;
+    height: 20px;
+    font-size: 20px;
     font-weight: 600;
-    gap: 30px;
+    gap: 15px;
+    border: 0;
+    outline: 0;
+    padding-left: 0px;
+    background-color: transparent;
 }
 
 .user-menu__logoutBtn {
     display: flex;
     height: 20px;
     font-size: 20px;
-    position:absolute;
+    position: absolute;
     bottom: 50px;
     gap: 15px;
     border: 0;
@@ -107,6 +111,6 @@
     background-color: transparent;
 }
 
-.user-menu__logoutBtn img {
-    height: 100%;
+.user-menu__profile-list img {
+    height: 120%;
 }

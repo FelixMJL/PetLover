@@ -74,9 +74,9 @@ const Header = () => {
           )}
         </div>
         <div className="user-menu__profile-list">
-          <div className="user-menu__profile-list-items">
+          <button className="user-menu__profile-list-items" onClick={''}>
             <img src={profileIcon} alt="Profile icon" /> Profile
-          </div>
+          </button>
           <button className="user-menu__logoutBtn" onClick={""}>
             <img src={logoutIcon} alt="Logout icon" /> Logout
           </button>
