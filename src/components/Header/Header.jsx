@@ -1,6 +1,8 @@
 import "./Header.css";
 import { useState, useEffect, useRef } from "react";
 import { getUser } from "../../services/getUser";
+import {Link} from "react-router-dom";
+import {getUserData} from "../../services/getUserData";
 import profileIcon from "../../assets/icon-profile.png";
 import logoutIcon from "../../assets/icon-logout.png";
 import closePageIcon from "../../assets/icon-close.png";
@@ -74,9 +76,10 @@ const Header = () => {
           )}
         </div>
         <div className="user-menu__profile-list">
-          <button className="user-menu__profile-list-items" onClick={''}>
+          {/* <button className="user-menu__profile-list-items" onClick={''}>
             <img src={profileIcon} alt="Profile icon" /> Profile
-          </button>
+          </button> */}
+          <Link className="user-menu__profile-list-items" to={`/profile/${getUserData().id}`}>Profile</Link>
           <button className="user-menu__logoutBtn" onClick={""}>
             <img src={logoutIcon} alt="Logout icon" /> Logout
           </button>

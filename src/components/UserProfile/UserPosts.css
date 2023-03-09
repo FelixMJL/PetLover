@@ -1,0 +1,55 @@
+.userPosts .postItem {
+  border-bottom:1px solid #EDE7E7;
+}
+
+.userPosts .postItem .postItemContainer {
+  margin: 20px;
+  display: flex;
+  gap: 20px;
+  width: 100vw;
+}
+
+.userPosts .postItem .postItemContainer .postAvatar{
+  display: flex;
+}
+
+.userPosts .postItem .postItemContainer .postAvatar img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.userPosts .postItem .postItemContainer .postContentContainer {
+  width: 70vw;
+}
+
+.userPosts .postItem .postItemContainer .postContentContainer .postContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userPosts .postItem .postItemContainer .postContentContainer .postContent .postInfo {
+  display: flex;
+  gap: 5px;
+  color: gray;
+}
+
+.userPosts .postItem .postItemContainer .postContentContainer .postContent .postInfo span {
+  position: relative;
+}
+
+
+
+.userPosts .postItem .postItemContainer .postContent .postInfo .separatingDot {
+  bottom: 4px;
+}
+
+.userPosts .postItem .postItemContainer .postContent .postInfo .userName {
+  color: black;
+  font-weight: 700;
+}
+
+.userPosts .postItem .postItemContainer .postContent .bin img {
+  width: 20px;
+  height: 20px;
+}
