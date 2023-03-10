@@ -1,0 +1,38 @@
+.singlePost {
+  display: flex;
+  font-family: Inter;
+  gap:10px;
+  margin-top:10px;
+}
+
+.singlePost .container {
+  flex: auto;
+}
+
+.singlePost .contentImg {
+  border-radius: 20px;
+  margin-top: 15px;
+  max-height: 390px;
+  object-fit: cover;
+  width: auto;
+}
+.singlePost .contentText {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: #000000;
+}
+.singlePost .comments {
+  display: flex;
+  gap: 10px;
+  font-size: larger;
+}
+.singlePost .comments .commentsAmount {
+  color:#536471;
+}
+.singlePost .comments .commentsIcon {
+  color: black;
+}
+

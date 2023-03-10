@@ -1,8 +1,8 @@
-import "./RecommendForYou.css";
-import React, { useState, useEffect } from "react";
-import Post from "./post/post";
-import { getAllPosts } from "../../services/getAllPosts";
-import loading from "../../assets/loading.svg";
+import './RecommendForYou.css';
+import React, { useState, useEffect } from 'react';
+import Post from './post/post';
+import { getAllPosts } from '../../services/getAllPosts';
+import loading from '../../assets/loading.svg';
 
 const RecommendForYou = () => {
   const [posts, setPosts] = useState([]);
@@ -13,6 +13,7 @@ const RecommendForYou = () => {
         const post = await getAllPosts();
         setPosts(post.data);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log(error.message);
       }
     };
