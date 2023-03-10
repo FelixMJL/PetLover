@@ -1,10 +1,9 @@
 import './UserPosts.css';
 import moment from 'moment';
 import React from 'react';
-import MyPost from './post/myPost';
+import UserPost from './post/UserPost';
 import bin from '../../assets/bin.png';
 
-// eslint-disable-next-line camelcase
 const UserPosts = ({ posts, username, nickname, avatar, created_at, id, currentUserId }) => (
   <div className="userPosts">
     {posts &&
@@ -28,7 +27,7 @@ const UserPosts = ({ posts, username, nickname, avatar, created_at, id, currentU
                   </span>
                 </div>
               </div>
-              <MyPost {...post} />
+              <UserPost {...post} />
             </div>
           </div>
         </div>

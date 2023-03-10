@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './Profile.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import UserInfo from '../components/UserProfile/UserInfo';
@@ -12,14 +11,13 @@ const Profile = () => {
   const [userData, setUserData] = useState(0);
   const getUser = () => axios.get(`http://localhost:8080/api/v1/users/${id}`, getUserData().config);
   useEffect(() => {
-    // eslint-disable-next-line no-shadow
+    // eslint-disable-next-line no-shadow,consistent-return
     const getUserData = async () => {
       try {
         const user = await getUser();
         setUserData(user.data);
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error.message);
+        return error.message;
       }
     };
     getUserData();

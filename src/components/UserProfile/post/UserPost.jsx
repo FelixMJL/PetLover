@@ -1,8 +1,8 @@
-import './myPost.css';
+import './UserPost.css';
 import { FaRegComment } from 'react-icons/fa';
 import React from 'react';
 
-const MyPost = ({ content, image, comments }) => (
+const UserPost = ({ content, image, comments }) => (
   <div className="singlePost">
     <div className="container">
       <p className="contentText">{content}</p>
@@ -15,4 +15,4 @@ const MyPost = ({ content, image, comments }) => (
   </div>
 );
 
-export default MyPost;
+export default UserPost;
