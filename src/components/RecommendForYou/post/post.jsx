@@ -1,27 +1,33 @@
-import "./post.css"
-import { FaRegComment } from "react-icons/fa";
-import React from 'react';
+import "./post.css";
+import replyIcon from "../../../assets/reply.png";
+import React from "react";
+import moment from "moment";
 
-const Post = ({author,content,image,comments}) => (
-    <div className="post-items">
-        <img src={author.avatar}
-        className="post-items_avatar" alt="avatar"></img>
-        <div className="post-items-r">
-            <div className="post-items_names">
-                <span className="names_nickname">{author.nickname}</span>
-                <span className="names_username">@{author.username}</span>
-            </div>
-            <div className="post-items_content-img">
-                <p className="content-img_content">{content}</p>
-                <img src={image}
-                className="content-img_img" alt="content-img"></img>
-                <div className="comments">
-                    <FaRegComment  className="comments-icon"/>
-                    <span className="comments-number">{comments.length}</span>
-                </div>
-            </div>
+const Post = ({ author, content, photo, comments, created_at }) => (
+  <div className="post_container">
+    <div className="post_inner-container">
+      <img src={author.avatar} className="post_avatar" alt="avatar"></img>
+      <div className="post_content-container">
+        <div className="post_author-info-container">
+          <span className="post_author-nick-name">{author.nickname}</span>
+          <span className="post_author-user-name">@{author.username}</span>
+          <div className="post_time">
+            <p>{moment(created_at).fromNow()}</p>
+          </div>
         </div>
+        <div className="post_content-text">
+          <p>{content}</p>
+        </div>
+        <div className="post_content-image">
+          <img src={photo} alt="Content img" />
+        </div>
+        <div className="post_comments">
+          <img src={replyIcon} alt="Reply icon" />
+          <p className="post_comments-count">{comments.length}</p>
+        </div>
+      </div>
     </div>
+  </div>
 );
 
 export default Post;
