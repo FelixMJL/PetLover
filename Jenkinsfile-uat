@@ -31,7 +31,7 @@ pipeline {
             }
         }
 
-        stage('Install dependency')
+        stage('NPM Install dependency')
         {
             steps{
              echo "Installing packages"
