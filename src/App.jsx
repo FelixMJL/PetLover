@@ -21,7 +21,7 @@ const App = () => {
       }
     };
     authTokenValidation();
-  }, [navigate]);
+  }, []);
 
   return (
     <div className="app">

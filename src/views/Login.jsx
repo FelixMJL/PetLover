@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css';
 import imgURL from '../assets/logo.png';
@@ -91,6 +91,7 @@ const Login = () => {
 
         {loginError && <p>{loginError}</p>}
         <button type="submit">Log into your account</button>
+        <Link to="/signup">SignUp</Link>
       </form>
     </div>
   );

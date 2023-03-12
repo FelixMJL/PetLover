@@ -1,12 +1,12 @@
-import "./post.css";
-import replyIcon from "../../../assets/reply.png";
-import React from "react";
-import moment from "moment";
+import './post.css';
+import React from 'react';
+import moment from 'moment';
+import replyIcon from '../../../assets/reply.png';
 
 const Post = ({ author, content, photo, comments, created_at }) => (
   <div className="post_container">
     <div className="post_inner-container">
-      <img src={author.avatar} className="post_avatar" alt="avatar"></img>
+      <img src={author.avatar} className="post_avatar" alt="avatar" />
       <div className="post_content-container">
         <div className="post_author-info-container">
           <span className="post_author-nick-name">{author.nickname}</span>
