@@ -72,7 +72,7 @@ pipeline {
             // send message it was failsure
             slackSend channel: 'pet-lover',
             message: "Frontend UAT build, Number ${BUILD_NUMBER} failed!"
-            emailext(attachLog: true, body: '看测试结果啦', subject: "Frontend UAT build FAILD", to: 'jadesure17@gmail.com')
+            emailext(attachLog: true, body: '看测试结果啦', subject: "Frontend UAT build FAILD", to: 'no-reply-petlover-notify@outlook.com')
             echo "uhm... 我觉得不太行！"
         }
 
@@ -80,7 +80,7 @@ pipeline {
             // send message it was success
             slackSend channel: 'pet-lover', 
             message: "Frontend UAT build, Number ${BUILD_NUMBER} succeeded!"
-            emailext(attachLog: true, body: '看测试结果啦', subject: 'Frontend UAT build SUCCESSED', to: 'jadesure17@gmail.com')
+            emailext(attachLog: true, body: '看测试结果啦', subject: 'Frontend UAT build SUCCESSED', to: 'no-reply-petlover-notify@outlook.com')
             echo "老铁！恭喜你，成功了呀!"
         }
 
