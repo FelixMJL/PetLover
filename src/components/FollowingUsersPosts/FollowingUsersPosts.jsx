@@ -7,15 +7,16 @@ import loading from '../../assets/loading.svg';
 
 const FollowingUsersPosts = () => {
   const [postData, setPostData] = useState([]);
+  const [status, setStatus] = useState(loading);
   useEffect(() => {
     const getPostData = async () => {
-      try {
-        const post = await getFollowing();
-        setPostData(post.data);
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error.message);
+      const post = await getFollowing();
+      if (!post.data.length) {
+        setStatus('no-posts');
+        return;
       }
+      setStatus('posts');
+      setPostData(post.data);
     };
     getPostData();
   }, []);
@@ -61,20 +62,31 @@ const FollowingUsersPosts = () => {
     return <ul>{list}</ul>;
   }
 
-  return (
-    <div>
-      {postData.length ? (
-        <>
-          <div>
-            <DataList posts={Array.from(postData)} />
-          </div>
-          <div className="foot-space" />
-        </>
-      ) : (
-        <div className="loading following-loading">
-          <img src={loading} alt="loading" />
+  if (status === loading) {
+    return (
+      <div className="loading following-loading">
+        <img src={loading} alt="loading" />
+      </div>
+    );
+  }
+
+  if (status === 'posts') {
+    return (
+      <>
+        <div>
+          <DataList posts={Array.from(postData)} />
         </div>
-      )}
+        <div className="foot-space" />
+      </>
+    );
+  }
+
+  return (
+    <div className="following-error-message__wrapper">
+      <p className="following-error-message">
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
+        There's no posts here. Please follow some users first.
+      </p>
     </div>
   );
 };
