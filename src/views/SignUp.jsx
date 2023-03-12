@@ -1,9 +1,152 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import './SignUp.css';
+import imgURL from '../assets/logo.png';
+import usernameIcon from '../assets/username.png';
+import passwordIcon from '../assets/password.png';
+import emailIcon from '../assets/email.png';
+import nicknameIcon from '../assets/nickname.png';
+import rightArrowIcon from '../assets/right-arrow.svg';
+import openEye from '../assets/eye-solid.svg';
+import closeEye from '../assets/eye-slash-solid.svg';
 
-const SignUp = () => (
-  <div>
-    <h1>Sign Up</h1>
-  </div>
-);
+const SignUp = () => {
+  const navigate = useNavigate();
+  const [userDetails, setUserDetails] = useState({
+    username: '',
+    nickname: '',
+    email: '',
+    password: '',
+  });
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+
+  function toggleShowPassword() {
+    setShowPassword(!showPassword);
+  }
+
+  const onChangeHandler = (e) => {
+    setUserDetails({
+      ...userDetails,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const addUser = async () => {
+    try {
+      return await axios.post('http://localhost:8080/api/v1/users', userDetails);
+    } catch (e) {
+      return e.response;
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!userDetails.email) {
+      setErrorMessage('Email is required.');
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(userDetails.email)) {
+      setErrorMessage('Email format error.');
+      return;
+    }
+    if (!userDetails.password) {
+      setErrorMessage('Password is required.');
+      return;
+    }
+    if (!userDetails.username) {
+      setErrorMessage('User name is required.');
+      return;
+    }
+    if (!userDetails.nickname) {
+      setErrorMessage('Nick name is required.');
+      return;
+    }
+
+    addUser().then((res) => {
+      if (res.status === 422) {
+        setErrorMessage(
+          'Password must be at least 8 characters with 1 digit, 1 uppercase letter, and 1 lowercase letter.',
+        );
+        setUserDetails({
+          ...userDetails,
+          password: '',
+        });
+        return;
+      }
+      if (res.status === 201) {
+        localStorage.setItem('userData', JSON.stringify(res.data));
+        navigate('/');
+      } else {
+        setErrorMessage(res.data);
+      }
+    });
+  };
+  return (
+    <div className="signUpBox">
+      <div className="logoContainer">
+        <img src={imgURL} alt="" />
+      </div>
+      <h2 className="welcomeTitle">Create account</h2>
+      <form className="inputContainer" onSubmit={handleSubmit}>
+        <div className="inputBox">
+          <img className="icon" src={emailIcon} alt="" />
+          <input
+            type="email"
+            name="email"
+            defaultValue={userDetails.email}
+            placeholder="Email"
+            onChange={onChangeHandler}
+          />
+        </div>
+        <div className="inputBox">
+          <img className="icon" src={passwordIcon} alt="" />
+          <input
+            type={showPassword ? 'text' : 'password'}
+            name="password"
+            placeholder="Password"
+            defaultValue={userDetails.password}
+            onChange={onChangeHandler}
+          />
+          <img
+            className="showPasswordIcon"
+            src={showPassword ? closeEye : openEye}
+            alt="Toggle password visibility"
+            onClick={toggleShowPassword}
+          />
+        </div>
+        <div className="inputBox">
+          <img className="icon" src={usernameIcon} alt="" />
+          <input
+            type="text"
+            name="username"
+            placeholder="User Name"
+            defaultValue={userDetails.username}
+            onChange={onChangeHandler}
+          />
+        </div>
+        <div className="inputBox">
+          <img className="icon" src={nicknameIcon} alt="" />
+          <input
+            type="text"
+            name="nickname"
+            placeholder="Nick Name"
+            defaultValue={userDetails.nickname}
+            onChange={onChangeHandler}
+          />
+        </div>
+        <div>{errorMessage}</div>
+        <div className="buttonBox">
+          <div className="buttonText">Creat</div>
+          <button type="submit">
+            <img src={rightArrowIcon} alt="" />
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default SignUp;
