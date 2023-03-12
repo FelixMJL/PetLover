@@ -2,12 +2,12 @@ ul {
     margin: 0;
     padding: 0;
 }
-p{
+
+p {
     margin: 0;
 }
 
-.post-container{
-    font-family: "Inter", sans-serif;
+.post-container {
     font-size: 15px;
     border-bottom: 1px solid #EDE7E7;
     box-sizing: border-box;
@@ -16,81 +16,98 @@ p{
     top: 100px;
 }
 
-.post-inner-container{
+.post-inner-container {
     margin: 15px 17px 16px 22px;
-    display:flex;
+    display: flex;
     gap: 10px;
 }
 
-.avatar{
+.avatar {
     align-items: center;
 }
-.avatar img{
+
+.avatar img {
     border-radius: 100%;
     width: 50px;
 }
 
-.post-content-container{
-    margin: 0px;
+.post-content-container {
+    margin: 0;
 }
 
-.post-info{
+.post-info {
     height: fit-content;
     display: flex;
     flex-wrap: wrap;
 }
 
-.post-pic img{
+.post-pic img {
     max-height: 390px;
     margin-top: 15px;
     border-radius: 5%;
 }
 
-.content{
+.content {
     gap: 10px;
     line-height: 18px;
     margin-top: 10px;
 }
 
-.comment{
+.comment {
     display: flex;
     margin-top: 10px;
-    gap:5px;
+    gap: 5px;
 }
-.comment-count{
+
+.comment-count {
     font-size: 13px;
     font-weight: 400;
     color: #536471;
 }
 
-.nickname{
+.nickname {
     margin-right: 10px;
     font-weight: 700;
     font-size: 15px;
     color: #000000;
 }
-.username{
+
+.username {
     margin-right: 10px;
-    color: #536471;
-    font-size: 15px;
-    font-weight: 500;
-}
-.dot{
-    margin-right: 10px;
-    color: #536471;
-    width: 3px;
-}
-.post-time{
     color: #536471;
     font-size: 15px;
     font-weight: 500;
 }
 
-.foot-space{
+.dot {
+    margin-right: 10px;
+    color: #536471;
+    width: 3px;
+}
+
+.post-time {
+    color: #536471;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.foot-space {
     height: 50px;
 }
 
 .following-loading {
     position: relative;
     top: 90px;
+}
+
+.following-error-message__wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.following-error-message {
+    font-weight: bold;
+    position: relative;
+    width: 300px;
+    top: 120px;
 }
