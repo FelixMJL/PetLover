@@ -1,18 +1,24 @@
 import React from 'react';
 import './ConnectUser.css';
 import loading from '../../assets/loading.svg';
+import { getUserData } from '../../services/getUserData';
 
-const ConnectUser = (props) => {
+const ConnectUser = ({ users }) => {
   const btnClickHandler = () => {
     // console.log(e.target.dataset);
   };
+  const userData = users;
+  const currentUserId = getUserData().id;
+  const currentUser = userData.find((user) => user.id === currentUserId);
+  const followingIds = currentUser?.following || [];
+  const filterArray = [currentUserId, ...followingIds];
+  const filteredUserData = userData.filter((user) => !filterArray.includes(user.id));
+
   return (
     <>
-      {/* eslint-disable-next-line react/destructuring-assignment */}
-      {props.users.length ? (
+      {filteredUserData.length ? (
         <>
-          {/* eslint-disable-next-line react/destructuring-assignment */}
-          {props.users.map((user) => (
+          {filteredUserData.map((user) => (
             <div className="connect-user" key={user.username}>
               <div className="connect-user__avatar">
                 <img className="connect-user__avatar--img" src={user.avatar} alt="avatar" />
