@@ -1,24 +1,18 @@
-// import React, { useId, useState } from 'react';
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import './ConnectUser.css';
+import axios from 'axios';
 import loading from '../../assets/loading.svg';
 import { getUserData } from '../../services/getUserData';
-import { useRevalidator } from 'react-router-dom';
-import axios from 'axios';
 
 const ConnectUser = ({ users }) => {
-  // const btnClickHandler = () => {
-  //   // console.log(e.target.dataset);
-  //       setIsFollowing(!isFollowing);
-  // };
   const userData = users;
   const currentUserId = getUserData().id;
   const currentUser = userData.find((user) => user.id === currentUserId);
   const followingIds = currentUser?.following || [];
   const filterArray = [currentUserId, ...followingIds];
   const filteredUserData = userData.filter((user) => !filterArray.includes(user.id));
-  
-  const [isFollowing,setIsFollowing]=useState(followingIds);
+
+  const [isFollowing, setIsFollowing] = useState(followingIds);
 
   const toggleFollow = async (userId) => {
     if (isFollowing.includes(userId)) {
@@ -55,11 +49,9 @@ const ConnectUser = ({ users }) => {
                   <button
                     className="btn btn-follow"
                     data-value={user._id}
-                    // onClick={toggleFollow}>
-                    // {isFollowing ? 'Followings':'Follow'}
-                    onClick={()=> toggleFollow(user.id)}>
-                      {isFollowing.includes(user.id)? 'Followings':'Follow'}
-
+                    onClick={() => toggleFollow(user.id)}
+                  >
+                    {isFollowing.includes(user.id) ? 'Following' : 'Follow'}
                   </button>
                 </div>
                 <div className="connect-user__introduction">{user.introduction}</div>
