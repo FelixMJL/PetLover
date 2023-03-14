@@ -38,7 +38,7 @@ const Login = () => {
 
   const verifyUser = async () => {
     try {
-      return await axios.post('http://localhost:8080/api/v1/users/login', {
+      return await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/login`, {
         email,
         password,
       });
