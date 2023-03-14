@@ -12,7 +12,7 @@ const Post = ({ author, content, photo, comments, created_at }) => (
           <span className="post_author-nick-name">{author.nickname}</span>
           <span className="post_author-user-name">@{author.username}</span>
           <div className="post_time">
-            <p>{moment(created_at).fromNow()}</p>
+            <span>{moment(created_at).fromNow()}</span>
           </div>
         </div>
         <div className="post_content-text">
@@ -23,7 +23,7 @@ const Post = ({ author, content, photo, comments, created_at }) => (
         </div>
         <div className="post_comments">
           <img src={replyIcon} alt="Reply icon" />
-          <p className="post_comments-count">{comments.length}</p>
+          <span className="post_comments-count">{comments.length}</span>
         </div>
       </div>
     </div>

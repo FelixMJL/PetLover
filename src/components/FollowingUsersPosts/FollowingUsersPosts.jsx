@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './FollowingUsersPosts.css';
+import '../RecommendForYou/post/post.css';
 import moment from 'moment';
 import reply from '../../assets/reply.png';
 import { getFollowing } from '../../services/getFollowing';
@@ -23,43 +23,34 @@ const FollowingUsersPosts = () => {
 
   function DataList({ posts }) {
     const list = posts.map((post) => (
-      <li key={`${post._id}`}>
-        <div className="post-container">
-          <div className="post-inner-container">
-            <div className="avatar">
-              <img src={post.author.avatar} alt="" />
-            </div>
+      <div key={`${post._id}`}>
+        <div className="post_container">
+          <div className="post_inner-container">
+            <img className="post_avatar" src={post.author.avatar} alt="" />
             <div className="post-content-container">
-              <div className="post-info">
-                <div className="nickname">
-                  <p>
-                    <b>{post.author.nickname}</b>
-                  </p>
-                </div>
-                <div className="username">
-                  <p>@{post.author.username}</p>
-                </div>
-                <div className="dot"> ·</div>
-                <div className="post-time">
-                  <p>{moment(post.created_at).fromNow()}</p>
+              <div className="post_author-info-container">
+                <span className="post_author-nick-name">{post.author.nickname}</span>
+                <span className="post_author-user-name">@{post.author.username}</span>
+                <div className="post_time">
+                  <span>{moment(post.created_at).fromNow()}</span>
                 </div>
               </div>
-              <div className="content">
+              <div className="post_content-text">
                 <p>{post.content}</p>
               </div>
-              <div className="post-pic">
-                <img src={post.photo} alt="" />
+              <div className="post_content-image">
+                <img src={post.photo} alt="Content img" />
               </div>
-              <div className="comment">
-                <img src={reply} alt="" />
-                <p className="comment-count">{post.comments.length}</p>
+              <div className="post_comments">
+                <img src={reply} alt="Reply icon" />
+                <span className="post_comments-count">{post.comments.length}</span>
               </div>
             </div>
           </div>
         </div>
-      </li>
+      </div>
     ));
-    return <ul>{list}</ul>;
+    return <ul className="post_ul">{list}</ul>;
   }
 
   if (status === loading) {
