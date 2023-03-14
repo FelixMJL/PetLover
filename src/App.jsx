@@ -10,8 +10,13 @@ import Following from './views/Following';
 import { authToken } from './services/authToken';
 
 const App = () => {
+  const currentUser = JSON.parse(localStorage.getItem('userData'));
   const navigate = useNavigate();
   useEffect(() => {
+    if (!currentUser) {
+      navigate('/login');
+      return;
+    }
     const authTokenValidation = async () => {
       try {
         await authToken();
@@ -21,7 +26,7 @@ const App = () => {
       }
     };
     authTokenValidation();
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="app">
