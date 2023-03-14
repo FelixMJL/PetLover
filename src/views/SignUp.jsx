@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './SignUp.css';
 import imgURL from '../assets/logo.png';
@@ -102,7 +102,7 @@ const SignUp = () => {
           />
         </div>
         <div className="inputBox">
-          <img className="icon" src={passwordIcon} alt="" />
+          <img className="icon" src={passwordIcon} alt="password" />
           <input
             type={showPassword ? 'text' : 'password'}
             name="password"
@@ -139,11 +139,12 @@ const SignUp = () => {
         </div>
         <div>{errorMessage}</div>
         <div className="buttonBox">
-          <div className="buttonText">Creat</div>
+          <div className="buttonText">Create</div>
           <button type="submit">
             <img src={rightArrowIcon} alt="" />
           </button>
         </div>
+        <Link to="/login">back to login</Link>
       </form>
     </div>
   );
