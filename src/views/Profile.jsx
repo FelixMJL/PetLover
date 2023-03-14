@@ -9,7 +9,8 @@ const Profile = () => {
   const { id } = useParams();
   const currentUserId = getUserData().id;
   const [userData, setUserData] = useState(0);
-  const getUser = () => axios.get(`http://localhost:8080/api/v1/users/${id}`, getUserData().config);
+  const getUser = () =>
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${id}`, getUserData().config);
   useEffect(() => {
     // eslint-disable-next-line consistent-return,no-shadow
     const getUserData = async () => {
