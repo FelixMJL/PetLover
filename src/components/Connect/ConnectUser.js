@@ -1,25 +1,47 @@
-import React from 'react';
+// import React, { useId, useState } from 'react';
+import React, {useState } from 'react';
 import './ConnectUser.css';
 import loading from '../../assets/loading.svg';
 import { getUserData } from '../../services/getUserData';
+import { useRevalidator } from 'react-router-dom';
+import axios from 'axios';
 
 const ConnectUser = ({ users }) => {
-  const btnClickHandler = () => {
-    // console.log(e.target.dataset);
-  };
+  // const btnClickHandler = () => {
+  //   // console.log(e.target.dataset);
+  //       setIsFollowing(!isFollowing);
+  // };
   const userData = users;
   const currentUserId = getUserData().id;
   const currentUser = userData.find((user) => user.id === currentUserId);
   const followingIds = currentUser?.following || [];
   const filterArray = [currentUserId, ...followingIds];
   const filteredUserData = userData.filter((user) => !filterArray.includes(user.id));
+  
+  const [isFollowing,setIsFollowing]=useState(followingIds);
 
+  const toggleFollow = async (userId) => {
+    if (isFollowing.includes(userId)) {
+      setIsFollowing(isFollowing.filter((id) => id !== userId));
+      await axios.delete(
+        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}/unfollowing/${userId}`,
+        getUserData().config,
+      );
+    } else {
+      setIsFollowing([...isFollowing, userId]);
+      await axios.post(
+        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}/following/${userId}`,
+        null,
+        getUserData().config,
+      );
+    }
+  };
   return (
     <>
       {filteredUserData.length ? (
         <>
           {filteredUserData.map((user) => (
-            <div className="connect-user" key={user.username}>
+            <div className="connect-user" key={user.id}>
               <div className="connect-user__avatar">
                 <img className="connect-user__avatar--img" src={user.avatar} alt="avatar" />
               </div>
@@ -33,9 +55,11 @@ const ConnectUser = ({ users }) => {
                   <button
                     className="btn btn-follow"
                     data-value={user._id}
-                    onClick={btnClickHandler}
-                  >
-                    Follow
+                    // onClick={toggleFollow}>
+                    // {isFollowing ? 'Followings':'Follow'}
+                    onClick={()=> toggleFollow(user.id)}>
+                      {isFollowing.includes(user.id)? 'Followings':'Follow'}
+
                   </button>
                 </div>
                 <div className="connect-user__introduction">{user.introduction}</div>
