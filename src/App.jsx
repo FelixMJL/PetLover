@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import React, { useEffect } from 'react';
 import Login from './views/Login';
@@ -12,7 +12,12 @@ import { authToken } from './services/authToken';
 const App = () => {
   const currentUser = JSON.parse(localStorage.getItem('userData'));
   const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
+    if (location.pathname === '/signup') {
+      navigate('/signup');
+      return;
+    }
     if (!currentUser) {
       navigate('/login');
       return;
@@ -26,7 +31,7 @@ const App = () => {
       }
     };
     authTokenValidation();
-  }, [navigate]);
+  }, [currentUser, location.pathname, navigate]);
 
   return (
     <div className="app">

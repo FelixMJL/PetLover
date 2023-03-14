@@ -98,6 +98,7 @@
     outline: 0;
     padding-left: 0;
     background-color: transparent;
+    text-decoration: none;
 }
 
 .user-menu__logoutBtn {
@@ -111,6 +112,10 @@
     border: 0;
     outline: 0;
     background-color: transparent;
+}
+
+.user-menu__logoutBtn:hover {
+    cursor: pointer;
 }
 
 .user-menu__profile-list img {
