@@ -1,7 +1,7 @@
 import './post.css';
 import React from 'react';
 import moment from 'moment';
-import replyIcon from '../../../assets/reply.png';
+import { FaRegComment } from 'react-icons/fa';
 
 const Post = ({ author, content, photo, comments, created_at }) => (
   <div className="post_container">
@@ -12,17 +12,15 @@ const Post = ({ author, content, photo, comments, created_at }) => (
           <span className="post_author-nick-name">{author.nickname}</span>
           <span className="post_author-user-name">@{author.username}</span>
           <div className="post_time">
-            <span>{moment(created_at).fromNow()}</span>
+            <span>·{moment(created_at).fromNow()}</span>
           </div>
         </div>
         <div className="post_content-text">
           <p>{content}</p>
         </div>
-        <div className="post_content-image">
-          <img src={photo} alt="Content img" />
-        </div>
+        <img src={photo} className="post_content-image" alt="Content img" />
         <div className="post_comments">
-          <img src={replyIcon} alt="Reply icon" />
+          <FaRegComment />
           <span className="post_comments-count">{comments.length}</span>
         </div>
       </div>
