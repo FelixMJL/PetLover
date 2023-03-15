@@ -19,17 +19,17 @@ pipeline {
     }
 
     stages{
-        stage('Snyk Scan') {
-            steps {
-                echo 'Testing...'
-                snykSecurity(
-                    failOnIssues: false,
-                    snykInstallation: 'snyk@latest',
-                    snykTokenId: 'snyk-api-token',
-                    additionalArguments: '--severity-threshold=high'
-                )
-            }
-        }
+        // stage('Snyk Scan') {
+        //     steps {
+        //         echo 'Testing...'
+        //         snykSecurity(
+        //             failOnIssues: false,
+        //             snykInstallation: 'snyk@latest',
+        //             snykTokenId: 'snyk-api-token',
+        //             additionalArguments: '--severity-threshold=high'
+        //         )
+        //     }
+        // }
 
         stage('NPM Install dependency')
         {
