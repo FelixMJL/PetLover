@@ -1,61 +1,63 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Login.css';
+import './SignUp.css';
 import imgURL from '../assets/logo.png';
+import passwordIcon from '../assets/password.png';
+import emailIcon from '../assets/email.png';
+import rightArrowIcon from '../assets/right-arrow.svg';
+import openEye from '../assets/eye-solid.svg';
+import closeEye from '../assets/eye-slash-solid.svg';
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [loginError, setLoginError] = useState('');
+  const [userDetails, setUserDetails] = useState({
+    email: '',
+    password: '',
+  });
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleEmailChange = (event) => {
-    const emailValue = event.target.value;
-    if (emailValue.trim() === '') {
-      setEmailError('Email cannot be empty');
-    } else if (!/\S+@\S+\.\S+/.test(emailValue)) {
-      setEmailError('Email format error');
-    } else {
-      setEmailError('');
-      setEmail(emailValue);
-    }
-  };
-
-  const handlePasswordChange = (event) => {
-    const passwordValue = event.target.value;
-
-    if (passwordValue.trim() === '') {
-      setPasswordError('Password cannot be empty');
-    } else {
-      setPasswordError('');
-      setPassword(passwordValue);
-    }
+  function toggleShowPassword() {
+    setShowPassword(!showPassword);
+  }
+  const onChangeHandler = (e) => {
+    setUserDetails({
+      ...userDetails,
+      [e.target.name]: e.target.value,
+    });
+    setErrorMessage('');
   };
 
   const verifyUser = async () => {
     try {
       return await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/login`, {
-        email,
-        password,
+        ...userDetails,
       });
     } catch (e) {
       return e.response;
     }
   };
 
-  const handleSubmit = (event) => {
+  const login = (event) => {
     event.preventDefault();
-    if (emailError || passwordError) {
+    if (!userDetails.email) {
+      setErrorMessage('Email is required.');
       return;
     }
+    if (!/\S+@\S+\.\S+/.test(userDetails.email)) {
+      setErrorMessage('Email is invalid.');
+      return;
+    }
+    if (!userDetails.password) {
+      setErrorMessage('Password is required.');
+      return;
+    }
+
     verifyUser().then((res) => {
       if (res.status === 401) {
-        setLoginError('Invalid email or password');
-        setPassword('');
+        setErrorMessage('Invalid email or password');
         return;
       }
       if (res.status === 201) {
@@ -64,35 +66,58 @@ const Login = () => {
       }
     });
   };
+
   return (
-    <div className="loginBox">
+    <div className="signUpBox">
       <div className="logoContainer">
         <img src={imgURL} alt="" />
       </div>
       <h2 className="welcomeTitle">Welcome to Pet Lover</h2>
-      <form className="inputContainer" onSubmit={handleSubmit}>
-        {emailError && <p>{emailError}</p>}
-        <input
-          type="email"
-          name="emailInput"
-          defaultValue={email}
-          placeholder="email"
-          onChange={handleEmailChange}
-        />
-        {passwordError && <p>{passwordError}</p>}
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
+      <form className="inputContainer" onSubmit={login}>
+        <div className="inputWrapper">
+          <div className="inputBox">
+            <img className="icon" src={emailIcon} alt="" />
+            <input
+              type="email"
+              name="email"
+              defaultValue={userDetails.email}
+              placeholder="E-mail"
+              onChange={onChangeHandler}
+            />
+          </div>
+          <div className="inputBox">
+            <img className="icon" src={passwordIcon} alt="password" />
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="Password"
+              defaultValue={userDetails.password}
+              onChange={onChangeHandler}
+            />
+            <img
+              className="showPasswordIcon"
+              src={showPassword ? closeEye : openEye}
+              alt="Toggle password visibility"
+              onClick={toggleShowPassword}
+            />
+          </div>
 
-        {loginError && <p>{loginError}</p>}
-        <button type="submit">Log into your account</button>
-        <Link to="/signup">SignUp</Link>
+          <div className="error-message">{errorMessage}</div>
+        </div>
+        <div className="buttonBox">
+          <div className="buttonText">Sign in</div>
+          <button type="submit">
+            <img src={rightArrowIcon} alt="" />
+          </button>
+        </div>
       </form>
+      <div className="pageSwitch">
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
+        <span>Don't have an account?</span>
+        <Link className="pageSwitch-link" to="/signup">
+          Create
+        </Link>
+      </div>
     </div>
   );
 };
