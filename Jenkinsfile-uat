@@ -27,7 +27,7 @@ pipeline {
                     failOnIssues: false,
                     snykInstallation: 'snyk@latest',
                     snykTokenId: 'snyk-api-token',
-                    additionalArguments: '--severity-threshold=high'
+                    additionalArguments: '--severity-threshold=high --all-projects'
                 )
             }
         }
@@ -88,9 +88,7 @@ pipeline {
         always {
             script {
                 try{
-                    sh'''
-                        cleanWs()
-                    '''
+                    sh 'cleanWs()'
                 } catch (Exception e) {
                     echo "clean failed"
                 }
