@@ -4,7 +4,7 @@
 
 ### New Update
 
-设置环境变量，目前有2个环境:
+设置环境变量，目前有2个环境
 
 环境一 UAT环境(测试环境) 默认会连接到测试环境，即当你打开 https://uat.hellokitty.petlover2023.com/login  
 就能使用我们的app，无需手动连接前后端。
