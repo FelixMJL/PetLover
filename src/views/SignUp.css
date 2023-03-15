@@ -42,13 +42,16 @@
     border-radius: 2.5vh;
     margin-bottom: 25px;
     border: none;
-    padding-left: 6vh;
+    padding-left: 55px;
     box-shadow: 5px 5px 15px #e6e6e6;
     font-weight: bold;
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
 }
 
 .signUpBox .inputContainer input::placeholder {
     color: #b4b2b2;
+    font-size: 15px;
 }
 
 .signUpBox .inputBox {
@@ -56,6 +59,7 @@
 }
 
 .signUpBox .inputBox .icon {
+    box-sizing: border-box;
     position: absolute;
     left: 1px;
     top: 1px;
