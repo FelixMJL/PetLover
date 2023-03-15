@@ -27,7 +27,7 @@ pipeline {
                     failOnIssues: false,
                     snykInstallation: 'snyk@latest',
                     snykTokenId: 'snyk-api-token',
-                    additionalArguments: '--severity-threshold=high --all-projects'
+                    additionalArguments: '--severity-threshold=high'
                 )
             }
         }
@@ -37,10 +37,10 @@ pipeline {
             steps{
              echo "Installing packages"
              sh 'npm install'
-            }          
+            }
         }
 
-        stage('npm build') 
+        stage('npm build')
         {
             steps{
              echo "Building compressed files..."
@@ -51,7 +51,7 @@ pipeline {
 
         stage("upload  to  S3 bucket and revalidate CDN Cache") {
             // develop
-            // when {branch 'Suree/DevOps'}   
+            // when {branch 'Suree/DevOps'}
             steps {
                 withAWS(credentials: AWS_CRED, region: AWS_REGION){
                     ansiColor('xterm') {
@@ -79,7 +79,7 @@ pipeline {
 
         success {
             // send message it was success
-            slackSend channel: 'pet-lover', 
+            slackSend channel: 'pet-lover',
             message: "Frontend UAT build, Number ${BUILD_NUMBER} succeeded!"
             emailext(attachLog: true, body: '看测试结果啦', subject: 'Frontend UAT build SUCCESSED', to: 'no-reply-petlover-notify@outlook.com')
             echo "老铁！恭喜你，成功了呀!"
@@ -88,7 +88,9 @@ pipeline {
         always {
             script {
                 try{
-                    sh 'cleanWs()'
+                    sh'''
+                        cleanWs()
+                    '''
                 } catch (Exception e) {
                     echo "clean failed"
                 }
