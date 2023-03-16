@@ -20,7 +20,7 @@ const RecommendForYou = () => {
     getPostData();
   }, []);
   return (
-    <>
+    <div>
       {posts.length ? (
         posts.map((post) => (
           <div key={post._id}>
@@ -32,7 +32,7 @@ const RecommendForYou = () => {
           <img src={loading} alt="loading" />
         </div>
       )}
-    </>
+    </div>
   );
 };
 
