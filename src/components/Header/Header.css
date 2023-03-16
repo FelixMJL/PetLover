@@ -17,7 +17,7 @@
 
 .header__head {
     height: 50px;
-    background-color: lightblue;
+    background-color: white;
     position: relative;
     display: flex;
     align-items: center;
@@ -32,11 +32,12 @@
 }
 
 .avatarInHeader{
+    position: absolute;
     margin-left: 2vw;
 }
 
 .logoInHeader {
-    margin-left: 25vw;
+    margin: 0 auto;
 }
 
 .profileMenu {
