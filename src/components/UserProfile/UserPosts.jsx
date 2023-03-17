@@ -2,7 +2,7 @@ import '../RecommendForYou/post/post.css';
 import moment from 'moment';
 import React from 'react';
 import UserPost from './post/UserPost';
-import bin from '../../assets/bin.png';
+import DeletePost from '../DeletePost/DeletePost';
 
 const UserPosts = ({ posts, username, nickname, avatar, created_at, id, currentUserId }) => (
   <div className="userPosts">
@@ -16,11 +16,9 @@ const UserPosts = ({ posts, username, nickname, avatar, created_at, id, currentU
                 <div className="post_author-info-container">
                   <span className="post_author-nick-name">{nickname}</span>
                   <span className="post_author-user-name">@{username}</span>
-                  <div className="post_time">·{moment({ created_at }).fromNow()}</div>
+                  <div className="post_time">· {moment({ created_at }).fromNow()}</div>
                 </div>
-                <div>
-                  {id === currentUserId ? <img src={bin} className="post_bin-icon" alt="" /> : ''}
-                </div>
+                <div>{id === currentUserId ? <DeletePost postId={post._id} /> : ''}</div>
               </div>
               <UserPost {...post} />
             </div>
@@ -29,5 +27,4 @@ const UserPosts = ({ posts, username, nickname, avatar, created_at, id, currentU
       ))}
   </div>
 );
-
 export default UserPosts;
