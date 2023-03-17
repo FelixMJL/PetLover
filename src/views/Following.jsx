@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import React from 'react';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
@@ -8,12 +8,12 @@ const Following = () => (
   <div>
     <Header />
     <div className="recommend">
-      <Link className="item" to="/">
-        Recommend for you
-      </Link>
-      <Link className="item" to="/following">
-        Following
-      </Link>
+      <div className="item">
+        <NavLink to="/">Recommend for you</NavLink>
+      </div>
+      <div className="item">
+        <NavLink to="/following">Following</NavLink>
+      </div>
     </div>
     <FollowingUsersPosts />
     <Footer />

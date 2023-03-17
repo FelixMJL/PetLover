@@ -2,6 +2,7 @@ import './Header.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { getUser } from '../../services/getUser';
 import Menu from './Menu/Menu';
+import logo from '../../assets/logo.png';
 
 const Header = () => {
   const profileMenu = useRef(null);
@@ -40,7 +41,7 @@ const Header = () => {
     <div className="header">
       <div className="header__head">
         <img src={userData.avatar} alt="avatar" className="avatarInHeader" onClick={extendMenu} />
-        <img src="" alt="logo" className="logoInHeader" />
+        <img src={logo} alt="logo" className="logoInHeader" />
       </div>
       <Menu
         profileMenu={profileMenu}

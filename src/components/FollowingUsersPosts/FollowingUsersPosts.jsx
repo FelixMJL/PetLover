@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../RecommendForYou/post/post.css';
 import moment from 'moment';
-import { FaRegComment } from 'react-icons/fa';
+import replyLogo from '../../assets/reply.png';
 import { getFollowing } from '../../services/getFollowing';
 import loading from '../../assets/loading.svg';
 
@@ -40,7 +40,7 @@ const FollowingUsersPosts = () => {
               </div>
               <img src={post.photo} className="post_content-image" alt="Content img" />
               <div className="post_comments">
-                <FaRegComment />
+                <img src={replyLogo} alt="replyLogo" className="post_comments-replyLogo" />
                 <span className="post_comments-count">{post.comments.length}</span>
               </div>
             </div>

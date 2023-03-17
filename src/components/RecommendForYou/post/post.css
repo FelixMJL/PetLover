@@ -6,7 +6,7 @@
 .post_container {
     font-family: "Inter", sans-serif;
     font-size: 15px;
-    border-bottom: 1px solid #EDE7E7;
+    border-top: 1px solid #EDE7E7;
     box-sizing: border-box;
     background: #FFFFFF;
     position: relative;
@@ -63,10 +63,10 @@
 
 .post_comments {
     display: flex;
+    align-items: center;
     margin-top: 10px;
-    gap: 5px;
+    gap: 10px;
 }
-
 .post_comments-count {
     font-size: 13px;
     font-weight: 400;

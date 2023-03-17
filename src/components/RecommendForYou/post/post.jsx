@@ -1,7 +1,7 @@
 import './post.css';
 import React from 'react';
 import moment from 'moment';
-import { FaRegComment } from 'react-icons/fa';
+import replyLogo from '../../../assets/reply.png';
 
 const Post = ({ author, content, photo, comments, created_at }) => (
   <div className="post_container">
@@ -20,7 +20,7 @@ const Post = ({ author, content, photo, comments, created_at }) => (
         </div>
         <img src={photo} className="post_content-image" alt="Content img" />
         <div className="post_comments">
-          <FaRegComment />
+          <img src={replyLogo} alt="replyLogo" className="post_comments-replyLogo" />
           <span className="post_comments-count">{comments.length}</span>
         </div>
       </div>
