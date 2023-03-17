@@ -1,8 +1,6 @@
 .userInfo {
-}
-
-.userInfo__wrapper {
-    margin: 20px;
+    overflow: hidden;
+    margin: 10px 20px 0;
 }
 
 .userInfo .headPart {
