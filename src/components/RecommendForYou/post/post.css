@@ -6,7 +6,7 @@
 .post_container {
     font-family: "Inter", sans-serif;
     font-size: 15px;
-    border-bottom: 1px solid #EDE7E7;
+    border-top: 1px solid #EDE7E7;
     box-sizing: border-box;
     background: #FFFFFF;
     position: relative;
@@ -46,6 +46,7 @@
 .post_time {
     color: #536471;
     font-weight: 500;
+    margin: auto 3px;
 }
 
 .post_content-text {
@@ -56,23 +57,16 @@
 
 .post_content-image {
     margin-top: 15px;
-}
-
-.post_content-image img {
     max-width: 100%;
     border-radius: 5%;
 }
 
 .post_comments {
     display: flex;
+    align-items: center;
     margin-top: 10px;
-    gap: 5px;
+    gap: 10px;
 }
-
-.post_comments img {
-    object-fit: contain;
-}
-
 .post_comments-count {
     font-size: 13px;
     font-weight: 400;
@@ -89,4 +83,14 @@
     position: relative;
     width: 300px;
     top: 120px;
+}
+
+.post_info-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post_bin-icon {
+    width: 20px;
+    height: 20px;
 }

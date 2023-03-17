@@ -1,15 +1,15 @@
-import './UserPost.css';
-import { FaRegComment } from 'react-icons/fa';
+import '../../RecommendForYou/post/post.css';
 import React from 'react';
+import replyLogo from '../../../assets/reply.png';
 
-const UserPost = ({ content, image, comments }) => (
-  <div className="singlePost">
+const UserPost = ({ content, photo, comments }) => (
+  <div className="post_content-container">
     <div className="container">
-      <p className="contentText">{content}</p>
-      <img src={image} className="contentImg" alt="content-img" />
-      <div className="comments">
-        <FaRegComment className="commentsIcon" />
-        <span className="commentsAmount">{comments.length}</span>
+      <div className="post_content-text">{content}</div>
+      <img src={photo} className="post_content-image" alt="content-img" />
+      <div className="post_comments">
+        <img src={replyLogo} alt="replyLogo" className="post_comments-replyLogo" />
+        <span className="post_comments-count">{comments.length}</span>
       </div>
     </div>
   </div>

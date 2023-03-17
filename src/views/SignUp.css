@@ -1,106 +1,156 @@
 .signUpBox {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-content: center;
-  background: #ffffff;
+    padding: 2vh 8vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 }
+
 .signUpBox .logoContainer {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
+
 .signUpBox .logoContainer img {
-  height: fit-content;
+    height: fit-content;
 }
 
 .signUpBox h2 {
-  font-family: 'Quicksand', sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 28px;
-  /* identical to box height */
+    font-family: 'Quicksand', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 28px;
+    /* identical to box height */
 
-  text-align: center;
+    text-align: center;
 }
 
 .signUpBox .inputContainer {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
+
 .signUpBox .inputContainer input {
-  width: 68vw;
-  height: 5vh;
-  background: #f7f7f7;
-  border-radius: 2.5vh;
-  margin-bottom: 2.5vh;
-  border: none;
-  padding-left: 6vh;
-  box-shadow: 5px 5px 15px #e6e6e6;
+    box-sizing: border-box;
+    width: 100%;
+    height: 45px;
+    background: #f7f7f7;
+    border-radius: 2.5vh;
+    margin-bottom: 25px;
+    border: none;
+    padding-left: 55px;
+    box-shadow: 5px 5px 15px #e6e6e6;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+}
+
+.signUpBox .inputContainer input::placeholder {
+    color: #b4b2b2;
+    font-size: 15px;
 }
 
 .signUpBox .inputBox {
-  position: relative;
+    position: relative;
 }
+
 .signUpBox .inputBox .icon {
-  position: absolute;
-  left: 1px;
-  top: 1px;
-  height: 5vh;
-  border-radius: 2.5vh;
+    box-sizing: border-box;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
 }
-.signUpBox .inputBox .showPasswordIcon{
-  position: absolute;
-  top: 35%;
-  right: 3%;
-  height: 3vh;
-  transform: translateY(-50%);
-  cursor: pointer;
+
+.signUpBox .inputBox .showPasswordIcon {
+    position: absolute;
+    top: 35%;
+    right: 3%;
+    height: 3vh;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
+
 .signUpBox .inputContainer p {
-  font-size: 12px;
-  color: red;
+    font-size: 12px;
+    color: red;
 }
 
 .signUpBox .inputContainer button {
-  display: flex;
-  justify-content: center;
-  width: 12vw;
-  height: 4.5vh;
-  color: #ffffff;
-  background: #e69f4e;
-  border-radius: 20px;
-  border: none;
-  margin: 0;
-  font-family: 'Nunito Sans', sans-serif;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 12vw;
+    height: 4.5vh;
+    color: #ffffff;
+    background-image: linear-gradient(to bottom, #f1d974, #ef7404);
+    border-radius: 20px;
+    border: none;
+    margin: 0;
+    font-family: 'Nunito Sans', sans-serif;
+    align-items: center;
 }
 
 .signUpBox .buttonBox {
-  display: flex;
-  height: 4.5vh;
-  width: 80vw;
-  justify-content: flex-end;
-  align-items: center;
-  margin: 1.5vh 0 17vh 0;
+    display: flex;
+    height: 4.5vh;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 60px;
 }
 
 .signUpBox .buttonBox .buttonText {
-  font-family: 'Quicksand', sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 28px;
-  /* identical to box height */
+    font-family: 'Quicksand', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    /* identical to box height */
 
-  text-align: center;
-  margin-right: 2vw;
+    text-align: center;
+    margin-right: 18px;
+}
+
+.signUpBox .inputContainer button {
+    width: 60px;
 }
 
 .signUpBox .inputContainer button img {
-  height: 65%;
-  width: 65%;
+    height: 65%;
+    width: 65%;
+}
+
+.inputWrapper {
+    width: 100%;
+    height: 320px;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    font-size: 13px;
+    padding: 0 10vw;
+}
+
+.pageSwitch {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pageSwitch span {
+    font-family: 'Quicksand', sans-serif;
+    color: grey;
+}
+
+.pageSwitch .pageSwitch-link {
+    color: black;
+    font-weight: 700;
 }

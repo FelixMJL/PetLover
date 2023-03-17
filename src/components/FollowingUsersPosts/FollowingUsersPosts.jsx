@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../RecommendForYou/post/post.css';
 import moment from 'moment';
-import reply from '../../assets/reply.png';
+import replyLogo from '../../assets/reply.png';
 import { getFollowing } from '../../services/getFollowing';
 import loading from '../../assets/loading.svg';
 
@@ -32,17 +32,15 @@ const FollowingUsersPosts = () => {
                 <span className="post_author-nick-name">{post.author.nickname}</span>
                 <span className="post_author-user-name">@{post.author.username}</span>
                 <div className="post_time">
-                  <span>{moment(post.created_at).fromNow()}</span>
+                  <span>·{moment(post.created_at).fromNow()}</span>
                 </div>
               </div>
               <div className="post_content-text">
                 <p>{post.content}</p>
               </div>
-              <div className="post_content-image">
-                <img src={post.photo} alt="Content img" />
-              </div>
+              <img src={post.photo} className="post_content-image" alt="Content img" />
               <div className="post_comments">
-                <img src={reply} alt="Reply icon" />
+                <img src={replyLogo} alt="replyLogo" className="post_comments-replyLogo" />
                 <span className="post_comments-count">{post.comments.length}</span>
               </div>
             </div>
