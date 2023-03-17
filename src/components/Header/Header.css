@@ -17,21 +17,27 @@
 
 .header__head {
     height: 50px;
-    background-color: lightblue;
+    background-color: white;
     position: relative;
     display: flex;
     align-items: center;
 }
 
-.avatarInHeader {
+.avatarInHeader,
+.logoInHeader
+{
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    margin-left: 3vw;
+}
+
+.avatarInHeader{
+    position: absolute;
+    margin-left: 2vw;
 }
 
 .logoInHeader {
-    margin-left: 25vw;
+    margin: 0 auto;
 }
 
 .profileMenu {
