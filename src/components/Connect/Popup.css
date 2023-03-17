@@ -1,0 +1,77 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1001;
+    width: 60%; /* 可以根据需要调整宽度百分比 */
+    max-width: 400px; /* 可以根据需要调整最大宽度 */
+  }
+  
+  .popup-message {
+    margin-bottom: 20px;
+    word-wrap: break-word;
+  }
+  
+  .popup-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .popup-button {
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 700;
+    background-color: #000;
+    width: 81px;
+    height: 29px;
+    vertical-align: center;
+    border-radius: 20px;
+    text-align: center;
+    
+
+  }
+
+  .bold {
+    font-weight: bold;
+    font-size:20px;
+    padding: 8px 16px;
+  }
+  
+  .normal {
+    font-weight: normal;
+    font-size:14px;
+    padding: 8px 16px;
+
+  }
+  
+  .popup-button-unfollow {
+    background-color: #060606;
+    color: white;
+    text-align: center;
+  }
+  
+  .popup-button-cancel {
+    background-color: #a6a3a3;
+    color: #000;
+  }
+  
