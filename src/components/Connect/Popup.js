@@ -9,23 +9,30 @@ const Popup = ({ show, username, handleConfirm, handleCancel }) => {
   return (
     <div className="popup-overlay" onClick={handleCancel}>
       <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-        <p className="popup-message">
+        <div className="popup-message">
           {username ? (
             <>
-              <span className="bold">Unfollow @{username}?</span>
-              <br />
-              <span className="normal">Their profile will no longer show up in your home timeline.You can still view their profile,unless their account are protected.</span>
+              <h1 className="bold">
+                Unfollow
+                <br />@{username}?
+              </h1>
+              <span className="normal">
+                Their profile will no longer show up in your home timeline.You can still view their
+                profile,unless their account are protected.
+              </span>
             </>
           ) : (
             'Are you sure you want to unfollow this user?'
           )}
-        </p>
+        </div>
         <div className="popup-buttons">
+          {/* eslint-disable-next-line react/button-has-type */}
           <button className="popup-button popup-button-unfollow" onClick={handleConfirm}>
-          UnFollow
+            UnFollow
           </button>
+          {/* eslint-disable-next-line react/button-has-type */}
           <button className="popup-button popup-button-cancel" onClick={handleCancel}>
-          Cancel
+            Cancel
           </button>
         </div>
       </div>
