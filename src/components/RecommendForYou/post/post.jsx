@@ -31,9 +31,11 @@ const Post = ({ author, content, file_type, file_url, comments, created_at }) =>
               <span>·{moment(created_at).fromNow()}</span>
             </div>
           </div>
-          <div className="post_content-text">
-            <p>{content}</p>
-          </div>
+          {content && (
+            <div className="post_content-text">
+              <p>{content}</p>
+            </div>
+          )}
           {imageUrl && <img src={imageUrl} className="post_content-image" alt="Content img" />}
           {videoUrl && (
             // eslint-disable-next-line jsx-a11y/media-has-caption
