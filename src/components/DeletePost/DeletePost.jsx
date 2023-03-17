@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import bin from '../../assets/bin.png';
-import '../RecommendForYou/post/post.css';
+import './DeletePost.css';
 import DeletePostConfirmation from './DeletePostConfirmation';
 import { getUserData } from '../../services/getUserData';
 

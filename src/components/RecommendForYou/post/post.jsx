@@ -39,7 +39,7 @@ const Post = ({ author, content, file_type, file_url, comments, created_at }) =>
           {imageUrl && <img src={imageUrl} className="post_content-image" alt="Content img" />}
           {videoUrl && (
             // eslint-disable-next-line jsx-a11y/media-has-caption
-            <video width="100%" height="auto" controls autoPlay loop muted>
+            <video className="post_content-video" controls autoPlay loop muted>
               <source src={videoUrl} type="video/mp4" />
             </video>
           )}

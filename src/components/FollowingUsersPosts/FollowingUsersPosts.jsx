@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../RecommendForYou/post/post.css';
 import moment from 'moment';
-import replyLogo from '../../assets/reply.png';
 import { getFollowing } from '../../services/getFollowing';
 import loading from '../../assets/loading.svg';
+import UserPost from '../UserProfile/post/UserPost';
 
 const FollowingUsersPosts = () => {
   const [postData, setPostData] = useState([]);
@@ -35,14 +35,7 @@ const FollowingUsersPosts = () => {
                   <span>·{moment(post.created_at).fromNow()}</span>
                 </div>
               </div>
-              <div className="post_content-text">
-                <p>{post.content}</p>
-              </div>
-              <img src={post.photo} className="post_content-image" alt="Content img" />
-              <div className="post_comments">
-                <img src={replyLogo} alt="replyLogo" className="post_comments-replyLogo" />
-                <span className="post_comments-count">{post.comments.length}</span>
-              </div>
+              <UserPost {...post} />
             </div>
           </div>
         </div>
