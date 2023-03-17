@@ -4,6 +4,7 @@ import moment from 'moment';
 import { getFollowing } from '../../services/getFollowing';
 import loading from '../../assets/loading.svg';
 import UserPost from '../UserProfile/post/UserPost';
+import post_icon from '../../assets/post_icon.svg';
 
 const FollowingUsersPosts = () => {
   const [postData, setPostData] = useState([]);
@@ -25,6 +26,9 @@ const FollowingUsersPosts = () => {
     const list = posts.map((post) => (
       <div key={`${post._id}`}>
         <div className="post_container">
+          <div className="post__wrapper">
+            <img src={post_icon} alt="post_icon" />
+          </div>
           <div className="post_inner-container">
             <img className="post_avatar" src={post.author.avatar} alt="" />
             <div className="post-content-container">

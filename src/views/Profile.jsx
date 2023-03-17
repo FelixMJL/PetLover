@@ -4,6 +4,9 @@ import axios from 'axios';
 import UserInfo from '../components/UserProfile/UserInfo';
 import UserPosts from '../components/UserProfile/UserPosts';
 import { getUserData } from '../services/getUserData';
+import Footer from '../components/Footer/Footer';
+import post_icon from '../assets/post_icon.svg';
+import './Profile.css';
 
 const Profile = () => {
   const { id } = useParams();
@@ -30,6 +33,10 @@ const Profile = () => {
     <div>
       <UserInfo {...userData} />
       <UserPosts posts={posts} id={id} currentUserId={currentUserId} {...userData} />
+      <div className="post__wrapper profile-post_icon">
+        <img src={post_icon} alt="post_icon" />
+      </div>
+      <Footer />
     </div>
   );
 };

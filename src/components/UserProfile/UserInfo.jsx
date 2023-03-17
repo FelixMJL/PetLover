@@ -12,7 +12,7 @@ const UserInfo = ({ username, posts, nickname, avatar, followers, following }) =
   return (
     <div className="userInfo">
       {username && (
-        <div>
+        <div className="userInfo__wrapper">
           <div className="headPart">
             <img
               src={leftArrow}
