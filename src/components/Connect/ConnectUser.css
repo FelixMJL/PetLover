@@ -55,6 +55,38 @@
   vertical-align: center;
   border-radius: 20px;
 }
+/* .btn-follow:hover {
+  background-color: #000;
+} */
+
+.btn-follow.following {
+  background-color: #000;
+  content:"";
+}
+.btn-follow.unfollow {
+  background-color: #c51616;
+  content:"Follow"
+}
+
+/* .btn-follow.following:hover {
+  background-color: #dc3545;
+}
+
+.btn-follow.following:hover::before {
+  content: "unFollow ";
+  background-color: #94dc35;
+  
+
+}
+
+.btn-follow::before {
+  content: " ";
+}
+
+.btn-follow.following::before {
+  margin-right: 3px;
+} */
+
 
 .connect-user__introduction {
   font-family: 'Inter', sans-serif;
@@ -64,4 +96,5 @@
   line-height: 18px;
   color: #0F1419;
 }
+
 

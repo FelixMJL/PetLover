@@ -3,6 +3,7 @@ import './ConnectUser.css';
 import axios from 'axios';
 import loading from '../../assets/loading.svg';
 import { getUserData } from '../../services/getUserData';
+import Popup from './Popup';
 
 const ConnectUser = ({ users }) => {
   const userData = users;
@@ -13,23 +14,63 @@ const ConnectUser = ({ users }) => {
   const filteredUserData = userData.filter((user) => !filterArray.includes(user.id));
 
   const [isFollowing, setIsFollowing] = useState(followingIds);
+  const [showUnfollow, setShowUnfollow] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const selectedUser = userData.find((user) => user.id === selectedUserId);
+
+  const handleMouseEnter = (userId) => {
+    if (isFollowing.includes(userId)) {
+      setShowUnfollow(true);
+    } else {
+      setShowUnfollow(false);
+    }
+  };
+  
+
+  const handleMouseLeave = () => {
+      setShowUnfollow(false);
+   
+  };
 
   const toggleFollow = async (userId) => {
     if (isFollowing.includes(userId)) {
-      setIsFollowing(isFollowing.filter((id) => id !== userId));
-      await axios.delete(
-        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}/unfollowing/${userId}`,
-        getUserData().config,
-      );
+      setSelectedUserId(userId);
+      setShowPopup(true);
     } else {
-      setIsFollowing([...isFollowing, userId]);
       await axios.post(
         `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}/following/${userId}`,
         null,
         getUserData().config,
-      );
-    }
+      ).catch((error) => {
+        console.error('Error:', error);
+      });
+      setIsFollowing([...isFollowing, userId]);
+  
+  }
   };
+
+
+  const handleConfirm = async () => {
+    await axios.delete(
+      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}/unfollowing/${selectedUserId}`,
+      getUserData().config,
+    ).catch((error) => {
+      console.error('Error:', error);
+    });
+    setIsFollowing(isFollowing.filter((id) => id !== selectedUserId));
+    setSelectedUserId(null);
+    setShowPopup(false);
+ 
+};
+
+
+  const handleCancel = () => {
+    setSelectedUserId(null);
+    setShowPopup(false);
+  };
+  
+
   return (
     <>
       {filteredUserData.length ? (
@@ -47,12 +88,21 @@ const ConnectUser = ({ users }) => {
                   </div>
                   {/* eslint-disable-next-line react/button-has-type */}
                   <button
-                    className="btn btn-follow"
-                    data-value={user._id}
-                    onClick={() => toggleFollow(user.id)}
-                  >
-                    {isFollowing.includes(user.id) ? 'Following' : 'Follow'}
-                  </button>
+  className={`btn btn-follow ${
+    isFollowing.includes(user.id) ? "following " : ""
+  }${isFollowing.includes(user.id) && showUnfollow ? "unfollow" : ""}`}
+  data-value={user._id}
+  onClick={() => toggleFollow(user.id)}
+  onMouseEnter={() => handleMouseEnter(user.id)}
+  onMouseLeave={handleMouseLeave}
+>
+  {isFollowing.includes(user.id)
+    ? showUnfollow
+      ? "Unfollow"
+      : "Following"
+    : "Follow"}
+</button>
+
                 </div>
                 <div className="connect-user__introduction">{user.introduction}</div>
               </div>
@@ -64,8 +114,14 @@ const ConnectUser = ({ users }) => {
           <img src={loading} alt="loading" />
         </div>
       )}
+       <Popup
+        show={showPopup}
+        username={selectedUser?.username}
+        handleConfirm={handleConfirm}
+        handleCancel={handleCancel}
+      />
+      
     </>
   );
 };
-
-export default ConnectUser;
+      export default ConnectUser;
