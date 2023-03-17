@@ -26,11 +26,9 @@ const ConnectUser = ({ users }) => {
       setShowUnfollow(false);
     }
   };
-  
 
   const handleMouseLeave = () => {
-      setShowUnfollow(false);
-   
+    setShowUnfollow(false);
   };
 
   const toggleFollow = async (userId) => {
@@ -38,38 +36,39 @@ const ConnectUser = ({ users }) => {
       setSelectedUserId(userId);
       setShowPopup(true);
     } else {
-      await axios.post(
-        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}/following/${userId}`,
-        null,
-        getUserData().config,
-      ).catch((error) => {
-        console.error('Error:', error);
-      });
+      await axios
+        .post(
+          `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}/following/${userId}`,
+          null,
+          getUserData().config,
+        )
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error('Error:', error);
+        });
       setIsFollowing([...isFollowing, userId]);
-  
-  }
+    }
   };
 
-
   const handleConfirm = async () => {
-    await axios.delete(
-      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}/unfollowing/${selectedUserId}`,
-      getUserData().config,
-    ).catch((error) => {
-      console.error('Error:', error);
-    });
+    await axios
+      .delete(
+        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}/unfollowing/${selectedUserId}`,
+        getUserData().config,
+      )
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error('Error:', error);
+      });
     setIsFollowing(isFollowing.filter((id) => id !== selectedUserId));
     setSelectedUserId(null);
     setShowPopup(false);
- 
-};
-
+  };
 
   const handleCancel = () => {
     setSelectedUserId(null);
     setShowPopup(false);
   };
-  
 
   return (
     <>
@@ -88,21 +87,21 @@ const ConnectUser = ({ users }) => {
                   </div>
                   {/* eslint-disable-next-line react/button-has-type */}
                   <button
-  className={`btn btn-follow ${
-    isFollowing.includes(user.id) ? "following " : ""
-  }${isFollowing.includes(user.id) && showUnfollow ? "unfollow" : ""}`}
-  data-value={user._id}
-  onClick={() => toggleFollow(user.id)}
-  onMouseEnter={() => handleMouseEnter(user.id)}
-  onMouseLeave={handleMouseLeave}
->
-  {isFollowing.includes(user.id)
-    ? showUnfollow
-      ? "Unfollow"
-      : "Following"
-    : "Follow"}
-</button>
-
+                    className={`btn btn-follow ${
+                      isFollowing.includes(user.id) ? 'following ' : ''
+                    }${isFollowing.includes(user.id) && showUnfollow ? 'unfollow' : ''}`}
+                    data-value={user._id}
+                    onClick={() => toggleFollow(user.id)}
+                    onMouseEnter={() => handleMouseEnter(user.id)}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    {/* eslint-disable-next-line no-nested-ternary */}
+                    {isFollowing.includes(user.id)
+                      ? showUnfollow
+                        ? 'Unfollow'
+                        : 'Following'
+                      : 'Follow'}
+                  </button>
                 </div>
                 <div className="connect-user__introduction">{user.introduction}</div>
               </div>
@@ -114,14 +113,13 @@ const ConnectUser = ({ users }) => {
           <img src={loading} alt="loading" />
         </div>
       )}
-       <Popup
+      <Popup
         show={showPopup}
         username={selectedUser?.username}
         handleConfirm={handleConfirm}
         handleCancel={handleCancel}
       />
-      
     </>
   );
 };
-      export default ConnectUser;
+export default ConnectUser;
