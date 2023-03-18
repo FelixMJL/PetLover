@@ -14,21 +14,19 @@ const ConnectUser = ({ users }) => {
   const filteredUserData = userData.filter((user) => !filterArray.includes(user.id));
 
   const [isFollowing, setIsFollowing] = useState(followingIds);
-  const [showUnfollow, setShowUnfollow] = useState(false);
+  const [showUnfollow, setShowUnfollow] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const selectedUser = userData.find((user) => user.id === selectedUserId);
 
   const handleMouseEnter = (userId) => {
     if (isFollowing.includes(userId)) {
-      setShowUnfollow(true);
-    } else {
-      setShowUnfollow(false);
+      setShowUnfollow((prev) => [...prev, userId]);
     }
   };
 
-  const handleMouseLeave = () => {
-    setShowUnfollow(false);
+  const handleMouseLeave = (userId) => {
+    setShowUnfollow((prev) => prev.filter((id) => id !== userId));
   };
 
   const toggleFollow = async (userId) => {
@@ -87,21 +85,20 @@ const ConnectUser = ({ users }) => {
                   </div>
                   {/* eslint-disable-next-line react/button-has-type */}
                   <button
-                    className={`btn btn-follow ${
-                      isFollowing.includes(user.id) ? 'following ' : ''
-                    }${isFollowing.includes(user.id) && showUnfollow ? 'unfollow' : ''}`}
-                    data-value={user._id}
-                    onClick={() => toggleFollow(user.id)}
-                    onMouseEnter={() => handleMouseEnter(user.id)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    {/* eslint-disable-next-line no-nested-ternary */}
-                    {isFollowing.includes(user.id)
-                      ? showUnfollow
-                        ? 'Unfollow'
-                        : 'Following'
-                      : 'Follow'}
-                  </button>
+  className={`btn btn-follow ${
+    isFollowing.includes(user.id) ? 'following ' : ''
+  }${isFollowing.includes(user.id) && showUnfollow.includes(user.id) ? 'unfollow' : ''}`}
+  data-value={user._id}
+  onClick={() => toggleFollow(user.id)}
+  onMouseEnter={() => handleMouseEnter(user.id)}
+  onMouseLeave={() => handleMouseLeave(user.id)}
+>
+  {isFollowing.includes(user.id)
+    ? showUnfollow.includes(user.id)
+      ? 'Unfollow'
+      : 'Following'
+    : 'Follow'}
+</button>
                 </div>
                 <div className="connect-user__introduction">{user.introduction}</div>
               </div>
