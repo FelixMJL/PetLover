@@ -32,7 +32,7 @@ const Post = ({ author, content, file_type, file_url, comments, created_at, _id 
               <span className="post_author-nick-name">{author.nickname}</span>
               <span className="post_author-user-name">@{author.username}</span>
               <div className="post_time">
-                <span>·{moment(created_at).fromNow()}</span>
+                <span>· {moment(created_at).fromNow()}</span>
               </div>
             </div>
             <div>{author.id === currentUserId ? <DeletePost postId={_id} /> : ''}</div>
