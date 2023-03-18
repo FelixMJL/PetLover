@@ -5,7 +5,7 @@ import image_icon from '../../assets/icon-image.svg';
 import back from '../../assets/left-arrow.png';
 import { getUserData } from '../../services/getUserData';
 
-const SendPost = ({ user, setShowSendPost }) => {
+const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
   const [imageUrl, setImageUrl] = useState('');
   const [content, setContent] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
@@ -54,8 +54,24 @@ const SendPost = ({ user, setShowSendPost }) => {
       },
       getUserData().config,
     );
-    // eslint-disable-next-line no-console
     if (response.status === 201) {
+      setPosts([
+        {
+          author: {
+            avatar: user.avatar,
+            id: user.id,
+            nickname: user.nickname,
+            username: user.username,
+          },
+          comments: [],
+          content,
+          create_at: new Date(),
+          file_type,
+          file_url,
+          _id: '',
+        },
+        ...posts,
+      ]);
       setShowSendPost(false);
     }
   };

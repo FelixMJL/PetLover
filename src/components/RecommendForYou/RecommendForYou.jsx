@@ -26,12 +26,17 @@ const RecommendForYou = ({ user }) => {
     };
     getPostData();
   }, []);
-  // eslint-disable-next-line no-console
-  console.log(posts);
+
   return (
     <div>
       {showSendPost && (
-        <SendPost className="sendPost" user={user} setShowSendPost={setShowSendPost} />
+        <SendPost
+          className="sendPost"
+          user={user}
+          setShowSendPost={setShowSendPost}
+          posts={posts}
+          setPosts={setPosts}
+        />
       )}
       <div className="post__wrapper" onClick={postClickHandler}>
         <img src={post_icon} alt="post_icon" />
