@@ -52,8 +52,6 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
     }
   }, [content, file_url]);
 
-  // eslint-disable-next-line no-console
-  console.log(isValidPost);
   const post = async () => {
     const response = await axios.post(
       `${process.env.REACT_APP_API_ENDPOINT}/api/v1/posts`,
@@ -86,6 +84,8 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
       setShowSendPost(false);
     }
   };
+  // eslint-disable-next-line no-console
+  console.log(file_type, file_url);
 
   return (
     <div className="sendPost">
