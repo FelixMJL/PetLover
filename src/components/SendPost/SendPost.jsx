@@ -53,35 +53,41 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
   }, [content, file_url]);
 
   const post = async () => {
-    const response = await axios.post(
-      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/posts`,
-      {
-        author,
-        content,
-        file_type,
-        file_url,
-      },
-      getUserData().config,
-    );
-    if (response.status === 201) {
-      setPosts([
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/posts`,
         {
-          author: {
-            avatar: user.avatar,
-            id: user.id,
-            nickname: user.nickname,
-            username: user.username,
-          },
-          comments: [],
+          author,
           content,
-          create_at: new Date(),
           file_type,
           file_url,
-          _id: '',
         },
-        ...posts,
-      ]);
-      setShowSendPost(false);
+        getUserData().config,
+      );
+      if (response.status === 201) {
+        setPosts([
+          {
+            author: {
+              avatar: user.avatar,
+              id: user.id,
+              nickname: user.nickname,
+              username: user.username,
+            },
+            comments: [],
+            content,
+            create_at: new Date(),
+            file_type,
+            file_url,
+            _id: '',
+          },
+          ...posts,
+        ]);
+        setShowSendPost(false);
+        window.location.reload();
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Error in post function:', error);
     }
   };
 
