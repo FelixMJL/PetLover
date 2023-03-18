@@ -1,6 +1,7 @@
 .userInfo {
-    overflow: hidden;
-    margin: 10px 20px 0;
+  font-family: Inter;
+  margin: 10px auto;
+  margin-bottom: 40px;
 }
 
 .userInfo .headPart {

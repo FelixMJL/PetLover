@@ -1,9 +1,12 @@
 import './post.css';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import DeletePost from '../../DeletePost/DeletePost';
 import replyLogo from '../../../assets/reply.png';
+import { getUserData } from '../../../services/getUserData';
 
 const Post = ({ author, content, file_type, file_url, comments, created_at }) => {
+  const currentUserId = getUserData().id;
   const [imageUrl, setImageUrl] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
   useEffect(() => {
@@ -24,13 +27,17 @@ const Post = ({ author, content, file_type, file_url, comments, created_at }) =>
       <div className="post_inner-container">
         <img src={author.avatar} className="post_avatar" alt="avatar" />
         <div className="post_content-container">
-          <div className="post_author-info-container">
-            <span className="post_author-nick-name">{author.nickname}</span>
-            <span className="post_author-user-name">@{author.username}</span>
-            <div className="post_time">
-              <span>·{moment(created_at).fromNow()}</span>
+          <div className="post_info-container">
+            <div className="post_author-info-container">
+              <span className="post_author-nick-name">{author.nickname}</span>
+              <span className="post_author-user-name">@{author.username}</span>
+              <div className="post_time">
+                <span>·{moment(created_at).fromNow()}</span>
+              </div>
             </div>
+            <div>{author.id === currentUserId ? <DeletePost postId={author.id} /> : ''}</div>
           </div>
+
           {content && (
             <div className="post_content-text">
               <p>{content}</p>
