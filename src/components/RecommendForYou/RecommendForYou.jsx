@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Post from './post/post';
 import { getAllPosts } from '../../services/getAllPosts';
 import loading from '../../assets/loading.svg';
+import post_icon from '../../assets/post_icon.svg';
 
 const RecommendForYou = () => {
   const [posts, setPosts] = useState([]);
@@ -21,6 +22,9 @@ const RecommendForYou = () => {
   }, []);
   return (
     <div>
+      <div className="post__wrapper">
+        <img src={post_icon} alt="post_icon" />
+      </div>
       {posts.length ? (
         posts.map((post) => (
           <div key={post._id}>
