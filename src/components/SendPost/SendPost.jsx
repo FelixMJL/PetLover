@@ -84,8 +84,6 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
       setShowSendPost(false);
     }
   };
-  // eslint-disable-next-line no-console
-  console.log(file_type, file_url);
 
   return (
     <div className="sendPost">
