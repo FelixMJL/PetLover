@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SendPost.css';
 import axios from 'axios';
 import image_icon from '../../assets/icon-image.svg';
@@ -12,6 +12,7 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
   const [isUploaded, setIsUploaded] = useState(false);
   const [file_type, setFile_Type] = useState('');
   const [file_url, setFile_Url] = useState('');
+  const [isValidPost, setIsValidPost] = useState(false);
   const backClickHandler = () => {
     setShowSendPost(false);
   };
@@ -35,6 +36,7 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
       form,
       getUserData().config,
     );
+
     setFile_Url(uploadData.data.imageUrl);
     if (file.type !== 'video/mp4') {
       setImageUrl(uploadData.data.imageUrl);
@@ -42,7 +44,16 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
     }
     setVideoUrl(uploadData.data.imageUrl);
   };
+  useEffect(() => {
+    if (content || file_url) {
+      setIsValidPost(true);
+    } else {
+      setIsValidPost(false);
+    }
+  }, [content, file_url]);
 
+  // eslint-disable-next-line no-console
+  console.log(isValidPost);
   const post = async () => {
     const response = await axios.post(
       `${process.env.REACT_APP_API_ENDPOINT}/api/v1/posts`,
@@ -81,7 +92,14 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
       <div className="sendPost__content">
         <div className="sendPost__content-header">
           <img className="sendPost_back" src={back} alt="back" onClick={backClickHandler} />
-          <div onClick={post}>Post</div>
+          {/* eslint-disable-next-line react/button-has-type */}
+          <button
+            className={`sendPost_post ${isValidPost ? 'sendPost_post-active' : ''}`}
+            onClick={post}
+            disabled={!isValidPost}
+          >
+            Post
+          </button>
         </div>
         <div className="sendPost__content-body">
           <img className="sendPost_avatar" src={user.avatar} alt="" />

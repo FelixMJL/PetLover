@@ -58,6 +58,7 @@
 .post_content-image {
     margin-top: 15px;
     width: 100%;
+    border: 1px solid #cfdade;
     border-radius: 5%;
 }
 

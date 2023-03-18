@@ -20,6 +20,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .sendPost__content-body {
@@ -29,6 +30,24 @@
 
 .sendPost_back {
     width: 20px;
+    height: 20px;
+}
+
+.sendPost_post {
+    border: none;
+    width: 75px;
+    height: 34px;
+    background-color: #a0cdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    border-radius: 20px;
+}
+
+.sendPost_post-active {
+    background-color: #1b9bf0;
 }
 
 .sendPost_avatar {
