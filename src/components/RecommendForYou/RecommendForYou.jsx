@@ -8,6 +8,7 @@ import SendPost from '../SendPost/SendPost';
 
 const RecommendForYou = ({ user }) => {
   const [posts, setPosts] = useState([]);
+  const [postData, setPostData] = useState([]);
   const [showSendPost, setShowSendPost] = useState(false);
 
   const postClickHandler = () => {
@@ -27,6 +28,10 @@ const RecommendForYou = ({ user }) => {
     getPostData();
   }, []);
 
+  useEffect(() => {
+    setPostData(posts);
+  }, [posts]);
+
   return (
     <div>
       {showSendPost && (
@@ -41,10 +46,10 @@ const RecommendForYou = ({ user }) => {
       <div className="post__wrapper" onClick={postClickHandler}>
         <img src={post_icon} alt="post_icon" />
       </div>
-      {posts.length ? (
-        posts.map((post) => (
+      {postData.length ? (
+        postData.map((post) => (
           <div key={post._id}>
-            <Post {...post} />
+            <Post {...post} setPostData={setPostData} postData={postData} />
           </div>
         ))
       ) : (

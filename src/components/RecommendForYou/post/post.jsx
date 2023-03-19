@@ -5,7 +5,17 @@ import DeletePost from '../../DeletePost/DeletePost';
 import replyLogo from '../../../assets/reply.png';
 import { getUserData } from '../../../services/getUserData';
 
-const Post = ({ author, content, file_type, file_url, comments, created_at, _id }) => {
+const Post = ({
+  author,
+  content,
+  file_type,
+  file_url,
+  comments,
+  created_at,
+  _id,
+  postData,
+  setPostData,
+}) => {
   const currentUserId = getUserData().id;
   const [imageUrl, setImageUrl] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
@@ -35,7 +45,13 @@ const Post = ({ author, content, file_type, file_url, comments, created_at, _id 
                 <span>· {moment(created_at).fromNow()}</span>
               </div>
             </div>
-            <div>{author.id === currentUserId ? <DeletePost postId={_id} /> : ''}</div>
+            <div>
+              {author.id === currentUserId ? (
+                <DeletePost postId={_id} setPostData={setPostData} postData={postData} />
+              ) : (
+                ''
+              )}
+            </div>
           </div>
 
           {content && (
