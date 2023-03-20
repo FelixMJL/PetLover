@@ -24,14 +24,13 @@
 }
 
 .avatarInHeader,
-.logoInHeader
-{
+.logoInHeader {
     width: 34px;
     height: 34px;
     border-radius: 50%;
 }
 
-.avatarInHeader{
+.avatarInHeader {
     position: absolute;
     margin-left: 2vw;
 }
@@ -90,6 +89,9 @@
 }
 
 .user-menu__profile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     margin-top: 45px;
 }
 
@@ -113,7 +115,7 @@
     font-size: 20px;
     font-weight: 600;
     position: absolute;
-    bottom: 50px;
+    bottom: 100px;
     gap: 15px;
     border: 0;
     outline: 0;
