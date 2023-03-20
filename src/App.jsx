@@ -7,6 +7,7 @@ import Profile from './views/Profile';
 import SignUp from './views/SignUp';
 import Connect from './views/Connect';
 import Following from './views/Following';
+import FollowingUser from './views/FollowingUser';
 import { authToken } from './services/authToken';
 
 const App = () => {
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/following" element={<Following />} />
+        <Route path="/followingUser/:userType" element={<FollowingUser />} />
         <Route path="/connect" element={<Connect />} />
       </Routes>
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, NavLink } from 'react-router-dom';
 import closePageIcon from '../../../assets/icon-close.png';
 import profileIcon from '../../../assets/icon-profile.png';
 import logoutIcon from '../../../assets/icon-logout.png';
@@ -30,12 +30,16 @@ const Menu = ({ profileMenu, closeMenu, userData, userId, darkBackground }) => {
               <p className="user-menu__username">{userData.username}</p>
               <p>@{userData.nickname}</p>
               <div className="aboutFollowOfUser">
-                <p>
-                  <b>{userData.following.length}</b> Followings
-                </p>
-                <p>
-                  <b>{userData.followers.length}</b> Followers
-                </p>
+                <NavLink to="/followingUser/:following">
+                  <p>
+                    <b>{userData.following.length}</b> Followings
+                  </p>
+                </NavLink>
+                <NavLink to="/followingUser/:follower">
+                  <p>
+                    <b>{userData.followers.length}</b> Followers
+                  </p>
+                </NavLink>
               </div>
             </div>
           )}
