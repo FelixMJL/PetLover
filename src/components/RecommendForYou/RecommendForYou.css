@@ -1,0 +1,12 @@
+.post__wrapper {
+    position: fixed;
+    right: 20px;
+    bottom: 70px;
+    background-color: #1b9bf0;
+    box-sizing: border-box;
+    width: 55px;
+    height: 55px;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: 9999;
+}

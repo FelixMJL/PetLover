@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import '../RecommendForYou/post/post.css';
 import moment from 'moment';
-import replyLogo from '../../assets/reply.png';
 import { getFollowing } from '../../services/getFollowing';
 import loading from '../../assets/loading.svg';
+import UserPost from '../UserProfile/post/UserPost';
+import post_icon from '../../assets/post_icon.svg';
+import SendPost from '../SendPost/SendPost';
 
-const FollowingUsersPosts = () => {
+const FollowingUsersPosts = ({ user }) => {
   const [postData, setPostData] = useState([]);
+  const [showSendPost, setShowSendPost] = useState(false);
+  const postClickHandler = () => {
+    setShowSendPost(true);
+  };
   const [status, setStatus] = useState(loading);
   useEffect(() => {
     const getPostData = async () => {
@@ -35,14 +41,7 @@ const FollowingUsersPosts = () => {
                   <span>·{moment(post.created_at).fromNow()}</span>
                 </div>
               </div>
-              <div className="post_content-text">
-                <p>{post.content}</p>
-              </div>
-              <img src={post.photo} className="post_content-image" alt="Content img" />
-              <div className="post_comments">
-                <img src={replyLogo} alt="replyLogo" className="post_comments-replyLogo" />
-                <span className="post_comments-count">{post.comments.length}</span>
-              </div>
+              <UserPost {...post} />
             </div>
           </div>
         </div>
@@ -63,6 +62,18 @@ const FollowingUsersPosts = () => {
     return (
       <>
         <div>
+          {showSendPost && (
+            <SendPost
+              className="sendPost"
+              user={user}
+              setShowSendPost={setShowSendPost}
+              posts={postData}
+              setPosts={setPostData}
+            />
+          )}
+          <div className="post__wrapper" onClick={postClickHandler}>
+            <img src={post_icon} alt="post_icon" />
+          </div>
           <DataList posts={Array.from(postData)} />
         </div>
         <div className="foot-space" />

@@ -4,7 +4,7 @@ import { getUser } from '../../services/getUser';
 import Menu from './Menu/Menu';
 import logo from '../../assets/logo.png';
 
-const Header = () => {
+const Header = ({ setUser }) => {
   const profileMenu = useRef(null);
   const darkBackground = useRef(null);
   const currentUser = JSON.parse(localStorage.getItem('userData'));
@@ -29,6 +29,7 @@ const Header = () => {
       try {
         const user = await getUser();
         setUserData(user.data);
+        setUser(user.data);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error.message);
