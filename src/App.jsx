@@ -8,6 +8,8 @@ import SignUp from './views/SignUp';
 import Connect from './views/Connect';
 import Following from './views/Following';
 import { authToken } from './services/authToken';
+import ImageGeneration from './views/ImageGeneration';
+import ChatGPT from './views/ChatGPT';
 
 const App = () => {
   const currentUser = JSON.parse(localStorage.getItem('userData'));
@@ -42,6 +44,8 @@ const App = () => {
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/following" element={<Following />} />
         <Route path="/connect" element={<Connect />} />
+        <Route path="/image" element={<ImageGeneration />} />
+        <Route path="/chatGpt" element={<ChatGPT />} />
       </Routes>
     </div>
   );
