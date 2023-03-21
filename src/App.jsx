@@ -10,6 +10,7 @@ import FollowingUserPosts from './views/FollowingUserPosts';
 import { authToken } from './services/authToken';
 import ImageGeneration from './views/ImageGeneration';
 import ChatGPT from './views/ChatGPT';
+import Team from './views/Team';
 
 const App = () => {
   const currentUser = JSON.parse(localStorage.getItem('userData'));
@@ -46,6 +47,7 @@ const App = () => {
         <Route path="/connect" element={<Connect />} />
         <Route path="/image" element={<ImageGeneration />} />
         <Route path="/chatGpt" element={<ChatGPT />} />
+        <Route path="/team" element={<Team />} />
       </Routes>
     </div>
   );
