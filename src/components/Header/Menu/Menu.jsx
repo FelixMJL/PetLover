@@ -3,6 +3,9 @@ import { Link, useNavigate, NavLink } from 'react-router-dom';
 import closePageIcon from '../../../assets/icon-close.png';
 import profileIcon from '../../../assets/icon-profile.png';
 import logoutIcon from '../../../assets/icon-logout.png';
+import chatGpt from '../../../assets/chatGPT.svg';
+import imageGeneration from '../../../assets/openai-image.svg';
+import team from '../../../assets/team.svg';
 
 const Menu = ({ profileMenu, closeMenu, userData, userId, darkBackground }) => {
   const navigate = useNavigate();
@@ -53,6 +56,19 @@ const Menu = ({ profileMenu, closeMenu, userData, userId, darkBackground }) => {
           ) : (
             ''
           )}
+          <Link className="user-menu__profile-list-items" to="/chatGPT">
+            <img src={chatGpt} alt="chatGpt" />
+            ChatGpt
+          </Link>
+          <Link className="user-menu__profile-list-items" to="/image">
+            <img src={imageGeneration} alt="imageGeneration" />
+            Image Generation
+          </Link>
+
+          <Link className="user-menu__logoutBtn team" to="/team">
+            <img src={team} alt="our tem" />
+            About Our Team
+          </Link>
           {/* eslint-disable-next-line react/button-has-type */}
           <button className="user-menu__logoutBtn" onClick={logout}>
             <img src={logoutIcon} alt="Logout icon" /> Logout

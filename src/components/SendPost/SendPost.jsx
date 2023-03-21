@@ -4,6 +4,7 @@ import axios from 'axios';
 import image_icon from '../../assets/icon-image.svg';
 import back from '../../assets/left-arrow.png';
 import { getUserData } from '../../services/getUserData';
+import Footer from '../Footer/Footer';
 
 const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
   const [imageUrl, setImageUrl] = useState('');
@@ -131,6 +132,7 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

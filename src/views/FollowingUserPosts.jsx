@@ -4,7 +4,7 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import FollowingUsersPosts from '../components/FollowingUsersPosts/FollowingUsersPosts';
 
-const Following = () => {
+const FollowingUserPosts = () => {
   const [user, setUser] = useState(null);
   return (
     <div>
@@ -23,4 +23,4 @@ const Following = () => {
   );
 };
 
-export default Following;
+export default FollowingUserPosts;

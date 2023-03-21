@@ -24,14 +24,13 @@
 }
 
 .avatarInHeader,
-.logoInHeader
-{
+.logoInHeader {
     width: 34px;
     height: 34px;
     border-radius: 50%;
 }
 
-.avatarInHeader{
+.avatarInHeader {
     position: absolute;
     margin-left: 2vw;
 }
@@ -90,6 +89,9 @@
 }
 
 .user-menu__profile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     margin-top: 45px;
 }
 
@@ -109,15 +111,27 @@
 
 .user-menu__logoutBtn {
     display: flex;
+    padding: 0;
     height: 20px;
     font-size: 20px;
     font-weight: 600;
     position: absolute;
-    bottom: 50px;
+    bottom: 100px;
     gap: 15px;
     border: 0;
     outline: 0;
     background-color: transparent;
+}
+
+.user-menu__logoutBtn img {
+    width: 34px;
+    height: 34px;
+}
+
+.user-menu__logoutBtn.team {
+    bottom: 150px;
+    text-decoration: none;
+    color: black;
 }
 
 .user-menu__logoutBtn:hover {
