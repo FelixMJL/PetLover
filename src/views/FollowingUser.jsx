@@ -39,7 +39,7 @@ const FollowingUser = () => {
     <div className="followingUserBox">
       <div className="headerBox">
         <div className="connect-title-line">
-          <div className="btnArrow" onClick={btnClickHandler}>
+          <div className="btn btn-back" onClick={btnClickHandler}>
             <img src={arrow} alt="left-arrow" />
           </div>
           <div className="usernameBox">

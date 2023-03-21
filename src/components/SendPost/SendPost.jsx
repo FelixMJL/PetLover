@@ -96,7 +96,7 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
     <div className="sendPost">
       <div className="sendPost__content">
         <div className="sendPost__content-header">
-          <img className="sendPost_back" src={back} alt="back" onClick={backClickHandler} />
+          <img className="btn btn-back" src={back} alt="back" onClick={backClickHandler} />
           {/* eslint-disable-next-line react/button-has-type */}
           <button
             className={`sendPost_post ${isValidPost ? 'sendPost_post-active' : ''}`}

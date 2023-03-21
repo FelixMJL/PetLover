@@ -33,12 +33,12 @@ const Menu = ({ profileMenu, closeMenu, userData, userId, darkBackground }) => {
               <p className="user-menu__username">{userData.username}</p>
               <p>@{userData.nickname}</p>
               <div className="aboutFollowOfUser">
-                <NavLink to="/followingUser/:following">
+                <NavLink className="nav-link" to="/followingUser/:following">
                   <p>
                     <b>{userData.following.length}</b> Followings
                   </p>
                 </NavLink>
-                <NavLink to="/followingUser/:follower">
+                <NavLink className="nav-link" to="/followingUser/:follower">
                   <p>
                     <b>{userData.followers.length}</b> Followers
                   </p>
