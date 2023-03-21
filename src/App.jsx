@@ -6,6 +6,7 @@ import HomePage from './views/HomePage';
 import Profile from './views/Profile';
 import SignUp from './views/SignUp';
 import Connect from './views/Connect';
+import FollowingUser from './views/FollowingUser';
 import FollowingUserPosts from './views/FollowingUserPosts';
 import { authToken } from './services/authToken';
 import ImageGeneration from './views/ImageGeneration';
@@ -43,6 +44,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/followingUser/:userType" element={<FollowingUser />} />
         <Route path="/following" element={<FollowingUserPosts />} />
         <Route path="/connect" element={<Connect />} />
         <Route path="/image" element={<ImageGeneration />} />
