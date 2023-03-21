@@ -1,0 +1,35 @@
+.following-error-message_wrapper p{
+    font-weight:700;
+    font-size: 30px;
+    margin: 1em 0 0 0;
+}
+
+.following-error-message_wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-left: 1.5em;
+   
+}
+
+.following-error-message_wrapper .following-errorMessage{
+    font-size: 12px;
+    font-weight:400;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.following-error-message_wrapper a{
+    position: relative;
+   box-sizing: border-box;
+   width: 200px; 
+   padding:0.5em 0;
+   text-align: center;
+   border-radius: 20px;
+   background-color: dodgerblue;
+   text-decoration: none;
+   color: aliceblue;
+   font-weight:500;
+}
+.following-error-message_wrapper img{
+    margin-top: 10px;
+}
