@@ -113,7 +113,7 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
             <input
               id="imageInput"
               type="file"
-              accept="image/*,video/*"
+              accept="image/jpeg,image/png,image/gif,image/webp,video/*"
               hidden
               onChange={handlerUpload}
               disabled={isUploaded}
