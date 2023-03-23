@@ -1,0 +1,143 @@
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    z-index: 99;
+    font-family: 'Inter', sans-serif;
+}
+
+.user-menu__avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    margin-top: 15px;
+}
+
+.header__head {
+    height: 50px;
+    background-color: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.avatarInHeader,
+.logoInHeader {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+}
+
+.avatarInHeader {
+    position: absolute;
+    margin-left: 2vw;
+}
+
+.logoInHeader {
+    margin: 0 auto;
+}
+
+.profileMenu {
+    width: 60vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: -70vw;
+    transition: all 0.5s ease;
+    z-index: 99;
+    background-color: white;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+.active {
+    transform: translateX(70vw);
+}
+
+.darkBackground.show {
+    width: 100vw;
+    height: 100vh;
+    background-color: lightgray;
+    opacity: 80%;
+}
+
+.profileMenuHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.closeProfileMenu {
+    background: none;
+    border: none;
+}
+
+.closeProfileMenu img {
+    height: 25px;
+}
+
+.user-menu__username {
+    font-weight: 900;
+    margin-bottom: 3px;
+}
+
+.aboutFollowOfUser {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.user-menu__profile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 45px;
+}
+
+.user-menu__profile-list-items {
+    display: flex;
+    color: black;
+    height: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    gap: 15px;
+    border: 0;
+    outline: 0;
+    padding-left: 0;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.user-menu__logoutBtn {
+    display: flex;
+    padding: 0;
+    height: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    position: absolute;
+    bottom: 100px;
+    gap: 15px;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+}
+
+.user-menu__logoutBtn img {
+    width: 34px;
+    height: 34px;
+}
+
+.user-menu__logoutBtn.team {
+    bottom: 150px;
+    text-decoration: none;
+    color: black;
+}
+
+.user-menu__logoutBtn:hover {
+    cursor: pointer;
+}
+
+.user-menu__profile-list img {
+    height: 120%;
+}
