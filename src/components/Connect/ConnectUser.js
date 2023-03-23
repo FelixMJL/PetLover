@@ -85,7 +85,7 @@ const ConnectUser = ({ users }) => {
                   </div>
                   {/* eslint-disable-next-line react/button-has-type */}
                   <button
-                    className={`btn btn-follow ${
+                    className={`btn btn-follow  ${
                       isFollowing.includes(user.id) ? 'following ' : ''
                     }${
                       isFollowing.includes(user.id) && showUnfollow.includes(user.id)
