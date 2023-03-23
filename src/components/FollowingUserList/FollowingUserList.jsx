@@ -94,15 +94,15 @@ const FollowingUserList = ({ userType, userIds, users }) => {
                   </div>
                   {/* eslint-disable-next-line react/button-has-type */}
                   <button
-                    className={`btn btn-follow `}
-                    data-value={user._id}
-                    onClick={() => toggleFollow(user.id)}
-                    // onMouseEnter={() => handleMouseEnter(user.id)}
-                    // onMouseLeave={() => handleMouseLeave(user.id)}
-                  >
-                    {/* eslint-disable-next-line no-nested-ternary */}
-                    {isFollowing.includes(user.id) ? 'Unfollow' : 'Follow'}
-                  </button>
+  className={`btn btn-follow ${isFollowing.includes(user.id) ? 'following' : 'follow'}`}
+  data-value={user._id}
+  onClick={() => toggleFollow(user.id)}
+  onMouseEnter={() => handleMouseEnter(user.id)}
+  onMouseLeave={() => handleMouseLeave(user.id)}
+>
+  {isFollowing.includes(user.id) ? 'Following' : 'Follow'}
+</button>
+                 
                 </div>
                 <div className="connect-user__introduction">{user.introduction}</div>
               </div>
