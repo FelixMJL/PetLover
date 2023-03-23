@@ -67,7 +67,6 @@ const ConnectUser = ({ users }) => {
     setSelectedUserId(null);
     setShowPopup(false);
   };
-
   return (
     <>
       {filteredUserData.length ? (
