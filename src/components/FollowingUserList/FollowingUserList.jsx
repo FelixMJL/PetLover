@@ -99,8 +99,8 @@ const FollowingUserList = ({ userType, userIds, users }) => {
                     }`}
                     data-value={user._id}
                     onClick={() => toggleFollow(user.id)}
-                    onMouseEnter={() => handleMouseEnter(user.id)}
-                    onMouseLeave={() => handleMouseLeave(user.id)}
+                    // onMouseEnter={() => handleMouseEnter(user.id)}
+                    // onMouseLeave={() => handleMouseLeave(user.id)}
                   >
                     {isFollowing.includes(user.id) ? 'Following' : 'Follow'}
                   </button>
