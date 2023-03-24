@@ -43,19 +43,23 @@ const Login = () => {
   const login = (event) => {
     event.preventDefault();
     if (!userDetails.email) {
-      setErrorMessage('Email is required.');
+      setErrorMessage('Email is required');
       return;
     }
     if (!/\S+@\S+\.\S+/.test(userDetails.email)) {
-      setErrorMessage('Email is invalid.');
+      setErrorMessage('Email is invalid');
       return;
     }
     if (!userDetails.password) {
-      setErrorMessage('Password is required.');
+      setErrorMessage('Password is required');
       return;
     }
 
     verifyUser().then((res) => {
+      if (res.status === 404) {
+        setErrorMessage('This email does not exist');
+        return;
+      }
       if (res.status === 401) {
         setErrorMessage('Invalid email or password');
         return;

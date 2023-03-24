@@ -3,7 +3,7 @@ import './EditProfile.css';
 import Footer from '../Footer/Footer';
 import back from '../../assets/left-arrow.png';
 
-const EditProfile = ({ setShowEditProfile }) => {
+const EditProfile = ({ setShowEditProfile, avatar }) => {
   const backClickHandler = () => {
     setShowEditProfile(false);
   };
@@ -22,12 +22,12 @@ const EditProfile = ({ setShowEditProfile }) => {
         <input
           id="imageInput"
           type="file"
-          accept="image/jpeg,image/png,image/gif,image/webp,video/*"
+          accept="image/jpeg,image/png,image/gif,image/webp"
           hidden
         />
-        <label htmlFor="imageInput">
-          <img src="" alt="upload_image" />
-        </label>
+        <div className="editProfile__content-avatarContainer">
+          <img src={avatar} className="editProfile__content-avatar" alt="upload_image" />
+        </div>
       </div>
       <Footer />
     </div>

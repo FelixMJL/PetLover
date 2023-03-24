@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
 import homeLogo from '../../assets/home.png';
-import connectLogo from '../../assets/connect.png';
+import connectLogo from '../../assets/personal-connections.svg';
 import chatGpt from '../../assets/chatGPT.svg';
 import imageGeneration from '../../assets/openai-image.svg';
 

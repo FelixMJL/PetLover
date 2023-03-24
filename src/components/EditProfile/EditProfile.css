@@ -13,6 +13,7 @@
 .editProfile__header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .editProfile__header-title {
@@ -37,3 +38,15 @@
     border-radius: 20px;
 }
 
+.editProfile__content-avatarContainer {
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.editProfile__content-avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    /*-webkit-filter: grayscale(30%);*/
+    /*filter: grayscale(50%);*/
+}

@@ -36,8 +36,6 @@ const Profile = () => {
   }, []);
 
   const { posts } = userData;
-  // eslint-disable-next-line no-console
-  console.log(userData);
 
   return (
     <div>
