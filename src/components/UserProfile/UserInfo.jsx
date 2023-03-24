@@ -29,7 +29,7 @@ const UserInfo = ({ username, posts, nickname, avatar, followers, following }) =
           <div className="avatarAndEdit">
             <img src={avatar} alt="avatar" />
             {/* eslint-disable-next-line react/button-has-type */}
-            <button className="btn">Edit Profile</button>
+            <button className="editProfile">Edit Profile</button>
           </div>
           <div className="userDetail">
             <p className="userName">{username}</p>
