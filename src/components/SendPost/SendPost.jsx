@@ -17,7 +17,7 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
   const [file_type, setFile_Type] = useState('');
   const [file_url, setFile_Url] = useState('');
   const [isValidPost, setIsValidPost] = useState(false);
-  const [isUpLoading, setIsUpLoading] = useState(true);
+  const [isUpLoading, setIsUpLoading] = useState(false);
 
   const backClickHandler = () => {
     setShowSendPost(false);
