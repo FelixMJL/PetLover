@@ -24,47 +24,6 @@ const SinglePost = ({
   imageUrl,
   videoUrl,
 }) => {
-  // const [allComment, setAllComment] = useState([]);
-  // const [commentData, setCommentData] = useState([]);
-
-  // useEffect(() => {
-  //   const getCommentData = async () => {
-  //     try {
-  //       const comment = await comments.map((commentId) =>
-  //         axios.get(
-  //           `${process.env.REACT_APP_API_ENDPOINT}/api/v1/comments/${commentId}`,
-  //           getUserData().config,
-  //         ),
-  //       );
-  //       setAllComment(comment.data);
-  //     } catch (error) {
-  //       // eslint-disable-next-line no-console
-  //       console.log(error.message);
-  //     }
-  //   };
-  //   getCommentData();
-  // }, []);
-
-  // useEffect(() => {
-  //   setCommentData(allComment);
-  // }, [allComment]);
-  // const commentData = comments.map((commentId) =>
-  //   axios.get(
-  //     `${process.env.REACT_APP_API_ENDPOINT}/api/v1/comments/${commentId}`,
-  //     getUserData().config,
-  //   ),
-  // );
-
-  // const getCommentData = async () => {
-  //   const commentData = await comments.map((commentId) =>
-  //     axios.get(
-  //       `${process.env.REACT_APP_API_ENDPOINT}/api/v1/comments/${commentId}`,
-  //       getUserData().config,
-  //     ),
-  //   );
-  //   console.log(commentData);
-  // };
-
   const [singlePostData, setSinglePostData] = useState();
 
   useEffect(() => {
@@ -84,22 +43,25 @@ const SinglePost = ({
     getSinglePostData();
   }, []);
 
-  // const { comments: commentData } = singlePostData;
-
   if (!showSinglePost) return null;
   return (
     <div className="singlePost_container">
-      <div className="singlePost_content">
+      <div className="singlePost_inner-container">
         <div className="singlePost_content-header">
           <img className="singlePost_btn-back" src={back} alt="back" onClick={setShowSinglePost} />
           <span>Post</span>
         </div>
-        <div className="singlePost_inner-container">
-          <div className="singlePost_author-info-container">
-            <img src={author.avatar} className="singlePost_avatar" alt="avatar" />
-            <div className="singlePost_author-names-container">
-              <div className="singlePost_author-nick-name">{author.nickname}</div>
-              <div className="singlePost_author-user-name">@{author.username}</div>
+        <div className="singlePost_post-container">
+          <div className="singlePost_author-header-container">
+            <div className="singlePost_author-info-container">
+              <img src={author.avatar} className="singlePost_avatar" alt="avatar" />
+              <div className="singlePost_author-names-container">
+                <span className="singlePost_author-nick-name">{author.nickname}</span>
+                <span className="singlePost_author-user-name">@{author.username}</span>
+                <div className="singlePost_time">
+                  <span>· {moment(created_at).fromNow()}</span>
+                </div>
+              </div>
             </div>
             <div>
               {author.id === currentUserId ? (
