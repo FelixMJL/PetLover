@@ -29,7 +29,8 @@ const RecommendForYou = ({ user }) => {
   }, []);
 
   useEffect(() => {
-    setPostData(posts);
+    const filteredPosts = posts.filter((post) => post.author !== null);
+    setPostData(filteredPosts);
   }, [posts]);
 
   return (
