@@ -41,7 +41,7 @@ const Header = ({ setUser }) => {
   return (
     <div className="header">
       <div className="header__head">
-        <img src={userData.avatar} alt="avatar" className="avatarInHeader" onClick={extendMenu} />
+        <img src={userData.avatar} alt="" className="avatarInHeader" onClick={extendMenu} />
         <img src={logo} alt="logo" className="logoInHeader" />
       </div>
       <Menu
