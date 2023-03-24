@@ -60,7 +60,7 @@
 .sendPost__content-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     width: 100%;
 }
 
@@ -71,4 +71,41 @@
 .upload_image {
     width: 40px;
     border-radius: 8px;
+}
+
+.loading_icon-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.loading_icon {
+    width: 50px;
+}
+
+.uploadImgBox,
+.uploadVideoBox {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.closeIconWrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 15px;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    margin-top: 20px;
+    margin-left: 5px;
+    background-color: gray;
+}
+
+.closeIcon {
+    color: #f1f1f1;
+    z-index: 9999;
+    width: 30px;
+    height: 30px;
 }
