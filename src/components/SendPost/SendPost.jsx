@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './SendPost.css';
 import axios from 'axios';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { RxCross2 } from 'react-icons/rx';
 import image_icon from '../../assets/icon-image.svg';
+import loading_icon from '../../assets/loading.svg';
 import back from '../../assets/left-arrow.png';
 import { getUserData } from '../../services/getUserData';
 import Footer from '../Footer/Footer';
@@ -14,6 +17,8 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
   const [file_type, setFile_Type] = useState('');
   const [file_url, setFile_Url] = useState('');
   const [isValidPost, setIsValidPost] = useState(false);
+  const [isUpLoading, setIsUpLoading] = useState(false);
+
   const backClickHandler = () => {
     setShowSendPost(false);
   };
@@ -22,12 +27,20 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
   const contentChangeHandler = (e) => {
     setContent(e.target.value);
   };
-
+  // eslint-disable-next-line no-unused-vars
+  const deleteHandler = () => {
+    setIsUploaded(false);
+    setIsValidPost(false);
+    setIsUpLoading(false);
+    setImageUrl('');
+    setVideoUrl('');
+  };
   const handlerUpload = async (e) => {
     const file = e.target.files[0];
     setFile_Type(file.type);
     if (file) {
       setIsUploaded(true);
+      setIsUpLoading(true);
     }
     const form = new FormData();
     form.append('file', file);
@@ -41,9 +54,11 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
     setFile_Url(uploadData.data.imageUrl);
     if (file.type !== 'video/mp4') {
       setImageUrl(uploadData.data.imageUrl);
+      setIsUpLoading(false);
       return;
     }
     setVideoUrl(uploadData.data.imageUrl);
+    setIsUpLoading(false);
   };
   useEffect(() => {
     if (content || file_url) {
@@ -118,13 +133,25 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
               onChange={handlerUpload}
               disabled={isUploaded}
             />
-            {imageUrl && <img src={imageUrl} className="post_content-image" alt="Content img" />}
-            {videoUrl && (
-              // eslint-disable-next-line jsx-a11y/media-has-caption
-              <video className="post_content-video" controls autoPlay loop muted>
-                <source src={videoUrl} type="video/mp4" />
-              </video>
-            )}
+            {isUpLoading && <img className="loading_icon" src={loading_icon} alt="loading_icon" />}
+            {imageUrl && !isUpLoading ? (
+              <div className="uploadImgBox">
+                <div className="closeIconWrapper">
+                  <RxCross2 className="closeIcon" alt="close_icon" onClick={deleteHandler} />
+                </div>
+                <img src={imageUrl} className="post_content-image" alt="Content img" />
+              </div>
+            ) : null}
+            {videoUrl && !isUpLoading ? (
+              <div className="uploadVideoBox">
+                <div className="closeIconWrapper">
+                  <RxCross2 className="closeIcon" alt="close_icon" onClick={deleteHandler} />
+                </div>
+                <video className="post_content-video" controls autoPlay loop muted>
+                  <source src={videoUrl} type="video/mp4" />
+                </video>
+              </div>
+            ) : null}
 
             <label htmlFor="imageInput">
               <img className="upload_image" src={image_icon} alt="upload_image" />
