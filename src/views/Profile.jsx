@@ -7,12 +7,14 @@ import { getUserData } from '../services/getUserData';
 import Footer from '../components/Footer/Footer';
 import post_icon from '../assets/post_icon.svg';
 import SendPost from '../components/SendPost/SendPost';
+import EditProfile from '../components/EditProfile/EditProfile';
 
 const Profile = () => {
   const { id } = useParams();
   const currentUserId = getUserData().id;
   const [userData, setUserData] = useState(0);
   const [showSendPost, setShowSendPost] = useState(false);
+  const [showEditProfile, setShowEditProfile] = useState(false);
 
   const postClickHandler = () => {
     setShowSendPost(true);
@@ -34,10 +36,13 @@ const Profile = () => {
   }, []);
 
   const { posts } = userData;
+  // eslint-disable-next-line no-console
+  console.log(userData);
 
   return (
     <div>
-      <UserInfo {...userData} />
+      {showEditProfile && <EditProfile setShowEditProfile={setShowEditProfile} {...userData} />}
+      <UserInfo setShowEditProfile={setShowEditProfile} {...userData} />
       <UserPosts posts={posts} id={id} currentUserId={currentUserId} {...userData} />
       {showSendPost && (
         <SendPost

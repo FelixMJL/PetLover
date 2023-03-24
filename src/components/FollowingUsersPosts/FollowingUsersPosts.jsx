@@ -22,7 +22,8 @@ const FollowingUsersPosts = ({ user }) => {
         return;
       }
       setStatus('posts');
-      setPostData(post.data);
+      const filteredPosts = post.data.filter((item) => item.author !== null);
+      setPostData(filteredPosts);
     };
     getPostData();
   }, []);

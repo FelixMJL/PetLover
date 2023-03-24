@@ -3,10 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import leftArrow from '../../assets/left-arrow.png';
 
-const UserInfo = ({ username, posts, nickname, avatar, followers, following }) => {
+const UserInfo = ({
+  username,
+  posts,
+  nickname,
+  avatar,
+  followers,
+  following,
+  setShowEditProfile,
+}) => {
   const navigate = useNavigate();
   const btnClickHandler = () => {
     navigate(-1);
+  };
+  const editClickHandler = () => {
+    setShowEditProfile(true);
   };
 
   return (
@@ -28,8 +39,9 @@ const UserInfo = ({ username, posts, nickname, avatar, followers, following }) =
           </div>
           <div className="avatarAndEdit">
             <img src={avatar} alt="avatar" />
-            {/* eslint-disable-next-line react/button-has-type */}
-            <button className="editProfile">Edit Profile</button>
+            <button type="button" className="edit" onClick={editClickHandler}>
+              Edit Profile
+            </button>
           </div>
           <div className="userDetail">
             <p className="userName">{username}</p>
