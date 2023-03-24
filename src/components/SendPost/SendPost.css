@@ -59,7 +59,7 @@
 .sendPost__content-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     width: 100%;
 }
 
@@ -72,17 +72,22 @@
     border-radius: 8px;
 }
 
-.loading_icon{
-    width: 100px;
-    height: auto;
+.loading_icon-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.loading_icon {
+    width: 50px;
 }
 
 .uploadImgBox,
-.uploadVideoBox{
+.uploadVideoBox {
     position: relative;
+    margin-bottom: 15px;
 }
 
-.closeIconWrapper{
+.closeIconWrapper {
     position: absolute;
     display: flex;
     align-items: center;
@@ -90,12 +95,16 @@
     border-radius: 50%;
     font-size: 15px;
     font-weight: bold;
-    width: 20px;
-    height:20px;
-    margin-top:20px;
+    width: 40px;
+    height: 40px;
+    margin-top: 20px;
     margin-left: 5px;
     background-color: gray;
 }
-.closeIcon{
+
+.closeIcon {
     color: #f1f1f1;
+    z-index: 9999;
+    width: 30px;
+    height: 30px;
 }

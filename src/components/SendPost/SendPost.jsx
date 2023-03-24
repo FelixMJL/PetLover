@@ -17,7 +17,7 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
   const [file_type, setFile_Type] = useState('');
   const [file_url, setFile_Url] = useState('');
   const [isValidPost, setIsValidPost] = useState(false);
-  const [isUpLoading, setIsUpLoading] = useState(false);
+  const [isUpLoading, setIsUpLoading] = useState(true);
 
   const backClickHandler = () => {
     setShowSendPost(false);
@@ -37,6 +37,9 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
   };
   const handlerUpload = async (e) => {
     const file = e.target.files[0];
+    if (!file) {
+      return;
+    }
     setFile_Type(file.type);
     if (file) {
       setIsUploaded(true);
@@ -133,7 +136,11 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
               onChange={handlerUpload}
               disabled={isUploaded}
             />
-            {isUpLoading && <img className="loading_icon" src={loading_icon} alt="loading_icon" />}
+            <div className="loading_icon-wrapper">
+              {isUpLoading && (
+                <img className="loading_icon" src={loading_icon} alt="loading_icon" />
+              )}
+            </div>
             {imageUrl && !isUpLoading ? (
               <div className="uploadImgBox">
                 <div className="closeIconWrapper">
