@@ -55,7 +55,7 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
     );
 
     setFile_Url(uploadData.data.imageUrl);
-    if (file.type !== 'video/mp4') {
+    if (!file.type.includes('video')) {
       setImageUrl(uploadData.data.imageUrl);
       setIsUpLoading(false);
       return;
