@@ -1,5 +1,4 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import './DeletePostConfirmation.css';
 
 const DeletePostConfirmation = ({ show, onClose, handleDeletePost }) => {
