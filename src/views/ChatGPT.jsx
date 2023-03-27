@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Footer from '../components/Footer/Footer';
 import { getUserData } from '../services/getUserData';
+import './ChatGPT.css';
 
 const ChatGPT = () => {
   const [input, setInput] = useState('');
@@ -23,26 +24,29 @@ const ChatGPT = () => {
 
   return (
     <div>
-      <h1>chatgpt</h1>
-      <input
-        type="text"
-        value={input}
-        onChange={inputChangeHandler}
-        placeholder="Please input your question"
-      />
-      <br />
-      <br />
-      <button type="button" onClick={chatGpt}>
-        Submit
-      </button>
-      <br />
-      <br />
-      <textarea
-        value={result}
-        style={{ width: '500px' }}
-        rows="8"
-        onChange={textareaChangeHandler}
-      />
+      <div className="chatGPT">
+        <h1>ChatGPT -- Pet related Q&A</h1>
+        <input
+          type="text"
+          value={input}
+          onChange={inputChangeHandler}
+          placeholder="Please input your question"
+        />
+        <br />
+        <br />
+        <button type="button" onClick={chatGpt}>
+          Submit
+        </button>
+        <br />
+        <br />
+        <textarea
+          value={result}
+          style={{ width: '500px' }}
+          rows="8"
+          onChange={textareaChangeHandler}
+        />
+      </div>
+
       <Footer />
     </div>
   );
