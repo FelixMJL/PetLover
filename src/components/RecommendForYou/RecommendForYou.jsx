@@ -47,17 +47,19 @@ const RecommendForYou = ({ user }) => {
       <div className="post__wrapper" onClick={postClickHandler}>
         <img src={post_icon} alt="post_icon" />
       </div>
-      {postData.length ? (
-        postData.map((post) => (
-          <div key={post._id}>
-            <Post {...post} setPostData={setPostData} postData={postData} />
+      <div className="recommend_post-container">
+        {postData.length ? (
+          postData.map((post) => (
+            <div key={post._id}>
+              <Post {...post} setPostData={setPostData} postData={postData} />
+            </div>
+          ))
+        ) : (
+          <div className="loading">
+            <img src={loading} alt="loading" />
           </div>
-        ))
-      ) : (
-        <div className="loading">
-          <img src={loading} alt="loading" />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

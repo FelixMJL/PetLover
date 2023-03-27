@@ -82,10 +82,6 @@ const Post = ({
         setShowSinglePost={() => {
           setShowSinglePost(false);
         }}
-        author={author}
-        content={content}
-        comments={comments}
-        created_at={created_at}
         _id={_id}
         postData={postData}
         setPostData={setPostData}

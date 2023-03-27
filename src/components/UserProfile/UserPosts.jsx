@@ -3,18 +3,21 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import UserPost from './post/UserPost';
 import DeletePost from '../DeletePost/DeletePost';
+import SinglePost from '../SinglePost/SinglePost';
 
 const UserPosts = ({ posts, username, nickname, avatar, id, currentUserId }) => {
   const [postData, setPostData] = useState(null);
+  const [showSinglePost, setShowSinglePost] = useState(false);
+
   useEffect(() => {
     setPostData(posts);
   }, [posts]);
 
   return (
-    <div className="userPosts">
+    <div className="post_profile-post-container">
       {postData &&
         postData.map((post) => (
-          <div key={post._id} className="post_container">
+          <div key={post._id} className="post_container" onClick={() => setShowSinglePost(true)}>
             <div className="post_inner-container">
               <img src={avatar} className="post_avatar" alt="avatar" />
               <div className="post_content-container">
@@ -23,7 +26,6 @@ const UserPosts = ({ posts, username, nickname, avatar, id, currentUserId }) => 
                     <span className="post_author-nick-name">{nickname}</span>
                     <span className="post_author-user-name">@{username}</span>
                     <div className="post_time">
-                      {/* Use post.created_at instead of created_at */}
                       <span>· {moment(post.created_at).fromNow()}</span>
                     </div>
                   </div>
@@ -38,6 +40,18 @@ const UserPosts = ({ posts, username, nickname, avatar, id, currentUserId }) => 
                 <UserPost {...post} />
               </div>
             </div>
+            <SinglePost
+              showSinglePost={showSinglePost}
+              setShowSinglePost={() => {
+                setShowSinglePost(false);
+              }}
+              _id={post._id}
+              postData={post}
+              setPostData={setPostData}
+              currentUserId={currentUserId}
+              imageUrl={post.imageUrl}
+              videoUrl={post.videoUrl}
+            />
           </div>
         ))}
     </div>
