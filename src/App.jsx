@@ -12,6 +12,7 @@ import { authToken } from './services/authToken';
 import ImageGeneration from './views/ImageGeneration';
 import ChatGPT from './views/ChatGPT';
 import Team from './views/Team';
+import Post from './views/Post';
 
 const App = () => {
   const currentUser = JSON.parse(localStorage.getItem('userData'));
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="/image" element={<ImageGeneration />} />
         <Route path="/chatGpt" element={<ChatGPT />} />
         <Route path="/team" element={<Team />} />
+        <Route path="/post/:postId" element={<Post />} />
       </Routes>
     </div>
   );

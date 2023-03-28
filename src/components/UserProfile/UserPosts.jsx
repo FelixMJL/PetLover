@@ -1,4 +1,4 @@
-import '../RecommendForYou/post/post.css';
+import '../RecommendForYou/post/PostContent.css';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import UserPost from './post/UserPost';

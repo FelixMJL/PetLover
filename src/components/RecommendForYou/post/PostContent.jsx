@@ -1,12 +1,12 @@
-import './post.css';
+import './PostContent.css';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 import DeletePost from '../../DeletePost/DeletePost';
 import replyLogo from '../../../assets/reply.png';
 import { getUserData } from '../../../services/getUserData';
-import SinglePost from '../../SinglePost/SinglePost';
 
-const Post = ({
+const PostContent = ({
   author,
   content,
   file_type,
@@ -20,7 +20,6 @@ const Post = ({
   const currentUserId = getUserData().id;
   const [imageUrl, setImageUrl] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
-  const [showSinglePost, setShowSinglePost] = useState(false);
 
   useEffect(() => {
     if (!file_type) {
@@ -37,7 +36,7 @@ const Post = ({
 
   return (
     <>
-      <div className="post_container" onClick={() => setShowSinglePost(true)}>
+      <Link className="post_container" to={`/post/${_id}`}>
         <div className="post_inner-container">
           <img src={author.avatar} className="post_avatar" alt="avatar" />
           <div className="post_content-container">
@@ -76,20 +75,8 @@ const Post = ({
             </div>
           </div>
         </div>
-      </div>
-      <SinglePost
-        showSinglePost={showSinglePost}
-        setShowSinglePost={() => {
-          setShowSinglePost(false);
-        }}
-        _id={_id}
-        postData={postData}
-        setPostData={setPostData}
-        currentUserId={currentUserId}
-        imageUrl={imageUrl}
-        videoUrl={videoUrl}
-      />
+      </Link>
     </>
   );
 };
-export default Post;
+export default PostContent;

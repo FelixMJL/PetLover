@@ -5,14 +5,14 @@ import './DeletePost.css';
 import DeletePostConfirmation from './DeletePostConfirmation';
 import { getUserData } from '../../services/getUserData';
 
-const DeletePost = ({ postId, postData, setPostData }) => {
+const DeletePost = ({ postIdDelete, postData, setPostData }) => {
   const [showDeletePostConfirmation, setShowDeletePostConfirmation] = useState(false);
   const toDeletePost = () => {
     axios.delete(
-      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/posts/${postId}`,
+      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/posts/${postIdDelete}`,
       getUserData().config,
     );
-    setPostData(postData.filter((post) => post._id !== postId));
+    setPostData(postData.filter((post) => post._id !== postIdDelete));
   };
 
   return (
