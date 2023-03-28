@@ -11,14 +11,7 @@ import back from '../../assets/left-arrow.png';
 import replyLogo from '../../assets/reply.png';
 import Footer from '../Footer/Footer';
 
-const SinglePost = ({
-  showSinglePost,
-  setShowSinglePost,
-  _id,
-  postData,
-  setPostData,
-  currentUserId,
-}) => {
+const SinglePost = ({ _id, currentUserId }) => {
   const [singlePostData, setSinglePostData] = useState();
 
   useEffect(() => {
@@ -28,7 +21,6 @@ const SinglePost = ({
           `${process.env.REACT_APP_API_ENDPOINT}/api/v1/posts/${_id}`,
           getUserData().config,
         );
-
         setSinglePostData(getSinglePost.data);
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -38,15 +30,12 @@ const SinglePost = ({
     getSinglePostData();
   }, []);
 
-  // eslint-disable-next-line no-console
-  console.log('singlePostData', singlePostData);
-
-  if (!showSinglePost) return null;
+  // if (!showSinglePost) return null;
   return (
     <div className="singlePost_container">
       <div className="singlePost_inner-container">
         <div className="singlePost_content-header">
-          <img className="singlePost_btn-back" src={back} alt="back" onClick={setShowSinglePost} />
+          <img className="singlePost_btn-back" src={back} alt="back" />
           <span>Post</span>
         </div>
         <div className="singlePost_post-container">
@@ -67,7 +56,10 @@ const SinglePost = ({
             </div>
             <div>
               {singlePostData.author.id === currentUserId ? (
-                <DeletePost postId={_id} setPostData={setPostData} postData={postData} />
+                <DeletePost
+                  postIdDelete={_id}
+                  // setPostData={setPostData} postData={postData}
+                />
               ) : (
                 ''
               )}

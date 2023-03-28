@@ -1,10 +1,10 @@
 import './RecommendForYou.css';
 import React, { useState, useEffect } from 'react';
-import Post from './post/post';
 import { getAllPosts } from '../../services/getAllPosts';
 import loading from '../../assets/loading.svg';
 import post_icon from '../../assets/post_icon.svg';
 import SendPost from '../SendPost/SendPost';
+import PostContent from './post/PostContent';
 
 const RecommendForYou = ({ user }) => {
   const [posts, setPosts] = useState([]);
@@ -51,7 +51,7 @@ const RecommendForYou = ({ user }) => {
         {postData.length ? (
           postData.map((post) => (
             <div key={post._id}>
-              <Post {...post} setPostData={setPostData} postData={postData} />
+              <PostContent {...post} setPostData={setPostData} postData={postData} />
             </div>
           ))
         ) : (

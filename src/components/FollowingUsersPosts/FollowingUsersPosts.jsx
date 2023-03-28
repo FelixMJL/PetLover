@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../RecommendForYou/post/post.css';
+import '../RecommendForYou/post/PostContent.css';
 import moment from 'moment';
 import { getFollowing } from '../../services/getFollowing';
 import loading from '../../assets/loading.svg';
