@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Footer from '../components/Footer/Footer';
 import { getUserData } from '../services/getUserData';
@@ -7,6 +7,7 @@ import './ChatGPT.css';
 const ChatGPT = () => {
   const [input, setInput] = useState('');
   const [result, setResult] = useState('');
+  const [textLength, setTextLength] = useState(0);
   const inputChangeHandler = (e) => {
     setInput(e.target.value);
   };
@@ -21,6 +22,19 @@ const ChatGPT = () => {
     );
     setResult(response.data);
   };
+
+  useEffect(() => {
+    setTextLength(0);
+    const interval = setInterval(() => {
+      setTextLength((prevTextLength) => {
+        if (prevTextLength < result.length) {
+          return prevTextLength + 1;
+        }
+        return prevTextLength;
+      });
+    }, 100);
+    return () => clearInterval(interval);
+  }, [result]);
 
   return (
     <div>
@@ -40,13 +54,12 @@ const ChatGPT = () => {
         <br />
         <br />
         <textarea
-          value={result}
+          value={result.substring(0, textLength)}
           style={{ width: '500px' }}
           rows="8"
           onChange={textareaChangeHandler}
         />
       </div>
-
       <Footer />
     </div>
   );
