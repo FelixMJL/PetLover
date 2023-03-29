@@ -1,7 +1,7 @@
 import './PostContent.css';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DeletePost from '../../DeletePost/DeletePost';
 import replyLogo from '../../../assets/reply.png';
 import { getUserData } from '../../../services/getUserData';
@@ -20,6 +20,13 @@ const PostContent = ({
   const currentUserId = getUserData().id;
   const [imageUrl, setImageUrl] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
+  const navigate = useNavigate();
+
+  const avatarClinkHandler = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    navigate(`/profile/${author.id}`);
+  };
 
   useEffect(() => {
     if (!file_type) {
@@ -44,9 +51,9 @@ const PostContent = ({
         )}
       </div>
       <Link className="post_inner-container" to={`/post/${_id}`}>
-        <Link to={`/profile/${author.id}`}>
+        <div onClick={avatarClinkHandler}>
           <img src={author.avatar} className="post_avatar" alt="avatar" />
-        </Link>
+        </div>
 
         <div className="post_content-container">
           <div className="post_info-container">
