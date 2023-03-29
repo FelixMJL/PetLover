@@ -1,0 +1,112 @@
+.imageGeneraterBox{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+    height: calc(100vh - 50px);
+    min-height: 617px;
+    width: 100vw;
+    background-color: #f9f9fa;
+
+}
+
+.imageGeneraterBox .headerBox .connect-title-line {
+    padding: 12px;
+ }
+
+ .imageGeneraterBox .headerBox .connect-title-line .btn{
+    margin-left: 10px;
+ }
+
+
+.imageGeneraterBox .headerBox {
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    width: 100vw;
+    
+  }
+  .imageGeneraterBox .descriptionBox{
+    width: 90vw;
+    display: flex;
+  flex-direction: column;
+
+  }
+
+  .imageGeneraterBox .descriptionBox .descripContainer{
+    box-sizing: border-box;
+    width: 100%;display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,82,.15);
+    transition: box-shadow .2s ease-in-out;
+    overflow: hidden;
+    background: #fff;
+  }
+  .imageGeneraterBox .descriptionBox p{
+    font-size: 17px;
+    color: #777;
+    padding-top: 15px;
+  }
+  .imageGeneraterBox .descriptionBox textarea{
+    font-size: 14px;
+    border: none;
+    display: block;
+    padding: 10px;
+    line-height: 1.4em;
+  }
+  .imageGeneraterBox .descriptionBox textarea:focus-visible{
+    outline-offset: 0px;
+  }
+  .imageGeneraterBox .descriptionBox textarea:focus{
+    outline: 0;
+  }
+  .imageGeneraterBox .descriptionBox button{
+    border: none;
+    border-top: 1px solid rgba(0,0,0,.05);
+    width: 100%;
+    background: #fff;
+    height: 3em;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 700;
+    
+  }
+
+  .imageGeneraterBox .resultBox{
+    width: 90vw;
+    padding-top: 2vh;
+
+  }
+  .imageGeneraterBox .resultTitle{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin-bottom: 15px;
+    color: #bbb;
+    
+  }
+  .imageGeneraterBox .resultTitle .reslutContentJustify{
+    padding-right: 10px;
+  }
+
+.imageGeneraterBox .resultTitle .line{
+    position: relative;
+}
+  .imageGeneraterBox .resultTitle .line::before{
+    left: 0;
+    border-top: 1px solid #bbb;
+    content: "";
+    position: absolute;
+    right: 0;
+    top: calc(50% - 1px);
+    z-index: 1;
+  }
+
+  .imageGeneraterBox .resultBox .reslutContent{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .imageGeneraterBox .resultBox .reslutContent img{
+    width:calc(50% - 5px);
+    margin-bottom: 10px;
+  }
+
