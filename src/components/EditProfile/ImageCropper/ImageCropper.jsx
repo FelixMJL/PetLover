@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Cropper from 'react-easy-crop';
 import './ImageCropper.css';
 
-function ImageCropper({ imageSelected, setImageArea }) {
+function ImageCropper({ imageSelected, cropClickHandler }) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedArea, setCroppedArea] = useState(null);
@@ -12,33 +12,23 @@ function ImageCropper({ imageSelected, setImageArea }) {
     setCroppedArea(croppedAreaPixels);
   };
 
-  const cropClickHandler = () => {
-    setImageArea(croppedArea);
-  };
-
   return (
-    <div className="cropper">
-      <div>
-        <Cropper
-          image={imageSelected}
-          aspect={1}
-          crop={crop}
-          zoom={zoom}
-          onCropChange={setCrop}
-          onZoomChange={setZoom}
-          onCropComplete={onCropComplete}
-          style={{
-            containerStyle: {
-              width: '80%',
-              height: '80%',
-              backgroundColor: '#fff',
-            },
-          }}
-        />
+    <div className="imageCropper">
+      <div className="imageCropper-header">
+        <h1>111</h1>
+        <button type="button" className="crop-btn" onClick={() => cropClickHandler(croppedArea)}>
+          Apply
+        </button>
       </div>
-      <button type="button" className="crop-btn" onClick={cropClickHandler}>
-        Done
-      </button>
+      <Cropper
+        image={imageSelected}
+        aspect={1}
+        crop={crop}
+        zoom={zoom}
+        onCropChange={setCrop}
+        onZoomChange={setZoom}
+        onCropComplete={onCropComplete}
+      />
     </div>
   );
 }
