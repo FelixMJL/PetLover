@@ -1,0 +1,32 @@
+.imageCropper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000; /* 可以根据需要调整这个值，使其位于其他元素之上 */
+    background-color: rgba(255, 255, 255, 1); /* 添加半透明黑色背景 */
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+
+.imageCropper-header {
+    z-index: 1001;
+    position: absolute;
+    top: 0;
+}
+
+
+.crop-btn {
+    background-color: #000;
+    z-index: 1001;
+    width: 75px;
+    border: none;
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: 900;
+    color: white;
+    border-radius: 20px;
+
+}
