@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
-// import React from 'react';
 import './SinglePost.css';
 import moment from 'moment';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 import { getUserData } from '../../services/getUserData';
 import DeletePost from '../DeletePost/DeletePost';
-// import UserPost from '../UserProfile/post/UserPost';
-// import { getCommentByID } from '../../services/getCommentById';
 import back from '../../assets/left-arrow.png';
 import replyLogo from '../../assets/reply.png';
 import Footer from '../Footer/Footer';
 
-const SinglePost = ({ _id, currentUserId }) => {
+const SinglePost = ({ postId, currentUserId }) => {
   const [singlePostData, setSinglePostData] = useState();
 
   useEffect(() => {
     const getSinglePostData = async () => {
       try {
         const getSinglePost = await axios.get(
-          `${process.env.REACT_APP_API_ENDPOINT}/api/v1/posts/${_id}`,
+          `${process.env.REACT_APP_API_ENDPOINT}/api/v1/posts/${postId}`,
           getUserData().config,
         );
         setSinglePostData(getSinglePost.data);
@@ -30,12 +28,19 @@ const SinglePost = ({ _id, currentUserId }) => {
     getSinglePostData();
   }, []);
 
-  // if (!showSinglePost) return null;
+  const browserNavigate = useNavigate();
+
+  if (!singlePostData) return null;
   return (
     <div className="singlePost_container">
       <div className="singlePost_inner-container">
         <div className="singlePost_content-header">
-          <img className="singlePost_btn-back" src={back} alt="back" />
+          <img
+            className="singlePost_btn-back"
+            src={back}
+            alt="back"
+            onClick={() => browserNavigate(-1)}
+          />
           <span>Post</span>
         </div>
         <div className="singlePost_post-container">
@@ -57,7 +62,7 @@ const SinglePost = ({ _id, currentUserId }) => {
             <div>
               {singlePostData.author.id === currentUserId ? (
                 <DeletePost
-                  postIdDelete={_id}
+                  postIdDelete={postId}
                   // setPostData={setPostData} postData={postData}
                 />
               ) : (
@@ -71,17 +76,15 @@ const SinglePost = ({ _id, currentUserId }) => {
                 <p>{singlePostData.content}</p>
               </div>
             )}
-            {singlePostData.imageUrl && (
+            {singlePostData.file_type.includes('image') ? (
               <img
-                src={singlePostData.imageUrl}
+                src={singlePostData.file_url}
                 className="singlePost_content-image"
                 alt="Content img"
               />
-            )}
-            {singlePostData.videoUrl && (
-              // eslint-disable-next-line jsx-a11y/media-has-caption
+            ) : (
               <video className="singlePost_content-video" controls autoPlay loop muted>
-                <source src={singlePostData.videoUrl} type="video/mp4" />
+                <source src={singlePostData.file_url} type="video/mp4" />
               </video>
             )}
             <div className="singlePost_time">
@@ -119,9 +122,9 @@ const SinglePost = ({ _id, currentUserId }) => {
                           </div>
                           <div className="singlePost_replying-to">
                             Replying to{' '}
-                            <a className="singlePost_replying-to-user-nick-name" href="none">
+                            <Link className="singlePost_replying-to-user-nick-name" to={` `}>
                               @{singlePostData.author.nickname}
-                            </a>
+                            </Link>
                           </div>
                         </div>
                         <div>

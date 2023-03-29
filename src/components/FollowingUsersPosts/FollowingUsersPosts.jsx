@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../RecommendForYou/post/PostContent.css';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 import { getFollowing } from '../../services/getFollowing';
 import loading from '../../assets/loading.svg';
 import UserPost from '../UserProfile/post/UserPost';
 import post_icon from '../../assets/post_icon.svg';
 import SendPost from '../SendPost/SendPost';
-import SinglePost from '../SinglePost/SinglePost';
 
 const FollowingUsersPosts = ({ user }) => {
   const [postData, setPostData] = useState([]);
   const [showSendPost, setShowSendPost] = useState(false);
-  const [showSinglePost, setShowSinglePost] = useState(false);
 
   const postClickHandler = () => {
     setShowSendPost(true);
@@ -33,33 +32,22 @@ const FollowingUsersPosts = ({ user }) => {
 
   function DataList({ posts }) {
     const list = posts.map((post) => (
-      <div className="following_post-container">
-        <div key={post._id}>
-          <div className="post_container" onClick={() => setShowSinglePost(true)}>
-            <div className="post_inner-container">
-              <img className="post_avatar" src={post.author.avatar} alt="" />
-              <div className="post-content-container">
-                <div className="post_author-info-container">
-                  <span className="post_author-nick-name">{post.author.nickname}</span>
-                  <span className="post_author-user-name">@{post.author.username}</span>
-                  <div className="post_time">
-                    <span>·{moment(post.created_at).fromNow()}</span>
-                  </div>
+      <div key={post._id} className="following_post-container">
+        <Link className="post_container" to={`/post/${post._id}`}>
+          <div className="post_inner-container">
+            <img className="post_avatar" src={post.author.avatar} alt="" />
+            <div className="post-content-container">
+              <div className="post_author-info-container">
+                <span className="post_author-nick-name">{post.author.nickname}</span>
+                <span className="post_author-user-name">@{post.author.username}</span>
+                <div className="post_time">
+                  <span>·{moment(post.created_at).fromNow()}</span>
                 </div>
-                <UserPost {...post} />
               </div>
+              <UserPost {...post} />
             </div>
-            <SinglePost
-              showSinglePost={showSinglePost}
-              setShowSinglePost={() => {
-                setShowSinglePost(false);
-              }}
-              _id={post._id}
-              imageUrl={post.imageUrl}
-              videoUrl={post.videoUrl}
-            />
           </div>
-        </div>
+        </Link>
       </div>
     ));
     return <ul className="post_ul">{list}</ul>;
