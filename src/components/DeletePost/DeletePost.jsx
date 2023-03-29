@@ -7,21 +7,28 @@ import { getUserData } from '../../services/getUserData';
 
 const DeletePost = ({ postIdDelete, postData, setPostData }) => {
   const [showDeletePostConfirmation, setShowDeletePostConfirmation] = useState(false);
-  const toDeletePost = () => {
+  const toDeletePost = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     axios.delete(
       `${process.env.REACT_APP_API_ENDPOINT}/api/v1/posts/${postIdDelete}`,
       getUserData().config,
     );
     setPostData(postData.filter((post) => post._id !== postIdDelete));
+    setShowDeletePostConfirmation(false);
+  };
+
+  const deleteClickHandler = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    setShowDeletePostConfirmation(true);
   };
 
   return (
     <div>
-      <button
-        type="button"
-        className="post_bin-wrapper"
-        onClick={() => setShowDeletePostConfirmation(true)}
-      >
+      <button type="button" className="post_bin-wrapper" onClick={deleteClickHandler}>
         <img src={bin} className="post_bin-icon" alt="rubbish-bin" />
       </button>
       <DeletePostConfirmation
@@ -29,10 +36,7 @@ const DeletePost = ({ postIdDelete, postData, setPostData }) => {
         onClose={() => {
           setShowDeletePostConfirmation(false);
         }}
-        handleDeletePost={() => {
-          toDeletePost();
-          setShowDeletePostConfirmation(false);
-        }}
+        handleDeletePost={toDeletePost}
       />
     </div>
   );

@@ -35,9 +35,19 @@ const PostContent = ({
   }, []);
 
   return (
-    <Link className="post_container" to={`/post/${_id}`}>
-      <div className="post_inner-container">
-        <img src={author.avatar} className="post_avatar" alt="avatar" />
+    <div className="post_container">
+      <div>
+        {author.id === currentUserId ? (
+          <DeletePost postId={_id} setPostData={setPostData} postData={postData} />
+        ) : (
+          ''
+        )}
+      </div>
+      <Link className="post_inner-container" to={`/post/${_id}`}>
+        <Link to={`/profile/${author.id}`}>
+          <img src={author.avatar} className="post_avatar" alt="avatar" />
+        </Link>
+
         <div className="post_content-container">
           <div className="post_info-container">
             <div className="post_author-info-container">
@@ -47,15 +57,7 @@ const PostContent = ({
                 <span>· {moment(created_at).fromNow()}</span>
               </div>
             </div>
-            <div>
-              {author.id === currentUserId ? (
-                <DeletePost postId={_id} setPostData={setPostData} postData={postData} />
-              ) : (
-                ''
-              )}
-            </div>
           </div>
-
           {content && (
             <div className="post_content-text">
               <p>{content}</p>
@@ -73,8 +75,8 @@ const PostContent = ({
             <span className="post_comments-count">{comments.length}</span>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 export default PostContent;
