@@ -1,11 +1,12 @@
-import './post.css';
+import './PostContent.css';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import { Link, useNavigate } from 'react-router-dom';
 import DeletePost from '../../DeletePost/DeletePost';
 import replyLogo from '../../../assets/reply.png';
 import { getUserData } from '../../../services/getUserData';
 
-const Post = ({
+const PostContent = ({
   author,
   content,
   file_type,
@@ -19,6 +20,14 @@ const Post = ({
   const currentUserId = getUserData().id;
   const [imageUrl, setImageUrl] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
+  const navigate = useNavigate();
+
+  const avatarClickHandler = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    navigate(`/profile/${author.id}`);
+  };
+
   useEffect(() => {
     if (!file_type) {
       return;
@@ -34,8 +43,20 @@ const Post = ({
 
   return (
     <div className="post_container">
-      <div className="post_inner-container">
-        <img src={author.avatar} className="post_avatar" alt="avatar" />
+      <div>
+        {author.id === currentUserId ? (
+          <DeletePost postId={_id} setPostData={setPostData} postData={postData} />
+        ) : (
+          ''
+        )}
+      </div>
+      <Link className="post_inner-container" to={`/post/${_id}`}>
+        <img
+          src={author.avatar}
+          className="post_avatar"
+          alt="avatar"
+          onClick={avatarClickHandler}
+        />
         <div className="post_content-container">
           <div className="post_info-container">
             <div className="post_author-info-container">
@@ -45,15 +66,7 @@ const Post = ({
                 <span>· {moment(created_at).fromNow()}</span>
               </div>
             </div>
-            <div>
-              {author.id === currentUserId ? (
-                <DeletePost postId={_id} setPostData={setPostData} postData={postData} />
-              ) : (
-                ''
-              )}
-            </div>
           </div>
-
           {content && (
             <div className="post_content-text">
               <p>{content}</p>
@@ -71,9 +84,8 @@ const Post = ({
             <span className="post_comments-count">{comments.length}</span>
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };
-
-export default Post;
+export default PostContent;

@@ -1,4 +1,4 @@
-import '../../RecommendForYou/post/post.css';
+import '../../RecommendForYou/post/PostContent.css';
 import React, { useState, useEffect } from 'react';
 import replyLogo from '../../../assets/reply.png';
 
