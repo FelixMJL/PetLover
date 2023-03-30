@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Box } from '@chakra-ui/react';
 import './EditProfile.css';
 import axios from 'axios';
 import Footer from '../Footer/Footer';
@@ -116,6 +117,14 @@ const EditProfile = ({ setShowEditProfile, avatar }) => {
           </div>
         </div>
       </div>
+      <fieldset className="editProfile__nickname">
+        <Box as="legend" px={3}>
+          Nickname
+        </Box>
+        <div>
+          <input className="editProfile__nickname-box" placeholder="Ryan Fang" />
+        </div>
+      </fieldset>
 
       <Footer />
     </div>
