@@ -28,6 +28,7 @@
     background-color: white;
     padding-top: 20px;
     padding-bottom: 10px;
+    z-index: 3;
 }
 
 .singlePost_btn-back {
@@ -47,12 +48,13 @@
 .singlePost_author-header-container{
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 .singlePost_author-info-container {
     height: fit-content;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 20px;
 }
 

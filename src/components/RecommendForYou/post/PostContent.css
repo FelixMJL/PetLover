@@ -18,7 +18,8 @@
     border-top: 1px solid #EDE7E7;
     padding-top: 15px;
     padding-bottom: 15px;
-    z-index: 10;
+    color: #000000;
+    text-decoration: none;
 }
 
 .post_avatar {

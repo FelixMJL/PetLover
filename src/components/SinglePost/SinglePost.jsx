@@ -11,6 +11,27 @@ import Footer from '../Footer/Footer';
 
 const SinglePost = ({ postId, currentUserId }) => {
   const [singlePostData, setSinglePostData] = useState();
+  const navigate = useNavigate();
+  const [currentUserData, setUserData] = useState(0);
+
+  const getUser = () =>
+    axios.get(
+      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}`,
+      getUserData().config,
+    );
+
+  useEffect(() => {
+    // eslint-disable-next-line consistent-return,no-shadow
+    const getUserData = async () => {
+      try {
+        const user = await getUser();
+        setUserData(user.data);
+      } catch (error) {
+        return error.message;
+      }
+    };
+    getUserData();
+  }, []);
 
   useEffect(() => {
     const getSinglePostData = async () => {
@@ -61,10 +82,7 @@ const SinglePost = ({ postId, currentUserId }) => {
             </div>
             <div>
               {singlePostData.author.id === currentUserId ? (
-                <DeletePost
-                  postIdDelete={postId}
-                  // setPostData={setPostData} postData={postData}
-                />
+                <DeletePost postId={postId} onPostPage />
               ) : (
                 ''
               )}
@@ -76,17 +94,18 @@ const SinglePost = ({ postId, currentUserId }) => {
                 <p>{singlePostData.content}</p>
               </div>
             )}
-            {singlePostData.file_type.includes('image') ? (
+            {singlePostData.file_url && singlePostData.file_type.includes('image') ? (
               <img
                 src={singlePostData.file_url}
                 className="singlePost_content-image"
                 alt="Content img"
               />
-            ) : (
+            ) : null}
+            {singlePostData.file_url && singlePostData.file_type.includes('video') ? (
               <video className="singlePost_content-video" controls autoPlay loop muted>
                 <source src={singlePostData.file_url} type="video/mp4" />
               </video>
-            )}
+            ) : null}
             <div className="singlePost_time">
               <span>{singlePostData.created_at}</span>
             </div>
@@ -96,7 +115,7 @@ const SinglePost = ({ postId, currentUserId }) => {
             </div>
           </div>
           <div className="singlePost_reply-post">
-            <img src={singlePostData.author.avatar} className="singlePost_avatar" alt="avatar" />
+            <img src={currentUserData.avatar} className="singlePost_avatar" alt="avatar" />
             <input className="singlePost_reply-input" placeholder="Tweet your reply" />
             <button className="singlePost_reply-btn" type="submit">
               Reply
@@ -107,7 +126,14 @@ const SinglePost = ({ postId, currentUserId }) => {
               singlePostData.comments.map((commentData) => (
                 <div key={commentData._id} className="post_container">
                   <div className="post_inner-container">
-                    <img src={commentData.author.avatar} className="post_avatar" alt="avatar" />
+                    <img
+                      src={commentData.author.avatar}
+                      className="post_avatar"
+                      alt="avatar"
+                      onClick={() => {
+                        navigate(`/profile/${commentData.author.id}`);
+                      }}
+                    />
                     <div className="post_content-container">
                       <div className="post_info-container">
                         <div className="post_author-info-container">
@@ -129,11 +155,7 @@ const SinglePost = ({ postId, currentUserId }) => {
                         </div>
                         <div>
                           {commentData.author.id === currentUserId ? (
-                            <DeletePost
-                            // setPostData={setPostData}
-                            // postData={postData}
-                            // postId={post._id}
-                            />
+                            <DeletePost postId={postId} onPostPage />
                           ) : (
                             ''
                           )}

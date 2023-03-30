@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../RecommendForYou/post/PostContent.css';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getFollowing } from '../../services/getFollowing';
 import loading from '../../assets/loading.svg';
 import UserPost from '../UserProfile/post/UserPost';
@@ -11,10 +11,12 @@ import SendPost from '../SendPost/SendPost';
 const FollowingUsersPosts = ({ user }) => {
   const [postData, setPostData] = useState([]);
   const [showSendPost, setShowSendPost] = useState(false);
+  const navigate = useNavigate();
 
   const postClickHandler = () => {
     setShowSendPost(true);
   };
+
   const [status, setStatus] = useState(loading);
   useEffect(() => {
     const getPostData = async () => {
@@ -35,7 +37,16 @@ const FollowingUsersPosts = ({ user }) => {
       <div key={post._id} className="following_post-container">
         <Link className="post_container" to={`/post/${post._id}`}>
           <div className="post_inner-container">
-            <img className="post_avatar" src={post.author.avatar} alt="" />
+            <img
+              className="post_avatar"
+              src={post.author.avatar}
+              alt=""
+              onClick={(e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                navigate(`/profile/${post.author.id}`);
+              }}
+            />
             <div className="post-content-container">
               <div className="post_author-info-container">
                 <span className="post_author-nick-name">{post.author.nickname}</span>

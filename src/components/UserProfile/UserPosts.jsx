@@ -16,8 +16,8 @@ const UserPosts = ({ posts, username, nickname, avatar, id, currentUserId }) => 
     <div className="post_profile-post-container">
       {postData &&
         postData.map((post) => (
-          <Link key={post._id} className="post_container" to={`/post/${post._id}`}>
-            <div className="post_inner-container">
+          <div key={post._id} className="post_container">
+            <Link className="post_inner-container" to={`/post/${post._id}`}>
               <img src={avatar} className="post_avatar" alt="avatar" />
               <div className="post_content-container">
                 <div className="post_info-container">
@@ -28,18 +28,18 @@ const UserPosts = ({ posts, username, nickname, avatar, id, currentUserId }) => 
                       <span>· {moment(post.created_at).fromNow()}</span>
                     </div>
                   </div>
-                  <div>
-                    {id === currentUserId ? (
-                      <DeletePost setPostData={setPostData} postData={postData} postId={post._id} />
-                    ) : (
-                      ''
-                    )}
-                  </div>
                 </div>
                 <UserPost {...post} />
               </div>
+            </Link>
+            <div>
+              {id === currentUserId ? (
+                <DeletePost setPostData={setPostData} postData={postData} postId={post._id} />
+              ) : (
+                ''
+              )}
             </div>
-          </Link>
+          </div>
         ))}
     </div>
   );

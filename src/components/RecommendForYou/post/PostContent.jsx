@@ -22,7 +22,7 @@ const PostContent = ({
   const [videoUrl, setVideoUrl] = useState('');
   const navigate = useNavigate();
 
-  const avatarClinkHandler = (e) => {
+  const avatarClickHandler = (e) => {
     e.stopPropagation();
     e.preventDefault();
     navigate(`/profile/${author.id}`);
@@ -51,10 +51,12 @@ const PostContent = ({
         )}
       </div>
       <Link className="post_inner-container" to={`/post/${_id}`}>
-        <div onClick={avatarClinkHandler}>
-          <img src={author.avatar} className="post_avatar" alt="avatar" />
-        </div>
-
+        <img
+          src={author.avatar}
+          className="post_avatar"
+          alt="avatar"
+          onClick={avatarClickHandler}
+        />
         <div className="post_content-container">
           <div className="post_info-container">
             <div className="post_author-info-container">
