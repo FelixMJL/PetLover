@@ -1,10 +1,10 @@
 import './RecommendForYou.css';
 import React, { useState, useEffect } from 'react';
-import Post from './post/post';
 import { getAllPosts } from '../../services/getAllPosts';
 import loading from '../../assets/loading.svg';
 import post_icon from '../../assets/post_icon.svg';
 import SendPost from '../SendPost/SendPost';
+import PostContent from './post/PostContent';
 
 const RecommendForYou = ({ user }) => {
   const [posts, setPosts] = useState([]);
@@ -47,17 +47,19 @@ const RecommendForYou = ({ user }) => {
       <div className="post__wrapper" onClick={postClickHandler}>
         <img src={post_icon} alt="post_icon" />
       </div>
-      {postData.length ? (
-        postData.map((post) => (
-          <div key={post._id}>
-            <Post {...post} setPostData={setPostData} postData={postData} />
+      <div className="recommend_post-container">
+        {postData.length ? (
+          postData.map((post) => (
+            <div key={post._id}>
+              <PostContent {...post} setPostData={setPostData} postData={postData} />
+            </div>
+          ))
+        ) : (
+          <div className="loading">
+            <img src={loading} alt="loading" />
           </div>
-        ))
-      ) : (
-        <div className="loading">
-          <img src={loading} alt="loading" />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

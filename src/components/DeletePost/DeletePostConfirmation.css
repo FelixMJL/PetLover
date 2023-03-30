@@ -9,8 +9,7 @@
     /* padding: 120px; */
     border-radius: 10px;
     outline: none;
-    border: 0;    
-
+    border: 0;
 }
 
 .deletePostConfirmation_BackgroundOverlay {
@@ -20,7 +19,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, .7);
-    z-index: 1;
+    z-index: 4;
 }
 
 .deletePostConfirmation_ContentContainer {
@@ -31,7 +30,8 @@
     align-items: center;
     margin: auto;
     justify-content: center;
-    gap: 20px
+    gap: 20px;
+    z-index: 20000;
 }
 
 .deletePostConfirmation_DeleteBtn {
