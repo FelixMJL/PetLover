@@ -63,6 +63,10 @@
     margin-top: 10px;
 }
 
+.post_content-container {
+    width: 100%;
+}
+
 .post_content-image {
     margin-top: 15px;
     width: 100%;
