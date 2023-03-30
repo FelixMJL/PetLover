@@ -20,6 +20,7 @@
     padding-bottom: 15px;
     color: #000000;
     text-decoration: none;
+    overflow-x: hidden;
 }
 
 .post_avatar {
@@ -31,6 +32,10 @@
 }
 
 .post_author-info-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
     height: fit-content;
 }
 
