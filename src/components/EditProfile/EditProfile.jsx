@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Box } from '@chakra-ui/react';
 import './EditProfile.css';
 import axios from 'axios';
 import Footer from '../Footer/Footer';
@@ -7,10 +8,23 @@ import camera from '../../assets/camera.svg';
 import ImageCropper from './ImageCropper/ImageCropper';
 import { getUserData } from '../../services/getUserData';
 
-const EditProfile = ({ setShowEditProfile, avatar }) => {
+const EditProfile = ({
+  setShowEditProfile,
+  avatar,
+  nickname,
+  introduction,
+  location,
+  website_url,
+}) => {
   const [file_url, setFile_Url] = useState(avatar);
   const [imageSelected, setImageSeleted] = useState(null);
   const [showImageCropper, setShowImageCropper] = useState(false);
+  const [details, setDetails] = useState({
+    nickname,
+    introduction,
+    location,
+    website_url,
+  });
   const backClickHandler = () => {
     setShowEditProfile(false);
   };
@@ -22,8 +36,8 @@ const EditProfile = ({ setShowEditProfile, avatar }) => {
     let n = bstr.length;
     const u8arr = new Uint8Array(n);
 
-    // eslint-disable-next-line no-plusplus
-    while (n--) {
+    while (n > 0) {
+      n -= 1;
       u8arr[n] = bstr.charCodeAt(n);
     }
 
@@ -85,6 +99,23 @@ const EditProfile = ({ setShowEditProfile, avatar }) => {
     await drawImage();
   };
 
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  };
+  // // eslint-disable-next-line no-console
+  const {
+    nickname: newNickname,
+    introduction: newIntroduction,
+    location: newLocation,
+    website_url: newWebsite_url,
+  } = details;
+  // eslint-disable-next-line no-console
+  console.log(file_url, newNickname, newIntroduction, newLocation, newWebsite_url);
+
   return (
     <div className="editProfile">
       {showImageCropper && (
@@ -116,6 +147,67 @@ const EditProfile = ({ setShowEditProfile, avatar }) => {
           </div>
         </div>
       </div>
+      <fieldset className="editProfile__detail">
+        <Box as="legend" px={3}>
+          Nickname
+        </Box>
+        <div>
+          <input
+            name="nickname"
+            value={details.nickname}
+            onChange={onChangeHandler}
+            className="editProfile__detail-box"
+            placeholder={nickname}
+          />
+        </div>
+      </fieldset>
+
+      <fieldset className="editProfile__detail">
+        <Box as="legend" px={3}>
+          Location
+        </Box>
+        <div>
+          <input
+            name="location"
+            value={details.location}
+            onChange={onChangeHandler}
+            className="editProfile__detail-box"
+            placeholder={location}
+          />
+        </div>
+      </fieldset>
+      <Footer />
+
+      <fieldset className="editProfile__detail">
+        <Box as="legend" px={3}>
+          Web Site
+        </Box>
+        <div>
+          <input
+            name="website_url"
+            value={details.website_url}
+            onChange={onChangeHandler}
+            className="editProfile__detail-box"
+            placeholder={website_url}
+          />
+        </div>
+      </fieldset>
+
+      <fieldset className="editProfile__detail">
+        <Box as="legend" px={3}>
+          Introduction
+        </Box>
+        <div>
+          <textarea
+            name="introduction"
+            value={details.introduction}
+            onChange={onChangeHandler}
+            className="editProfile__detail-box"
+            placeholder={introduction}
+            rows={3}
+          />
+        </div>
+      </fieldset>
 
       <Footer />
     </div>
