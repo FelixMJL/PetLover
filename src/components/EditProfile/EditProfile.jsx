@@ -10,22 +10,32 @@ import { getUserData } from '../../services/getUserData';
 
 const EditProfile = ({
   setShowEditProfile,
-  avatar,
-  nickname,
-  introduction,
-  location,
-  website_url,
+  setUpdatedNickname,
+  setUpdatedIntroduction,
+  setUpdatedAvatar,
+  setUpdatedLocation,
+  setUpdatedWebsiteUrl,
+  updatedAvatar,
+  updatedNickname,
+  updatedIntroduction,
+  updatedLocation,
+  updatedWebsiteUrl,
 }) => {
-  const [file_url, setFile_Url] = useState(avatar);
+  const [file_url, setFile_Url] = useState(updatedAvatar);
   const [imageSelected, setImageSeleted] = useState(null);
   const [showImageCropper, setShowImageCropper] = useState(false);
   const [details, setDetails] = useState({
-    nickname,
-    introduction,
-    location,
-    website_url,
+    nickname: updatedNickname,
+    introduction: updatedIntroduction,
+    location: updatedLocation,
+    website_url: updatedWebsiteUrl,
   });
   const backClickHandler = () => {
+    setUpdatedNickname(updatedNickname);
+    setUpdatedIntroduction(updatedIntroduction);
+    setUpdatedAvatar(updatedAvatar);
+    setUpdatedLocation(updatedLocation);
+    setUpdatedWebsiteUrl(updatedWebsiteUrl);
     setShowEditProfile(false);
   };
 
@@ -99,27 +109,63 @@ const EditProfile = ({
     await drawImage();
   };
 
+  const [isNicknameEmpty, setIsNicknameEmpty] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setDetails((prevDetails) => ({
       ...prevDetails,
       [name]: value,
     }));
+
+    if (name === 'nickname') {
+      if (value.trim() === '') {
+        setIsNicknameEmpty(true);
+        setErrorMessage(true);
+      } else {
+        setIsNicknameEmpty(false);
+        setErrorMessage(false);
+      }
+    }
   };
-  // // eslint-disable-next-line no-console
+
   const {
     nickname: newNickname,
     introduction: newIntroduction,
     location: newLocation,
     website_url: newWebsite_url,
   } = details;
-  // eslint-disable-next-line no-console
-  console.log(file_url, newNickname, newIntroduction, newLocation, newWebsite_url);
+
+  const save = async () => {
+    setUpdatedNickname(newNickname);
+    setUpdatedIntroduction(newIntroduction);
+    setUpdatedAvatar(file_url);
+    setUpdatedLocation(newLocation);
+    setUpdatedWebsiteUrl(newWebsite_url);
+    await axios.put(
+      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${getUserData().id}`,
+      {
+        nickname: newNickname,
+        introduction: newIntroduction,
+        location: newLocation,
+        website_url: newWebsite_url,
+        avatar: file_url,
+      },
+      getUserData().config,
+    );
+
+    setShowEditProfile(false);
+  };
 
   return (
     <div className="editProfile">
       {showImageCropper && (
-        <ImageCropper imageSelected={imageSelected} cropClickHandler={cropClickHandler} />
+        <ImageCropper
+          imageSelected={imageSelected}
+          cropClickHandler={cropClickHandler}
+          setShowImageCropper={setShowImageCropper}
+        />
       )}
       <div className="editProfile-wrapper">
         <div className="editProfile__header">
@@ -127,7 +173,16 @@ const EditProfile = ({
             <img className="btn btn-back" src={back} alt="back" onClick={backClickHandler} />
             <div className="editProfile__header-text">Edit Profile</div>
           </div>
-          <button type="button" className="editProfile__header-btn">
+          <button
+            type="button"
+            className={
+              isNicknameEmpty
+                ? 'editProfile__header-btn editProfile__header-btnError'
+                : 'editProfile__header-btn'
+            }
+            disabled={isNicknameEmpty}
+            onClick={save}
+          >
             Save
           </button>
         </div>
@@ -147,7 +202,11 @@ const EditProfile = ({
           </div>
         </div>
       </div>
-      <fieldset className="editProfile__detail">
+      <fieldset
+        className={
+          isNicknameEmpty ? 'editProfile__detail editProfile__detail-error' : 'editProfile__detail'
+        }
+      >
         <Box as="legend" px={3}>
           Nickname
         </Box>
@@ -157,10 +216,13 @@ const EditProfile = ({
             value={details.nickname}
             onChange={onChangeHandler}
             className="editProfile__detail-box"
-            placeholder={nickname}
           />
         </div>
       </fieldset>
+
+      {errorMessage && (
+        <span className="editProfile__detail-nickNameError">Nickname cannot be blank.</span>
+      )}
 
       <fieldset className="editProfile__detail">
         <Box as="legend" px={3}>
@@ -172,7 +234,6 @@ const EditProfile = ({
             value={details.location}
             onChange={onChangeHandler}
             className="editProfile__detail-box"
-            placeholder={location}
           />
         </div>
       </fieldset>
@@ -188,7 +249,6 @@ const EditProfile = ({
             value={details.website_url}
             onChange={onChangeHandler}
             className="editProfile__detail-box"
-            placeholder={website_url}
           />
         </div>
       </fieldset>
@@ -203,7 +263,6 @@ const EditProfile = ({
             value={details.introduction}
             onChange={onChangeHandler}
             className="editProfile__detail-box"
-            placeholder={introduction}
             rows={3}
           />
         </div>
