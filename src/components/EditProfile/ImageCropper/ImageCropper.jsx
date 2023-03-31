@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Cropper from 'react-easy-crop';
 import './ImageCropper.css';
 

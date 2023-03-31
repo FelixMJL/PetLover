@@ -75,32 +75,31 @@
     height: 20px;
 }
 
-.editProfile__nickname {
+/* details */
+.editProfile__detail {
     margin: 2vh 5vw;
     border: 2px solid #1b9bf0;
     border-radius: 8px;
     padding: 10px;
     color: #1b9bf0;
+    font-weight: 700;
 }
 
-
-.editProfile__nickname-box {
+.editProfile__detail-box {
     width: 100%;
     border: none;
     margin-bottom: 10px;
     padding-left: 10px;
     color: #0f1419;
-    font-weight: 700;
     font-size: 17px;
 }
 
-.editProfile__nickname-box::placeholder {
+.editProfile__detail-box::placeholder {
     color: #0f1419;
-    font-weight: 700;
     font-size: 17px;
 }
 
-.editProfile__nickname-box:focus {
-    outline: none; /* 隐藏默认的聚焦外框线 */
-    border-color: transparent; /* 设置边框颜色为透明 */
+.editProfile__detail-box:focus {
+    outline: none;
+    border-color: transparent;
 }
