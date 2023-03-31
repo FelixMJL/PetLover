@@ -18,8 +18,7 @@ const Menu = ({ profileMenu, closeMenu, userData, userId, darkBackground }) => {
       <div className="profileMenu" ref={profileMenu}>
         <div className="profileMenuHeader">
           <h4>Account info</h4>
-          {/* eslint-disable-next-line react/button-has-type */}
-          <button className="closeProfileMenu" onClick={closeMenu}>
+          <button type="button" className="closeProfileMenu" onClick={closeMenu}>
             <img src={closePageIcon} alt="Close page icon" />
           </button>
         </div>
