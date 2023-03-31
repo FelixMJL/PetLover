@@ -1,20 +1,24 @@
 .imageCropper {
     position: fixed;
+    width: 100vw;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1000; /* 可以根据需要调整这个值，使其位于其他元素之上 */
-    background-color: rgba(255, 255, 255, 1); /* 添加半透明黑色背景 */
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 1);
 }
 
 .imageCropper-header {
     z-index: 1001;
-    position: absolute;
-    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2vh 5vw 0;
+}
+
+.imageCropper-header-btn {
+    z-index: 1001;
 }
 
 

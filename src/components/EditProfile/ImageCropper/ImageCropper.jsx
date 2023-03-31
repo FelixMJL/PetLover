@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Cropper from 'react-easy-crop';
 import './ImageCropper.css';
+import back from '../../../assets/left-arrow.png';
 
-function ImageCropper({ imageSelected, cropClickHandler }) {
+function ImageCropper({ imageSelected, cropClickHandler, setShowImageCropper }) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedArea, setCroppedArea] = useState(null);
@@ -11,10 +12,19 @@ function ImageCropper({ imageSelected, cropClickHandler }) {
     setCroppedArea(croppedAreaPixels);
   };
 
+  const backClickHandler = () => {
+    setShowImageCropper(false);
+  };
+
   return (
     <div className="imageCropper">
       <div className="imageCropper-header">
-        <h1>111</h1>
+        <img
+          className="btn btn-back imageCropper-header-btn"
+          src={back}
+          alt="back"
+          onClick={backClickHandler}
+        />
         <button type="button" className="crop-btn" onClick={() => cropClickHandler(croppedArea)}>
           Apply
         </button>
