@@ -10,23 +10,30 @@ import SendPost from '../components/SendPost/SendPost';
 import EditProfile from '../components/EditProfile/EditProfile';
 
 const Profile = ({ following }) => {
-  // eslint-disable-next-line no-console
-  console.log(following);
+  const [isCurrentUser, setIsCurrentUser] = useState(null);
+  const [isFollowing, setIsFollowing] = useState(null);
   const { id } = useParams();
-  if (getUserData().id === id) {
-    // eslint-disable-next-line no-console
-    console.log('是同一个用户');
-  } else {
-    // eslint-disable-next-line no-console
-    console.log('不同用户');
-    if (following?.includes(id)) {
+
+  useEffect(() => {
+    if (getUserData().id === id) {
+      setIsCurrentUser(true);
       // eslint-disable-next-line no-console
-      console.log('following');
+      console.log('是同一个用户');
     } else {
       // eslint-disable-next-line no-console
-      console.log('follow');
+      console.log('不同用户');
+      if (following?.includes(id)) {
+        // eslint-disable-next-line no-console
+        console.log('following');
+        setIsFollowing(true);
+      } else {
+        // eslint-disable-next-line no-console
+        console.log('follow');
+        setIsFollowing(false);
+      }
     }
-  }
+  }, []);
+
   const currentUserId = getUserData().id;
   const [userData, setUserData] = useState(0);
   const [showSendPost, setShowSendPost] = useState(false);
@@ -88,12 +95,16 @@ const Profile = ({ following }) => {
         />
       )}
       <UserInfo
+        id={id}
         setShowEditProfile={setShowEditProfile}
         updatedNickname={updatedNickname}
         updatedIntroduction={updatedIntroduction}
         updatedAvatar={updatedAvatar}
         updatedLocation={updatedLocation}
         updatedWebsiteUrl={updatedWebsiteUrl}
+        isFollowing={isFollowing}
+        isCurrentUser={isCurrentUser}
+        setIsFollowing={setIsFollowing}
         {...userData}
       />
       <UserPosts
@@ -113,9 +124,11 @@ const Profile = ({ following }) => {
           setPosts={setUserData}
         />
       )}
-      <div className="post__wrapper" onClick={postClickHandler}>
-        <img src={post_icon} alt="post_icon" />
-      </div>
+      {isCurrentUser && (
+        <div className="post__wrapper" onClick={postClickHandler}>
+          <img src={post_icon} alt="post_icon" />
+        </div>
+      )}
       <Footer />
     </div>
   );

@@ -48,6 +48,12 @@
     font-size: 15px;
 }
 
+.userInfo .avatarAndEdit .edit-follow {
+    background: #0f1419;
+    color: white;
+    border: none;
+}
+
 .userInfo .userDetail .userName {
     font-size: 20px;
     font-weight: 800;
