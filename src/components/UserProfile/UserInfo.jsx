@@ -1,7 +1,11 @@
-import './UserInfo.css';
-import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import leftArrow from '../../assets/left-arrow.png';
+import { useNavigate } from 'react-router-dom';
+import { Link } from '@chakra-ui/react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import back from '../../assets/left-arrow.png';
+import locationIcon from '../../assets/location.svg';
+import './UserInfo.css';
 
 const UserInfo = ({
   username,
@@ -11,9 +15,12 @@ const UserInfo = ({
   followers,
   following,
   setShowEditProfile,
+  introduction,
+  location,
+  website_url,
 }) => {
   const navigate = useNavigate();
-  const btnClickHandler = () => {
+  const backClickHandler = () => {
     navigate(-1);
   };
   const editClickHandler = () => {
@@ -25,13 +32,7 @@ const UserInfo = ({
       {username && (
         <div>
           <div className="headPart">
-            <img
-              src={leftArrow}
-              alt=""
-              onClick={btnClickHandler}
-              className="backToHome"
-              width="20px"
-            />
+            <img className="btn btn-back" src={back} alt="back" onClick={backClickHandler} />
             <div className="userTitle">
               <p className="name">{username}</p>
               <p className="postsAmount">{posts.length} Posts</p>
@@ -46,12 +47,26 @@ const UserInfo = ({
           <div className="userDetail">
             <p className="userName">{username}</p>
             <p className="nickName">@{nickname}</p>
+            {introduction && <p className="introduction">{introduction}</p>}
+            <div className="moreDetails">
+              {location && (
+                <div className="moreDetails__location">
+                  <img src={locationIcon} alt="location icon" />
+                  <span>{location}</span>
+                </div>
+              )}
+              {website_url && (
+                <Link className="moreDetails__website" href={website_url} isExternal>
+                  Visit Website <ExternalLinkIcon mx="2px" />
+                </Link>
+              )}
+            </div>
             <div className="followInfo">
               <p>
-                {following.length} <span>Followings</span>
+                <strong>{following.length}</strong> <span>Followings</span>
               </p>
               <p>
-                {followers.length} <span>Followers</span>
+                <strong>{followers.length}</strong> <span>Followers</span>
               </p>
             </div>
           </div>
