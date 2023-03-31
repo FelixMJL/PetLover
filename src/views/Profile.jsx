@@ -80,7 +80,13 @@ const Profile = () => {
         updatedWebsiteUrl={updatedWebsiteUrl}
         {...userData}
       />
-      <UserPosts posts={posts} id={id} currentUserId={currentUserId} {...userData} />
+      <UserPosts
+        posts={posts}
+        id={id}
+        currentUserId={currentUserId}
+        updatedAvatar={updatedAvatar}
+        {...userData}
+      />
       {showSendPost && (
         <SendPost
           className="sendPost"
