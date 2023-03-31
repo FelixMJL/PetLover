@@ -9,33 +9,14 @@ import post_icon from '../assets/post_icon.svg';
 import SendPost from '../components/SendPost/SendPost';
 import EditProfile from '../components/EditProfile/EditProfile';
 
-const Profile = ({ following }) => {
+const Profile = () => {
   const [isCurrentUser, setIsCurrentUser] = useState(null);
   const [isFollowing, setIsFollowing] = useState(null);
   const { id } = useParams();
 
-  useEffect(() => {
-    if (getUserData().id === id) {
-      setIsCurrentUser(true);
-      // eslint-disable-next-line no-console
-      console.log('是同一个用户');
-    } else {
-      // eslint-disable-next-line no-console
-      console.log('不同用户');
-      if (following?.includes(id)) {
-        // eslint-disable-next-line no-console
-        console.log('following');
-        setIsFollowing(true);
-      } else {
-        // eslint-disable-next-line no-console
-        console.log('follow');
-        setIsFollowing(false);
-      }
-    }
-  }, []);
-
   const currentUserId = getUserData().id;
   const [userData, setUserData] = useState(0);
+  const [currentUserData, setCurrentUserData] = useState(0);
   const [showSendPost, setShowSendPost] = useState(false);
   const [showEditProfile, setShowEditProfile] = useState(false);
 
@@ -51,6 +32,24 @@ const Profile = ({ following }) => {
       try {
         const user = await getUser();
         setUserData(user.data);
+      } catch (error) {
+        return error.message;
+      }
+    };
+    getUserData();
+  }, []);
+
+  const getCurrentUser = () =>
+    axios.get(
+      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${getUserData().id}`,
+      getUserData().config,
+    );
+  useEffect(() => {
+    // eslint-disable-next-line consistent-return,no-shadow
+    const getUserData = async () => {
+      try {
+        const user = await getCurrentUser();
+        setCurrentUserData(user.data);
       } catch (error) {
         return error.message;
       }
@@ -75,6 +74,20 @@ const Profile = ({ following }) => {
     setUpdatedLocation(location);
     setUpdatedWebsiteUrl(website_url);
   }, [userData]);
+
+  const followingUsers = currentUserData?.following;
+
+  useEffect(() => {
+    if (getUserData().id === id) {
+      setIsCurrentUser(true);
+      return;
+    }
+    if (followingUsers?.includes(id)) {
+      setIsFollowing(true);
+      return;
+    }
+    setIsFollowing(false);
+  }, [followingUsers]);
 
   return (
     <div>

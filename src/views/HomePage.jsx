@@ -1,15 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import RecommendForYou from '../components/RecommendForYou/RecommendForYou';
 import './HomePage.css';
 
-const HomePage = ({ setCurrentUserData }) => {
+const HomePage = () => {
   const [user, setUser] = useState(null);
-  useEffect(() => {
-    setCurrentUserData(user);
-  }, [user]);
 
   return (
     <div className="showAllPosts">

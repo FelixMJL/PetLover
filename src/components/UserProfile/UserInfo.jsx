@@ -26,8 +26,6 @@ const UserInfo = ({
   setIsFollowing,
 }) => {
   const currentUserId = getUserData().id;
-  // eslint-disable-next-line no-console
-  console.log(id, currentUserId);
   const navigate = useNavigate();
   const backClickHandler = () => {
     navigate(-1);
