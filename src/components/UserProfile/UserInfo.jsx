@@ -10,14 +10,14 @@ import './UserInfo.css';
 const UserInfo = ({
   username,
   posts,
-  nickname,
-  avatar,
+  updatedNickname,
+  updatedAvatar,
   followers,
   following,
   setShowEditProfile,
-  introduction,
-  location,
-  website_url,
+  updatedIntroduction,
+  updatedLocation,
+  updatedWebsiteUrl,
 }) => {
   const navigate = useNavigate();
   const backClickHandler = () => {
@@ -39,24 +39,24 @@ const UserInfo = ({
             </div>
           </div>
           <div className="avatarAndEdit">
-            <img src={avatar} alt="avatar" />
+            <img src={updatedAvatar} alt="avatar" />
             <button type="button" className="edit" onClick={editClickHandler}>
               Edit Profile
             </button>
           </div>
           <div className="userDetail">
-            <p className="userName">{username}</p>
-            <p className="nickName">@{nickname}</p>
-            {introduction && <p className="introduction">{introduction}</p>}
+            <p className="userName">{updatedNickname}</p>
+            <p className="nickName">@{username}</p>
+            {updatedIntroduction && <p className="introduction">{updatedIntroduction}</p>}
             <div className="moreDetails">
-              {location && (
+              {updatedLocation && (
                 <div className="moreDetails__location">
                   <img src={locationIcon} alt="location icon" />
-                  <span>{location}</span>
+                  <span>{updatedLocation}</span>
                 </div>
               )}
-              {website_url && (
-                <Link className="moreDetails__website" href={website_url} isExternal>
+              {updatedWebsiteUrl && (
+                <Link className="moreDetails__website" href={updatedWebsiteUrl} isExternal>
                   Visit Website <ExternalLinkIcon mx="2px" />
                 </Link>
               )}
