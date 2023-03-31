@@ -137,12 +137,24 @@ const EditProfile = ({
     website_url: newWebsite_url,
   } = details;
 
-  const save = () => {
+  const save = async () => {
     setUpdatedNickname(newNickname);
     setUpdatedIntroduction(newIntroduction);
     setUpdatedAvatar(file_url);
     setUpdatedLocation(newLocation);
     setUpdatedWebsiteUrl(newWebsite_url);
+    await axios.put(
+      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${getUserData().id}`,
+      {
+        nickname: newNickname,
+        introduction: newIntroduction,
+        location: newLocation,
+        website_url: newWebsite_url,
+        avatar: file_url,
+      },
+      getUserData().config,
+    );
+
     setShowEditProfile(false);
   };
 
