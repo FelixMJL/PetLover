@@ -149,7 +149,11 @@ const EditProfile = ({
   return (
     <div className="editProfile">
       {showImageCropper && (
-        <ImageCropper imageSelected={imageSelected} cropClickHandler={cropClickHandler} />
+        <ImageCropper
+          imageSelected={imageSelected}
+          cropClickHandler={cropClickHandler}
+          setShowImageCropper={setShowImageCropper}
+        />
       )}
       <div className="editProfile-wrapper">
         <div className="editProfile__header">
