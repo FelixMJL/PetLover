@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import UserPost from './post/UserPost';
 import DeletePost from '../DeletePost/DeletePost';
 
-const UserPosts = ({ posts, username, nickname, avatar, id, currentUserId }) => {
+const UserPosts = ({ posts, username, nickname, updatedAvatar, id, currentUserId }) => {
   const [postData, setPostData] = useState(null);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const UserPosts = ({ posts, username, nickname, avatar, id, currentUserId }) => 
         postData.map((post) => (
           <div key={post._id} className="post_container">
             <Link className="post_inner-container" to={`/post/${post._id}`}>
-              <img src={avatar} className="post_avatar" alt="avatar" />
+              <img src={updatedAvatar} className="post_avatar" alt="avatar" />
               <div className="post_content-container">
                 <div className="post_info-container">
                   <div className="post_author-info-container">
