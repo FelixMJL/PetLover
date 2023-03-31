@@ -1,6 +1,6 @@
 .userInfo {
     overflow: hidden;
-    margin: 10px 20px 0;
+    margin: 2vh 5vw;
 }
 
 .userInfo .headPart {
@@ -8,7 +8,7 @@
     height: 40px;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
 }
 
 .userInfo .userTitle .name {
@@ -55,10 +55,49 @@
 }
 
 .userInfo .userDetail .nickName {
-    font-size: 14px;
+    font-size: 15px;
     color: #536471;
     font-weight: 500;
-    margin: 0;
+    margin-bottom: 10px;
+}
+
+.moreDetails {
+    display: flex;
+    gap: 20px;
+}
+
+.moreDetails__location {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+
+.moreDetails__location img {
+    width: 20px;
+}
+
+.moreDetails__location span {
+    font-size: 15px;
+}
+
+/* customLinkStyles.css */
+.moreDetails__website {
+    color: rgb(29, 155, 240) !important;
+    text-decoration: none !important;
+    font-size: 15px !important;
+}
+
+.moreDetails__website:hover,
+.moreDetails__website:focus,
+.moreDetails__website:active {
+    text-decoration: none !important;
+}
+
+
+.userInfo .userDetail .introduction {
+    color: #0f1419;
+    font-size: 15px;
+    margin-bottom: 10px;
 }
 
 .userInfo .userDetail .followInfo {
