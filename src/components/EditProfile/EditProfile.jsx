@@ -31,6 +31,11 @@ const EditProfile = ({
     website_url: updatedWebsiteUrl,
   });
   const backClickHandler = () => {
+    setUpdatedNickname(updatedNickname);
+    setUpdatedIntroduction(updatedIntroduction);
+    setUpdatedAvatar(updatedAvatar);
+    setUpdatedLocation(updatedLocation);
+    setUpdatedWebsiteUrl(updatedWebsiteUrl);
     setShowEditProfile(false);
   };
 
@@ -104,22 +109,33 @@ const EditProfile = ({
     await drawImage();
   };
 
+  const [isNicknameEmpty, setIsNicknameEmpty] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
     setDetails((prevDetails) => ({
       ...prevDetails,
       [name]: value,
     }));
+
+    if (name === 'nickname') {
+      if (value.trim() === '') {
+        setIsNicknameEmpty(true);
+        setErrorMessage(true);
+      } else {
+        setIsNicknameEmpty(false);
+        setErrorMessage(false);
+      }
+    }
   };
-  // // eslint-disable-next-line no-console
+
   const {
     nickname: newNickname,
     introduction: newIntroduction,
     location: newLocation,
     website_url: newWebsite_url,
   } = details;
-  // eslint-disable-next-line no-console
-  console.log(file_url, newNickname, newIntroduction, newLocation, newWebsite_url);
 
   const save = () => {
     setUpdatedNickname(newNickname);
@@ -141,7 +157,16 @@ const EditProfile = ({
             <img className="btn btn-back" src={back} alt="back" onClick={backClickHandler} />
             <div className="editProfile__header-text">Edit Profile</div>
           </div>
-          <button type="button" className="editProfile__header-btn" onClick={save}>
+          <button
+            type="button"
+            className={
+              isNicknameEmpty
+                ? 'editProfile__header-btn editProfile__header-btnError'
+                : 'editProfile__header-btn'
+            }
+            disabled={isNicknameEmpty}
+            onClick={save}
+          >
             Save
           </button>
         </div>
@@ -161,7 +186,11 @@ const EditProfile = ({
           </div>
         </div>
       </div>
-      <fieldset className="editProfile__detail">
+      <fieldset
+        className={
+          isNicknameEmpty ? 'editProfile__detail editProfile__detail-error' : 'editProfile__detail'
+        }
+      >
         <Box as="legend" px={3}>
           Nickname
         </Box>
@@ -174,6 +203,10 @@ const EditProfile = ({
           />
         </div>
       </fieldset>
+
+      {errorMessage && (
+        <span className="editProfile__detail-nickNameError">Nickname cannot be blank.</span>
+      )}
 
       <fieldset className="editProfile__detail">
         <Box as="legend" px={3}>
