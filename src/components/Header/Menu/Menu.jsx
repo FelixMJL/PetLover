@@ -29,8 +29,8 @@ const Menu = ({ profileMenu, closeMenu, userData, userId, darkBackground }) => {
               <div>
                 <img src={userData.avatar} alt="avatar" className="user-menu__avatar" />
               </div>
-              <p className="user-menu__username">{userData.username}</p>
-              <p>@{userData.nickname}</p>
+              <p className="user-menu__username">{userData.nickname}</p>
+              <p>@{userData.username}</p>
               <div className="aboutFollowOfUser">
                 <NavLink className="nav-link" to="/followingUser/:following">
                   <p>
