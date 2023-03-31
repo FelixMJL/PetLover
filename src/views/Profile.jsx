@@ -9,8 +9,24 @@ import post_icon from '../assets/post_icon.svg';
 import SendPost from '../components/SendPost/SendPost';
 import EditProfile from '../components/EditProfile/EditProfile';
 
-const Profile = () => {
+const Profile = ({ following }) => {
+  // eslint-disable-next-line no-console
+  console.log(following);
   const { id } = useParams();
+  if (getUserData().id === id) {
+    // eslint-disable-next-line no-console
+    console.log('是同一个用户');
+  } else {
+    // eslint-disable-next-line no-console
+    console.log('不同用户');
+    if (following?.includes(id)) {
+      // eslint-disable-next-line no-console
+      console.log('following');
+    } else {
+      // eslint-disable-next-line no-console
+      console.log('follow');
+    }
+  }
   const currentUserId = getUserData().id;
   const [userData, setUserData] = useState(0);
   const [showSendPost, setShowSendPost] = useState(false);
@@ -83,6 +99,7 @@ const Profile = () => {
       <UserPosts
         posts={posts}
         id={id}
+        updatedNickname={updatedNickname}
         currentUserId={currentUserId}
         updatedAvatar={updatedAvatar}
         {...userData}

@@ -59,8 +59,8 @@ const ImageGeneration = () => {
             <img src={arrow} alt="left-arrow" />
           </div>
           <div className="usernameBox">
-            <p className="user-menu__username">{userData.username}</p>
-            <p>@{userData.nickname}</p>
+            <p className="user-menu__username">{userData.nickname}</p>
+            <p>@{userData.username}</p>
           </div>
         </div>
       </div>

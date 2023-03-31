@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import UserPost from './post/UserPost';
 import DeletePost from '../DeletePost/DeletePost';
 
-const UserPosts = ({ posts, username, nickname, updatedAvatar, id, currentUserId }) => {
+const UserPosts = ({ posts, username, updatedNickname, updatedAvatar, id, currentUserId }) => {
   const [postData, setPostData] = useState(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const UserPosts = ({ posts, username, nickname, updatedAvatar, id, currentUserId
               <div className="post_content-container">
                 <div className="post_info-container">
                   <div className="post_author-info-container">
-                    <span className="post_author-nick-name">{nickname}</span>
+                    <span className="post_author-nick-name">{updatedNickname}</span>
                     <span className="post_author-user-name">@{username}</span>
                     <div className="post_time">
                       <span>· {moment(post.created_at).fromNow()}</span>
