@@ -48,8 +48,8 @@
     font-weight: 700;
     background-color: #000;
     color: #fff;
-    width: 81px;
-    height: 29px;
+    width: 100px;
+    padding: 5px 0;
     vertical-align: center;
     border-radius: 20px;
 }
@@ -86,7 +86,7 @@
 .btn-follow.follow {
     color: #fff;
     background-color: #000;
-    border: 1px solid #ccc;
+    width: 80px;
 }
 
 .btn-follow.follow:hover {
