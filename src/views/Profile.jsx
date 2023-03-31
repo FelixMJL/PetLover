@@ -35,12 +35,51 @@ const Profile = () => {
     getUserData();
   }, []);
 
-  const { posts } = userData;
+  const { posts, nickname, introduction, avatar, location, website_url } = userData;
+  const [updatedNickname, setUpdatedNickname] = useState(() => nickname);
+  const [updatedIntroduction, setUpdatedIntroduction] = useState(() => introduction);
+  const [updatedAvatar, setUpdatedAvatar] = useState(() => avatar);
+  const [updatedLocation, setUpdatedLocation] = useState(() => location);
+  const [updatedWebsiteUrl, setUpdatedWebsiteUrl] = useState(() => website_url);
+
+  useEffect(() => {
+    if (!userData) {
+      return;
+    }
+    setUpdatedNickname(nickname);
+    setUpdatedIntroduction(introduction);
+    setUpdatedAvatar(avatar);
+    setUpdatedLocation(location);
+    setUpdatedWebsiteUrl(website_url);
+  }, [userData]);
 
   return (
     <div>
-      {showEditProfile && <EditProfile setShowEditProfile={setShowEditProfile} {...userData} />}
-      <UserInfo setShowEditProfile={setShowEditProfile} {...userData} />
+      {showEditProfile && (
+        <EditProfile
+          setShowEditProfile={setShowEditProfile}
+          updatedNickname={updatedNickname}
+          updatedIntroduction={updatedIntroduction}
+          updatedAvatar={updatedAvatar}
+          updatedLocation={updatedLocation}
+          updatedWebsiteUrl={updatedWebsiteUrl}
+          setUpdatedNickname={setUpdatedNickname}
+          setUpdatedIntroduction={setUpdatedIntroduction}
+          setUpdatedAvatar={setUpdatedAvatar}
+          setUpdatedLocation={setUpdatedLocation}
+          setUpdatedWebsiteUrl={setUpdatedWebsiteUrl}
+          {...userData}
+        />
+      )}
+      <UserInfo
+        setShowEditProfile={setShowEditProfile}
+        updatedNickname={updatedNickname}
+        updatedIntroduction={updatedIntroduction}
+        updatedAvatar={updatedAvatar}
+        updatedLocation={updatedLocation}
+        updatedWebsiteUrl={updatedWebsiteUrl}
+        {...userData}
+      />
       <UserPosts posts={posts} id={id} currentUserId={currentUserId} {...userData} />
       {showSendPost && (
         <SendPost

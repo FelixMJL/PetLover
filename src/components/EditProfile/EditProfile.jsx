@@ -10,20 +10,25 @@ import { getUserData } from '../../services/getUserData';
 
 const EditProfile = ({
   setShowEditProfile,
-  avatar,
-  nickname,
-  introduction,
-  location,
-  website_url,
+  setUpdatedNickname,
+  setUpdatedIntroduction,
+  setUpdatedAvatar,
+  setUpdatedLocation,
+  setUpdatedWebsiteUrl,
+  updatedAvatar,
+  updatedNickname,
+  updatedIntroduction,
+  updatedLocation,
+  updatedWebsiteUrl,
 }) => {
-  const [file_url, setFile_Url] = useState(avatar);
+  const [file_url, setFile_Url] = useState(updatedAvatar);
   const [imageSelected, setImageSeleted] = useState(null);
   const [showImageCropper, setShowImageCropper] = useState(false);
   const [details, setDetails] = useState({
-    nickname,
-    introduction,
-    location,
-    website_url,
+    nickname: updatedNickname,
+    introduction: updatedIntroduction,
+    location: updatedLocation,
+    website_url: updatedWebsiteUrl,
   });
   const backClickHandler = () => {
     setShowEditProfile(false);
@@ -116,6 +121,15 @@ const EditProfile = ({
   // eslint-disable-next-line no-console
   console.log(file_url, newNickname, newIntroduction, newLocation, newWebsite_url);
 
+  const save = () => {
+    setUpdatedNickname(newNickname);
+    setUpdatedIntroduction(newIntroduction);
+    setUpdatedAvatar(file_url);
+    setUpdatedLocation(newLocation);
+    setUpdatedWebsiteUrl(newWebsite_url);
+    setShowEditProfile(false);
+  };
+
   return (
     <div className="editProfile">
       {showImageCropper && (
@@ -127,7 +141,7 @@ const EditProfile = ({
             <img className="btn btn-back" src={back} alt="back" onClick={backClickHandler} />
             <div className="editProfile__header-text">Edit Profile</div>
           </div>
-          <button type="button" className="editProfile__header-btn">
+          <button type="button" className="editProfile__header-btn" onClick={save}>
             Save
           </button>
         </div>
@@ -157,7 +171,6 @@ const EditProfile = ({
             value={details.nickname}
             onChange={onChangeHandler}
             className="editProfile__detail-box"
-            placeholder={nickname}
           />
         </div>
       </fieldset>
@@ -172,7 +185,6 @@ const EditProfile = ({
             value={details.location}
             onChange={onChangeHandler}
             className="editProfile__detail-box"
-            placeholder={location}
           />
         </div>
       </fieldset>
@@ -188,7 +200,6 @@ const EditProfile = ({
             value={details.website_url}
             onChange={onChangeHandler}
             className="editProfile__detail-box"
-            placeholder={website_url}
           />
         </div>
       </fieldset>
@@ -203,7 +214,6 @@ const EditProfile = ({
             value={details.introduction}
             onChange={onChangeHandler}
             className="editProfile__detail-box"
-            placeholder={introduction}
             rows={3}
           />
         </div>
