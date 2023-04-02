@@ -15,8 +15,10 @@ pipeline {
         AWS_CRED        = 'AWS' 
         AWS_REGION      = 'ap-southeast-2'
         S3_BUCKET       = 'petlover-front-uat'
-        WEB_LINK        = 'uat.hellokitty.petlover2023.com'
-        REACT_APP_API_ENDPOINT = 'https://uat-api.hellokitty.petlover2023.com'
+        // modify this before final demo
+        // WEB_LINK        = 'uat.petslovers.com.au'
+        WEB_LINK        = 'petslovers.com.au'
+        REACT_APP_API_ENDPOINT = 'https://uat-api.petslovers.com.au'
     }
 
     stages{
