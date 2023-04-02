@@ -1,45 +1,104 @@
-import './UserInfo.css';
-import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import leftArrow from '../../assets/left-arrow.png';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { Link } from '@chakra-ui/react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import back from '../../assets/left-arrow.png';
+import locationIcon from '../../assets/location.svg';
+import './UserInfo.css';
+import { getUserData } from '../../services/getUserData';
 
-const UserInfo = ({ username, posts, nickname, avatar, followers, following }) => {
+const UserInfo = ({
+  id,
+  username,
+  posts,
+  updatedNickname,
+  updatedAvatar,
+  followers,
+  following,
+  setShowEditProfile,
+  updatedIntroduction,
+  updatedLocation,
+  updatedWebsiteUrl,
+  isFollowing,
+  isCurrentUser,
+  setIsFollowing,
+}) => {
+  const currentUserId = getUserData().id;
   const navigate = useNavigate();
-  const btnClickHandler = () => {
+  const backClickHandler = () => {
     navigate(-1);
   };
-
+  const editClickHandler = () => {
+    setShowEditProfile(true);
+  };
+  const unfollow = async () => {
+    await axios.delete(
+      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}/unfollowing/${id}`,
+      getUserData().config,
+    );
+    setIsFollowing(false);
+  };
+  const follow = async () => {
+    await axios.post(
+      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}/following/${id}`,
+      null,
+      getUserData().config,
+    );
+    setIsFollowing(true);
+  };
   return (
     <div className="userInfo">
       {username && (
         <div>
           <div className="headPart">
-            <img
-              src={leftArrow}
-              alt=""
-              onClick={btnClickHandler}
-              className="backToHome"
-              width="20px"
-            />
+            <img className="btn btn-back" src={back} alt="back" onClick={backClickHandler} />
             <div className="userTitle">
-              <p className="name">{username}</p>
+              <p className="name">{updatedNickname}</p>
               <p className="postsAmount">{posts.length} Posts</p>
             </div>
           </div>
           <div className="avatarAndEdit">
-            <img src={avatar} alt="avatar" />
-            {/* eslint-disable-next-line react/button-has-type */}
-            <button className="btn">Edit Profile</button>
+            <img src={updatedAvatar} alt="avatar" />
+            {/* eslint-disable-next-line no-nested-ternary */}
+            {isCurrentUser ? (
+              <button type="button" className="edit" onClick={editClickHandler}>
+                Edit Profile
+              </button>
+            ) : isFollowing ? (
+              <button type="button" className="edit" onClick={unfollow}>
+                Following
+              </button>
+            ) : (
+              <button type="button" className="edit edit-follow" onClick={follow}>
+                Follow
+              </button>
+            )}
           </div>
           <div className="userDetail">
-            <p className="userName">{username}</p>
-            <p className="nickName">@{nickname}</p>
+            <p className="userName">{updatedNickname}</p>
+            <p className="nickName">@{username}</p>
+            {updatedIntroduction && <p className="introduction">{updatedIntroduction}</p>}
+            <div className="moreDetails">
+              {updatedLocation && (
+                <div className="moreDetails__location">
+                  <img src={locationIcon} alt="location icon" />
+                  <span>{updatedLocation}</span>
+                </div>
+              )}
+              {updatedWebsiteUrl && (
+                <Link className="moreDetails__website" href={updatedWebsiteUrl} isExternal>
+                  Visit Website <ExternalLinkIcon mx="2px" />
+                </Link>
+              )}
+            </div>
             <div className="followInfo">
               <p>
-                {following.length} <span>Followings</span>
+                <strong>{following.length}</strong> <span>Followings</span>
               </p>
               <p>
-                {followers.length} <span>Followers</span>
+                <strong>{followers.length}</strong> <span>Followers</span>
               </p>
             </div>
           </div>

@@ -12,7 +12,7 @@
   height: 34px;
   margin-right: 32px;
   border-radius: 50%;
-  background-color: #D7D7D7;
+  background-color: #d7d7d7;
 }
 
 .btn-back img {
@@ -24,20 +24,18 @@
   font-weight: 600;
   font-size: 17px;
   line-height: 21px;
-  font-family: "Inter";
+  font-family: 'Inter';
 }
 
 #connect-subtitle {
-  border-bottom: 1px solid #EDE7E7;
+  border-bottom: 1px solid #ede7e7;
   font-weight: 800;
   font-size: 20px;
   line-height: 24.2px;
-  color: #0F1419;
+  color: #0f1419;
   padding: 13px 0;
-  font-family: "Inter";
+  font-family: 'Inter';
 }
 
 .connect-users {
-  
 }
-

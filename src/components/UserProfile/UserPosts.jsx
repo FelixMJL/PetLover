@@ -1,38 +1,48 @@
-import './UserPosts.css';
+import '../RecommendForYou/post/PostContent.css';
 import moment from 'moment';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import UserPost from './post/UserPost';
-import bin from '../../assets/bin.png';
+import DeletePost from '../DeletePost/DeletePost';
 
-const UserPosts = ({ posts, username, nickname, avatar, created_at, id, currentUserId }) => (
-  <div className="userPosts">
-    {posts &&
-      posts.map((post) => (
-        <div key={post._id} className="postItem">
-          <div className="postItemContainer">
-            <div className="postAvatar">
-              <img src={avatar} alt="avatar" />
-            </div>
-            <div className="postContentContainer">
-              <div className="postContent">
-                <div className="postInfo">
-                  <span className="userName">{username}</span>
-                  <span>@{nickname}</span>
-                  <span className="separatingDot">.</span>
-                  <span className="timeFromNow">{moment({ created_at }).fromNow()}</span>
+const UserPosts = ({ posts, username, updatedNickname, updatedAvatar, id, currentUserId }) => {
+  const [postData, setPostData] = useState(null);
+
+  useEffect(() => {
+    setPostData(posts);
+  }, [posts]);
+
+  return (
+    <div className="post_profile-post-container">
+      {postData &&
+        postData.map((post) => (
+          <div key={post._id} className="post_container">
+            <Link className="post_inner-container" to={`/post/${post._id}`}>
+              <img src={updatedAvatar} className="post_avatar" alt="avatar" />
+              <div className="post_content-container">
+                <div className="post_info-container">
+                  <div className="post_author-info-container">
+                    <span className="post_author-nick-name">{updatedNickname}</span>
+                    <span className="post_author-user-name">@{username}</span>
+                    <div className="post_time">
+                      <span>· {moment(post.created_at).fromNow()}</span>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <span className="bin">
-                    {id === currentUserId ? <img src={bin} alt="" /> : ''}
-                  </span>
-                </div>
+                <UserPost {...post} />
               </div>
-              <UserPost {...post} />
+            </Link>
+            <div>
+              {id === currentUserId ? (
+                <DeletePost setPostData={setPostData} postData={postData} postId={post._id} />
+              ) : (
+                ''
+              )}
             </div>
           </div>
-        </div>
-      ))}
-  </div>
-);
+        ))}
+    </div>
+  );
+};
 
 export default UserPosts;

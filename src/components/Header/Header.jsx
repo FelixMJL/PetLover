@@ -2,8 +2,9 @@ import './Header.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { getUser } from '../../services/getUser';
 import Menu from './Menu/Menu';
+import logo from '../../assets/logo.png';
 
-const Header = () => {
+const Header = ({ setUser }) => {
   const profileMenu = useRef(null);
   const darkBackground = useRef(null);
   const currentUser = JSON.parse(localStorage.getItem('userData'));
@@ -28,6 +29,7 @@ const Header = () => {
       try {
         const user = await getUser();
         setUserData(user.data);
+        setUser(user.data);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error.message);
@@ -39,8 +41,8 @@ const Header = () => {
   return (
     <div className="header">
       <div className="header__head">
-        <img src={userData.avatar} alt="avatar" className="avatarInHeader" onClick={extendMenu} />
-        <img src="" alt="logo" className="logoInHeader" />
+        <img src={userData.avatar} alt="" className="avatarInHeader" onClick={extendMenu} />
+        <img src={logo} alt="logo" className="logoInHeader" />
       </div>
       <Menu
         profileMenu={profileMenu}

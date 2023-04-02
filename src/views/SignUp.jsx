@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './SignUp.css';
 import imgURL from '../assets/logo.png';
@@ -35,7 +35,7 @@ const SignUp = () => {
 
   const addUser = async () => {
     try {
-      return await axios.post('http://localhost:8080/api/v1/users', userDetails);
+      return await axios.post(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/users`, userDetails);
     } catch (e) {
       return e.response;
     }
@@ -89,62 +89,70 @@ const SignUp = () => {
       <div className="logoContainer">
         <img src={imgURL} alt="" />
       </div>
-      <h2 className="welcomeTitle">Create account</h2>
+      <h2 className="welcomeTitle">Welcome to Pet Lover</h2>
       <form className="inputContainer" onSubmit={handleSubmit}>
-        <div className="inputBox">
-          <img className="icon" src={emailIcon} alt="" />
-          <input
-            type="email"
-            name="email"
-            defaultValue={userDetails.email}
-            placeholder="Email"
-            onChange={onChangeHandler}
-          />
+        <div className="inputWrapper">
+          <div className="inputBox">
+            <img className="icon" src={emailIcon} alt="" />
+            <input
+              type="email"
+              name="email"
+              defaultValue={userDetails.email}
+              placeholder="E-mail"
+              onChange={onChangeHandler}
+            />
+          </div>
+          <div className="inputBox">
+            <img className="icon" src={passwordIcon} alt="password" />
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="Password"
+              defaultValue={userDetails.password}
+              onChange={onChangeHandler}
+            />
+            <img
+              className="showPasswordIcon"
+              src={showPassword ? closeEye : openEye}
+              alt="Toggle password visibility"
+              onClick={toggleShowPassword}
+            />
+          </div>
+          <div className="inputBox">
+            <img className="icon" src={usernameIcon} alt="" />
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              defaultValue={userDetails.username}
+              onChange={onChangeHandler}
+            />
+          </div>
+          <div className="inputBox">
+            <img className="icon" src={nicknameIcon} alt="" />
+            <input
+              type="text"
+              name="nickname"
+              placeholder="Nickname"
+              defaultValue={userDetails.nickname}
+              onChange={onChangeHandler}
+            />
+          </div>
+          <div className="error-message">{errorMessage}</div>
         </div>
-        <div className="inputBox">
-          <img className="icon" src={passwordIcon} alt="" />
-          <input
-            type={showPassword ? 'text' : 'password'}
-            name="password"
-            placeholder="Password"
-            defaultValue={userDetails.password}
-            onChange={onChangeHandler}
-          />
-          <img
-            className="showPasswordIcon"
-            src={showPassword ? closeEye : openEye}
-            alt="Toggle password visibility"
-            onClick={toggleShowPassword}
-          />
-        </div>
-        <div className="inputBox">
-          <img className="icon" src={usernameIcon} alt="" />
-          <input
-            type="text"
-            name="username"
-            placeholder="User Name"
-            defaultValue={userDetails.username}
-            onChange={onChangeHandler}
-          />
-        </div>
-        <div className="inputBox">
-          <img className="icon" src={nicknameIcon} alt="" />
-          <input
-            type="text"
-            name="nickname"
-            placeholder="Nick Name"
-            defaultValue={userDetails.nickname}
-            onChange={onChangeHandler}
-          />
-        </div>
-        <div>{errorMessage}</div>
         <div className="buttonBox">
-          <div className="buttonText">Creat</div>
+          <div className="buttonText">Create</div>
           <button type="submit">
             <img src={rightArrowIcon} alt="" />
           </button>
         </div>
       </form>
+      <div className="pageSwitch">
+        <span>Already have an account?</span>
+        <Link className="pageSwitch-link" to="/login">
+          Login
+        </Link>
+      </div>
     </div>
   );
 };

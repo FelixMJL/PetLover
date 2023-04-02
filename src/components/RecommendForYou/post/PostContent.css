@@ -1,0 +1,126 @@
+.post_ul {
+    margin-top: 115px;
+    padding: 0;
+}
+
+.post_container {
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    position: relative;
+    text-decoration: none;
+}
+
+.post_inner-container {
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #EDE7E7;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #000000;
+    text-decoration: none;
+    overflow-x: hidden;
+}
+
+.post_avatar {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.post_author-info-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    height: fit-content;
+}
+
+.post_author-user-name {
+    margin-right: 10px;
+    color: #536471;
+    font-weight: 500;
+}
+
+.post_author-nick-name {
+    margin-right: 10px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.post_time {
+    color: #536471;
+    font-weight: 500;
+    margin: auto 3px;
+}
+
+.post_content-text {
+    gap: 10px;
+    line-height: 18px;
+    margin-top: 10px;
+}
+
+.post_content-container {
+    width: 100%;
+}
+
+.post_content-image {
+    margin-top: 15px;
+    width: 100%;
+    border: 1px solid #cfdade;
+    border-radius: 20px;
+}
+
+.post_content-video {
+    margin-top: 15px;
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    object-position: center;
+    background-color: #0f1419;
+    border-radius: 20px;
+}
+
+.post_comments {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.post_comments-count {
+    font-size: 13px;
+    font-weight: 400;
+    color: #536471;
+}
+
+.following-error-message__wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.following-error-message {
+    font-weight: bold;
+    position: relative;
+    width: 300px;
+    top: 120px;
+}
+
+.post_info-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post_bin-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.post_profile-post-container {
+    margin: auto 5vw;
+}
+
+.recommend_post-container, .following_post-container {
+    margin: auto 5vw;
+}
