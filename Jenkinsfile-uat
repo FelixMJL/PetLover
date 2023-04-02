@@ -5,13 +5,15 @@ pipeline {
         ansiColor('xterm')
     }
    
-    parameters {
-        text(name: 'CLOUDFRONT_DISTRIBUTION_ID', 
-            defaultValue: 'E2KO328GH6M6Z6',
-            description: 'only modify these when destroy and apply new tf frontend resources')
-    }
+    // parameters {
+    //     text(name: 'CLOUDFRONT_DISTRIBUTION_ID', 
+    //         defaultValue: 'E2KO328GH6M6Z6',
+    //         description: 'only modify these when destroy and apply new tf frontend resources')
+    // }
 
     environment{
+
+        CLOUDFRONT_DISTRIBUTION_ID = 'E831JNGKI52YZ'
         AWS_CRED        = 'AWS' 
         AWS_REGION      = 'ap-southeast-2'
         S3_BUCKET       = 'petlover-front-uat'
@@ -45,9 +47,9 @@ pipeline {
         stage('npm build') 
         {
             steps{
-             echo "Building compressed files..."
-             sh "REACT_APP_API_ENDPOINT=${REACT_APP_API_ENDPOINT} npm run build"
-             sh 'ls -la ./build'
+                echo "Building compressed files..."
+                sh "REACT_APP_API_ENDPOINT=${REACT_APP_API_ENDPOINT} npm run build"
+                sh 'ls -la ./build'
             }
         } 
 
