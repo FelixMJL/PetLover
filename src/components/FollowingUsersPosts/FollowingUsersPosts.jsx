@@ -7,14 +7,22 @@ import loading from '../../assets/loading.svg';
 import UserPost from '../UserProfile/post/UserPost';
 import post_icon from '../../assets/post_icon.svg';
 import SendPost from '../SendPost/SendPost';
+import SendComment from '../SendComment/SendComment';
 
 const FollowingUsersPosts = ({ user }) => {
   const [postData, setPostData] = useState([]);
   const [showSendPost, setShowSendPost] = useState(false);
+  const [showSendComment, setShowSendComment] = useState(null);
   const navigate = useNavigate();
 
   const postClickHandler = () => {
     setShowSendPost(true);
+  };
+
+  const commentClickHandler = (e, postId) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowSendComment(postId);
   };
 
   const [status, setStatus] = useState(loading);
@@ -55,10 +63,22 @@ const FollowingUsersPosts = ({ user }) => {
                   <span>·{moment(post.created_at).fromNow()}</span>
                 </div>
               </div>
-              <UserPost {...post} />
+              <UserPost {...post} postId={post._id} commentClickHandler={commentClickHandler} />
             </div>
           </div>
         </Link>
+        <SendComment
+          postAuthor={post.author}
+          postContent={post.content}
+          postFile_type={post.file_type}
+          postFile_url={post.file_url}
+          comments={post.comments}
+          postCreated_at={post.created_at}
+          postId={post._id}
+          currentUserData={user}
+          setShowSendComment={setShowSendComment}
+          showSendComment={showSendComment === post._id}
+        />
       </div>
     ));
     return <ul className="post_ul">{list}</ul>;

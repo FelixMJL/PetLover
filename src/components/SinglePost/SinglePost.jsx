@@ -4,15 +4,20 @@ import moment from 'moment';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { getUserData } from '../../services/getUserData';
-import DeletePost from '../DeletePost/DeletePost';
+import DeleteItem from '../DeletePost/DeleteItem';
 import back from '../../assets/left-arrow.png';
 import replyLogo from '../../assets/reply.png';
 import Footer from '../Footer/Footer';
+import SendComment from '../SendComment/SendComment';
 
 const SinglePost = ({ postId, currentUserId }) => {
   const [singlePostData, setSinglePostData] = useState();
   const navigate = useNavigate();
   const [currentUserData, setUserData] = useState(0);
+  const [inputComment, setInputComment] = useState('');
+  const [isValidComment, setIsValidComment] = useState(false);
+  const [commentsData, setCommentsData] = useState([]);
+  const [showSendComment, setShowSendComment] = useState(false);
 
   const getUser = () =>
     axios.get(
@@ -51,6 +56,61 @@ const SinglePost = ({ postId, currentUserId }) => {
 
   const browserNavigate = useNavigate();
 
+  const commentAuthorId = currentUserData.id || '';
+
+  const commentChangeHandler = (e) => {
+    setInputComment(e.target.value);
+  };
+
+  useEffect(() => {
+    if (inputComment) {
+      setIsValidComment(true);
+    } else {
+      setIsValidComment(false);
+    }
+  }, [inputComment]);
+
+  const sendComment = async () => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/comments`,
+        {
+          author: commentAuthorId,
+          comment_to: postId,
+          comment: inputComment,
+        },
+        getUserData().config,
+      );
+      if (response.status === 201) {
+        window.location.reload();
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Error in post function:', error);
+    }
+  };
+
+  useEffect(() => {
+    const getCommentData = async () => {
+      try {
+        if (!singlePostData) {
+          return;
+        }
+        setCommentsData(singlePostData.comments);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log(error.message);
+      }
+    };
+    getCommentData();
+  }, [singlePostData]);
+
+  const commentClickHandler = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowSendComment(true);
+  };
+
   if (!singlePostData) return null;
   return (
     <div className="singlePost_container">
@@ -82,7 +142,7 @@ const SinglePost = ({ postId, currentUserId }) => {
             </div>
             <div>
               {singlePostData.author.id === currentUserId ? (
-                <DeletePost postId={postId} onPostPage />
+                <DeleteItem postId={postId} onPostPage />
               ) : (
                 ''
               )}
@@ -91,7 +151,7 @@ const SinglePost = ({ postId, currentUserId }) => {
           <div className="singlePost_content-container">
             {singlePostData.content && (
               <div className="singlePost_content-text">
-                <p>{singlePostData.content}</p>
+                <div>{singlePostData.content}</div>
               </div>
             )}
             {singlePostData.file_url && singlePostData.file_type.includes('image') ? (
@@ -110,22 +170,43 @@ const SinglePost = ({ postId, currentUserId }) => {
               <span>{singlePostData.created_at}</span>
             </div>
             <div className="singlePost_comments">
-              <img src={replyLogo} alt="replyLogo" className="singlePost_comments-replyLogo" />
-              <span className="singlePost_comments-count">{singlePostData.comments.length}</span>
+              <img
+                src={replyLogo}
+                alt="replyLogo"
+                className="singlePost_comments-replyLogo"
+                onClick={commentClickHandler}
+              />
+              <span className="singlePost_comments-count">{commentsData.length}</span>
             </div>
           </div>
           <div className="singlePost_reply-post">
             <img src={currentUserData.avatar} className="singlePost_avatar" alt="avatar" />
-            <input className="singlePost_reply-input" placeholder="Tweet your reply" />
-            <button className="singlePost_reply-btn" type="submit">
+            <div className="sendComment_content-wrapper">
+              <textarea
+                className="singlePost_reply-textarea"
+                placeholder="Post your reply"
+                onChange={commentChangeHandler}
+              />
+            </div>
+            <button
+              className={`singlePost_reply-btn ${
+                isValidComment ? 'singlePost_reply-btn-active' : ''
+              }`}
+              onClick={sendComment}
+              disabled={!isValidComment}
+              type="submit"
+            >
               Reply
             </button>
           </div>
           <div className="singlePost_user-comments">
-            {singlePostData.comments &&
-              singlePostData.comments.map((commentData) => (
+            {commentsData &&
+              commentsData.map((commentData) => (
                 <div key={commentData._id} className="post_container">
-                  <div className="post_inner-container">
+                  <Link
+                    className="singlePost_comment-inner-container"
+                    to={`/comment/${commentData._id}`}
+                  >
                     <img
                       src={commentData.author.avatar}
                       className="post_avatar"
@@ -148,17 +229,10 @@ const SinglePost = ({ postId, currentUserId }) => {
                           </div>
                           <div className="singlePost_replying-to">
                             Replying to{' '}
-                            <Link className="singlePost_replying-to-user-nick-name" to={` `}>
+                            <span className="singlePost_replying-to-user-nick-name" to={` `}>
                               @{singlePostData.author.nickname}
-                            </Link>
+                            </span>
                           </div>
-                        </div>
-                        <div>
-                          {commentData.author.id === currentUserId ? (
-                            <DeletePost postId={postId} onPostPage />
-                          ) : (
-                            ''
-                          )}
                         </div>
                       </div>
                       <div className="post_content-container">
@@ -177,6 +251,17 @@ const SinglePost = ({ postId, currentUserId }) => {
                         </div>
                       </div>
                     </div>
+                  </Link>
+                  <div>
+                    {commentData.author.id === currentUserId ? (
+                      <DeleteItem
+                        commentId={commentData._id}
+                        setCommentsData={setCommentsData}
+                        commentsData={commentsData}
+                      />
+                    ) : (
+                      ''
+                    )}
                   </div>
                 </div>
               ))}
@@ -184,6 +269,18 @@ const SinglePost = ({ postId, currentUserId }) => {
         </div>
       </div>
       <Footer />
+      <SendComment
+        postAuthor={singlePostData.author}
+        postContent={singlePostData.content}
+        postFile_type={singlePostData.file_type}
+        postFile_url={singlePostData.file_url}
+        comments={singlePostData.comments}
+        postCreated_at={singlePostData.created_at}
+        postId={singlePostData._id}
+        currentUserData={currentUserData}
+        setShowSendComment={setShowSendComment}
+        showSendComment={showSendComment}
+      />
     </div>
   );
 };

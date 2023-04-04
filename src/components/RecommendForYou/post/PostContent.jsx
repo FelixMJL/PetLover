@@ -2,9 +2,10 @@ import './PostContent.css';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { Link, useNavigate } from 'react-router-dom';
-import DeletePost from '../../DeletePost/DeletePost';
-import replyLogo from '../../../assets/reply.png';
+import DeleteItem from '../../DeletePost/DeleteItem';
 import { getUserData } from '../../../services/getUserData';
+import SendComment from '../../SendComment/SendComment';
+import replyLogo from '../../../assets/reply.png';
 
 const PostContent = ({
   author,
@@ -16,16 +17,24 @@ const PostContent = ({
   _id,
   postData,
   setPostData,
+  currentUserData,
 }) => {
   const currentUserId = getUserData().id;
   const [imageUrl, setImageUrl] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
+  const [showSendComment, setShowSendComment] = useState(false);
   const navigate = useNavigate();
 
   const avatarClickHandler = (e) => {
     e.stopPropagation();
     e.preventDefault();
     navigate(`/profile/${author.id}`);
+  };
+
+  const commentClickHandler = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowSendComment(true);
   };
 
   useEffect(() => {
@@ -45,7 +54,7 @@ const PostContent = ({
     <div className="post_container">
       <div>
         {author.id === currentUserId ? (
-          <DeletePost postId={_id} setPostData={setPostData} postData={postData} />
+          <DeleteItem postId={_id} setPostData={setPostData} postData={postData} />
         ) : (
           ''
         )}
@@ -80,11 +89,28 @@ const PostContent = ({
             </video>
           )}
           <div className="post_comments">
-            <img src={replyLogo} alt="replyLogo" className="post_comments-replyLogo" />
+            <img
+              src={replyLogo}
+              alt="replyLogo"
+              className="post_comments-replyLogo"
+              onClick={commentClickHandler}
+            />
             <span className="post_comments-count">{comments.length}</span>
           </div>
         </div>
       </Link>
+      <SendComment
+        postAuthor={author}
+        postContent={content}
+        postFile_type={file_type}
+        postFile_url={file_url}
+        comments={comments}
+        postCreated_at={created_at}
+        postId={_id}
+        currentUserData={currentUserData}
+        setShowSendComment={setShowSendComment}
+        showSendComment={showSendComment}
+      />
     </div>
   );
 };

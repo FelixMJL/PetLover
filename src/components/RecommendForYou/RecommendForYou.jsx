@@ -51,7 +51,12 @@ const RecommendForYou = ({ user }) => {
         {postData.length ? (
           postData.map((post) => (
             <div key={post._id}>
-              <PostContent {...post} setPostData={setPostData} postData={postData} />
+              <PostContent
+                {...post}
+                setPostData={setPostData}
+                postData={postData}
+                currentUserData={user}
+              />
             </div>
           ))
         ) : (

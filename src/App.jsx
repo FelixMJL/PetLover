@@ -14,6 +14,7 @@ import ImageGeneration from './views/ImageGeneration';
 import ChatGPT from './views/ChatGPT';
 import Team from './views/Team';
 import Post from './views/Post';
+import Comment from './views/Comment';
 
 const App = () => {
   const currentUser = JSON.parse(localStorage.getItem('userData'));
@@ -53,6 +54,7 @@ const App = () => {
           <Route path="/chatGpt" element={<ChatGPT />} />
           <Route path="/team" element={<Team />} />
           <Route path="/post/:postId" element={<Post />} />
+          <Route path="/comment/:commentId" element={<Comment />} />
         </Routes>
       </div>
     </ChakraProvider>

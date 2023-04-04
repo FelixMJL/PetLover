@@ -14,9 +14,10 @@ const Profile = () => {
   const [isFollowing, setIsFollowing] = useState(null);
   const { id } = useParams();
 
-  const currentUserId = getUserData().id;
+  const mainUserId = getUserData().id;
   const [userData, setUserData] = useState(0);
   const [currentUserData, setCurrentUserData] = useState(0);
+  const [mainUserData, setMainUserData] = useState(0);
   const [showSendPost, setShowSendPost] = useState(false);
   const [showEditProfile, setShowEditProfile] = useState(false);
 
@@ -37,6 +38,24 @@ const Profile = () => {
       }
     };
     getUserData();
+  }, []);
+
+  const getMainUser = () =>
+    axios.get(
+      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${mainUserId}`,
+      getUserData().config,
+    );
+  useEffect(() => {
+    // eslint-disable-next-line consistent-return,no-shadow
+    const getMainUserData = async () => {
+      try {
+        const user = await getMainUser();
+        setMainUserData(user.data);
+      } catch (error) {
+        return error.message;
+      }
+    };
+    getMainUserData();
   }, []);
 
   const getCurrentUser = () =>
@@ -124,9 +143,11 @@ const Profile = () => {
         posts={posts}
         id={id}
         updatedNickname={updatedNickname}
-        currentUserId={currentUserId}
+        mainUserId={mainUserId}
         updatedAvatar={updatedAvatar}
         {...userData}
+        user={userData}
+        mainUserData={mainUserData}
       />
       {showSendPost && (
         <SendPost

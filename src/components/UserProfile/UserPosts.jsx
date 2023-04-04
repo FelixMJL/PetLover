@@ -2,11 +2,30 @@ import '../RecommendForYou/post/PostContent.css';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+// import axios from 'axios';
 import UserPost from './post/UserPost';
-import DeletePost from '../DeletePost/DeletePost';
+import DeleteItem from '../DeletePost/DeleteItem';
+import SendComment from '../SendComment/SendComment';
+// import { getUserData } from '../../services/getUserData';
 
-const UserPosts = ({ posts, username, updatedNickname, updatedAvatar, id, currentUserId }) => {
+const UserPosts = ({
+  posts,
+  username,
+  updatedNickname,
+  updatedAvatar,
+  id,
+  mainUserId,
+  user,
+  mainUserData,
+}) => {
   const [postData, setPostData] = useState(null);
+  const [showSendComment, setShowSendComment] = useState(false);
+
+  const commentClickHandler = (e, postId) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowSendComment(postId);
+  };
 
   useEffect(() => {
     setPostData(posts);
@@ -29,12 +48,24 @@ const UserPosts = ({ posts, username, updatedNickname, updatedAvatar, id, curren
                     </div>
                   </div>
                 </div>
-                <UserPost {...post} />
+                <UserPost {...post} postId={post._id} commentClickHandler={commentClickHandler} />
               </div>
             </Link>
+            <SendComment
+              postAuthor={user}
+              postContent={post.content}
+              postFile_type={post.file_type}
+              postFile_url={post.file_url}
+              comments={post.comments}
+              postCreated_at={post.created_at}
+              postId={post._id}
+              currentUserData={mainUserData}
+              setShowSendComment={setShowSendComment}
+              showSendComment={showSendComment === post._id}
+            />
             <div>
-              {id === currentUserId ? (
-                <DeletePost setPostData={setPostData} postData={postData} postId={post._id} />
+              {id === mainUserId ? (
+                <DeleteItem setPostData={setPostData} postData={postData} postId={post._id} />
               ) : (
                 ''
               )}

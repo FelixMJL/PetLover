@@ -1,4 +1,4 @@
-.deletePostConfirmation_Container {
+.deleteItemConfirmation_Container {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -12,7 +12,7 @@
     border: 0;
 }
 
-.deletePostConfirmation_BackgroundOverlay {
+.deleteItemConfirmation_BackgroundOverlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -22,7 +22,7 @@
     z-index: 4;
 }
 
-.deletePostConfirmation_ContentContainer {
+.deleteItemConfirmation_ContentContainer {
     width: 80%;
     height: 100%;
     display: flex;
@@ -34,7 +34,7 @@
     z-index: 20000;
 }
 
-.deletePostConfirmation_DeleteBtn {
+.deleteItemConfirmation_DeleteBtn {
     background-color: red;
     color: #fff;
     outline: none;
@@ -44,9 +44,10 @@
     height: 40px
 }
 
-.deletePostConfirmation_CancelBtn {
+.deleteItemConfirmation_CancelBtn {
     background-color: #fff;
     border-radius: 15px;
     width: 100%;
-    height: 40px
+    height: 40px;
+    border: 1px solid rgb(207, 217, 222);
 }
