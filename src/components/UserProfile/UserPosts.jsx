@@ -11,12 +11,12 @@ import SendComment from '../SendComment/SendComment';
 const UserPosts = ({
   posts,
   username,
-  nickname,
-  avatar,
+  updatedNickname,
+  updatedAvatar,
   id,
-  currentUserId,
+  mainUserId,
   user,
-  currentUserData,
+  mainUserData,
 }) => {
   const [postData, setPostData] = useState(null);
   const [showSendComment, setShowSendComment] = useState(false);
@@ -37,11 +37,11 @@ const UserPosts = ({
         postData.map((post) => (
           <div key={post._id} className="post_container">
             <Link className="post_inner-container" to={`/post/${post._id}`}>
-              <img src={avatar} className="post_avatar" alt="avatar" />
+              <img src={updatedAvatar} className="post_avatar" alt="avatar" />
               <div className="post_content-container">
                 <div className="post_info-container">
                   <div className="post_author-info-container">
-                    <span className="post_author-nick-name">{nickname}</span>
+                    <span className="post_author-nick-name">{updatedNickname}</span>
                     <span className="post_author-user-name">@{username}</span>
                     <div className="post_time">
                       <span>· {moment(post.created_at).fromNow()}</span>
@@ -59,12 +59,12 @@ const UserPosts = ({
               comments={post.comments}
               postCreated_at={post.created_at}
               postId={post._id}
-              currentUserData={currentUserData}
+              currentUserData={mainUserData}
               setShowSendComment={setShowSendComment}
               showSendComment={showSendComment === post._id}
             />
             <div>
-              {id === currentUserId ? (
+              {id === mainUserId ? (
                 <DeleteItem setPostData={setPostData} postData={postData} postId={post._id} />
               ) : (
                 ''

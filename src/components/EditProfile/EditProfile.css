@@ -41,6 +41,10 @@
     border-radius: 20px;
 }
 
+.editProfile__header-btnError {
+    background-color: #87898c;
+}
+
 .editProfile__content-avatarContainer {
     width: 75px;
     position: relative;
@@ -73,4 +77,45 @@
 .editProfile__content-camera {
     width: 20px;
     height: 20px;
+}
+
+/* details */
+.editProfile__detail {
+    margin: 2vh 5vw;
+    border: 2px solid #1b9bf0;
+    border-radius: 8px;
+    padding: 10px;
+    color: #1b9bf0;
+    font-weight: 700;
+}
+
+.editProfile__detail-error {
+    border: 2px solid red;
+    margin-bottom: 5px;
+    color: red;
+}
+
+.editProfile__detail-nickNameError {
+    margin: 0 11vw;
+    color: red;
+    font-size: 14px;
+}
+
+.editProfile__detail-box {
+    width: 100%;
+    border: none;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    color: #0f1419;
+    font-size: 17px;
+}
+
+.editProfile__detail-box::placeholder {
+    color: #0f1419;
+    font-size: 17px;
+}
+
+.editProfile__detail-box:focus {
+    outline: none;
+    border-color: transparent;
 }

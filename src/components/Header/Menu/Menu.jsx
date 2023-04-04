@@ -18,8 +18,7 @@ const Menu = ({ profileMenu, closeMenu, userData, userId, darkBackground }) => {
       <div className="profileMenu" ref={profileMenu}>
         <div className="profileMenuHeader">
           <h4>Account info</h4>
-          {/* eslint-disable-next-line react/button-has-type */}
-          <button className="closeProfileMenu" onClick={closeMenu}>
+          <button type="button" className="closeProfileMenu" onClick={closeMenu}>
             <img src={closePageIcon} alt="Close page icon" />
           </button>
         </div>
@@ -30,8 +29,8 @@ const Menu = ({ profileMenu, closeMenu, userData, userId, darkBackground }) => {
               <div>
                 <img src={userData.avatar} alt="avatar" className="user-menu__avatar" />
               </div>
-              <p className="user-menu__username">{userData.username}</p>
-              <p>@{userData.nickname}</p>
+              <p className="user-menu__username">{userData.nickname}</p>
+              <p>@{userData.username}</p>
               <div className="aboutFollowOfUser">
                 <NavLink className="nav-link" to="/followingUser/:following">
                   <p>

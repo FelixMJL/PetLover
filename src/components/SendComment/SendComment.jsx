@@ -106,20 +106,20 @@ const SendComment = ({
                 <div className="post_time">
                   <span>· {moment(postCreated_at).fromNow()}</span>
                 </div>
-                {postContent && (
-                  <div className="post_content-text">
-                    <p>{postContent}</p>
-                  </div>
-                )}
-                {postFile_url && postFile_type.includes('image') ? (
-                  <img src={postFile_url} className="post_content-image" alt="Content img" />
-                ) : null}
-                {postFile_url && postFile_type.includes('video') ? (
-                  <video className="post_content-video" controls autoPlay loop muted>
-                    <source src={postFile_url} type="video/mp4" />
-                  </video>
-                ) : null}
               </div>
+              {postContent && (
+                <div className="post_content-text">
+                  <p>{postContent}</p>
+                </div>
+              )}
+              {postFile_url && postFile_type.includes('image') ? (
+                <img src={postFile_url} className="post_content-image" alt="Content img" />
+              ) : null}
+              {postFile_url && postFile_type.includes('video') ? (
+                <video className="post_content-video" controls autoPlay loop muted>
+                  <source src={postFile_url} type="video/mp4" />
+                </video>
+              ) : null}
             </div>
           </div>
           <div className="sendComment_content-body">

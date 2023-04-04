@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Box } from '@chakra-ui/react';
 import './EditProfile.css';
 import axios from 'axios';
 import Footer from '../Footer/Footer';
@@ -7,11 +8,34 @@ import camera from '../../assets/camera.svg';
 import ImageCropper from './ImageCropper/ImageCropper';
 import { getUserData } from '../../services/getUserData';
 
-const EditProfile = ({ setShowEditProfile, avatar }) => {
-  const [file_url, setFile_Url] = useState(avatar);
+const EditProfile = ({
+  setShowEditProfile,
+  setUpdatedNickname,
+  setUpdatedIntroduction,
+  setUpdatedAvatar,
+  setUpdatedLocation,
+  setUpdatedWebsiteUrl,
+  updatedAvatar,
+  updatedNickname,
+  updatedIntroduction,
+  updatedLocation,
+  updatedWebsiteUrl,
+}) => {
+  const [file_url, setFile_Url] = useState(updatedAvatar);
   const [imageSelected, setImageSeleted] = useState(null);
   const [showImageCropper, setShowImageCropper] = useState(false);
+  const [details, setDetails] = useState({
+    nickname: updatedNickname,
+    introduction: updatedIntroduction,
+    location: updatedLocation,
+    website_url: updatedWebsiteUrl,
+  });
   const backClickHandler = () => {
+    setUpdatedNickname(updatedNickname);
+    setUpdatedIntroduction(updatedIntroduction);
+    setUpdatedAvatar(updatedAvatar);
+    setUpdatedLocation(updatedLocation);
+    setUpdatedWebsiteUrl(updatedWebsiteUrl);
     setShowEditProfile(false);
   };
 
@@ -22,8 +46,8 @@ const EditProfile = ({ setShowEditProfile, avatar }) => {
     let n = bstr.length;
     const u8arr = new Uint8Array(n);
 
-    // eslint-disable-next-line no-plusplus
-    while (n--) {
+    while (n > 0) {
+      n -= 1;
       u8arr[n] = bstr.charCodeAt(n);
     }
 
@@ -85,10 +109,63 @@ const EditProfile = ({ setShowEditProfile, avatar }) => {
     await drawImage();
   };
 
+  const [isNicknameEmpty, setIsNicknameEmpty] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+
+    if (name === 'nickname') {
+      if (value.trim() === '') {
+        setIsNicknameEmpty(true);
+        setErrorMessage(true);
+      } else {
+        setIsNicknameEmpty(false);
+        setErrorMessage(false);
+      }
+    }
+  };
+
+  const {
+    nickname: newNickname,
+    introduction: newIntroduction,
+    location: newLocation,
+    website_url: newWebsite_url,
+  } = details;
+
+  const save = async () => {
+    setUpdatedNickname(newNickname);
+    setUpdatedIntroduction(newIntroduction);
+    setUpdatedAvatar(file_url);
+    setUpdatedLocation(newLocation);
+    setUpdatedWebsiteUrl(newWebsite_url);
+    await axios.put(
+      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${getUserData().id}`,
+      {
+        nickname: newNickname,
+        introduction: newIntroduction,
+        location: newLocation,
+        website_url: newWebsite_url,
+        avatar: file_url,
+      },
+      getUserData().config,
+    );
+
+    setShowEditProfile(false);
+  };
+
   return (
     <div className="editProfile">
       {showImageCropper && (
-        <ImageCropper imageSelected={imageSelected} cropClickHandler={cropClickHandler} />
+        <ImageCropper
+          imageSelected={imageSelected}
+          cropClickHandler={cropClickHandler}
+          setShowImageCropper={setShowImageCropper}
+        />
       )}
       <div className="editProfile-wrapper">
         <div className="editProfile__header">
@@ -96,7 +173,16 @@ const EditProfile = ({ setShowEditProfile, avatar }) => {
             <img className="btn btn-back" src={back} alt="back" onClick={backClickHandler} />
             <div className="editProfile__header-text">Edit Profile</div>
           </div>
-          <button type="button" className="editProfile__header-btn">
+          <button
+            type="button"
+            className={
+              isNicknameEmpty
+                ? 'editProfile__header-btn editProfile__header-btnError'
+                : 'editProfile__header-btn'
+            }
+            disabled={isNicknameEmpty}
+            onClick={save}
+          >
             Save
           </button>
         </div>
@@ -116,6 +202,71 @@ const EditProfile = ({ setShowEditProfile, avatar }) => {
           </div>
         </div>
       </div>
+      <fieldset
+        className={
+          isNicknameEmpty ? 'editProfile__detail editProfile__detail-error' : 'editProfile__detail'
+        }
+      >
+        <Box as="legend" px={3}>
+          Nickname
+        </Box>
+        <div>
+          <input
+            name="nickname"
+            value={details.nickname}
+            onChange={onChangeHandler}
+            className="editProfile__detail-box"
+          />
+        </div>
+      </fieldset>
+
+      {errorMessage && (
+        <span className="editProfile__detail-nickNameError">Nickname cannot be blank.</span>
+      )}
+
+      <fieldset className="editProfile__detail">
+        <Box as="legend" px={3}>
+          Location
+        </Box>
+        <div>
+          <input
+            name="location"
+            value={details.location}
+            onChange={onChangeHandler}
+            className="editProfile__detail-box"
+          />
+        </div>
+      </fieldset>
+      <Footer />
+
+      <fieldset className="editProfile__detail">
+        <Box as="legend" px={3}>
+          Web Site
+        </Box>
+        <div>
+          <input
+            name="website_url"
+            value={details.website_url}
+            onChange={onChangeHandler}
+            className="editProfile__detail-box"
+          />
+        </div>
+      </fieldset>
+
+      <fieldset className="editProfile__detail">
+        <Box as="legend" px={3}>
+          Introduction
+        </Box>
+        <div>
+          <textarea
+            name="introduction"
+            value={details.introduction}
+            onChange={onChangeHandler}
+            className="editProfile__detail-box"
+            rows={3}
+          />
+        </div>
+      </fieldset>
 
       <Footer />
     </div>
