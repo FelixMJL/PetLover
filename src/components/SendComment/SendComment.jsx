@@ -32,7 +32,7 @@ const SendComment = ({
     setShowSendComment(false);
   };
 
-  const commentAuthorId = currentUserData.id || '';
+  const commentAuthorId = currentUserData ? currentUserData.id : '';
 
   const commentChangeHandler = (e) => {
     setComment(e.target.value);

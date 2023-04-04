@@ -40,8 +40,6 @@ const FollowingUsersPosts = ({ user }) => {
     getPostData();
   }, []);
 
-  // eslint-disable-next-line no-console
-  console.log(postData);
   function DataList({ posts }) {
     const list = posts.map((post) => (
       <div key={post._id} className="following_post-container">

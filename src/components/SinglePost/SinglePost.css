@@ -46,7 +46,7 @@
     flex-direction: column;
 }
 
-.singlePost_author-header-container{
+.singlePost_author-header-container {
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -64,7 +64,6 @@
     width: 50px;
     height: 50px;
     object-fit: cover;
-    border: 1px solid #95a3ad;
 }
 
 .singlePost_author-user-name {
@@ -162,12 +161,12 @@
 }
 
 .singlePost_replying-to {
-    clear:both;
+    clear: both;
 }
 
 .singlePost_replying-to-user-nick-name {
-    text-decoration: underline;
-    color: blue;
+    color: #1b9bf0;
+    font-size: 15px;
 }
 
 .singlePost_comment-inner-container {

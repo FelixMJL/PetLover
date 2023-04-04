@@ -93,6 +93,9 @@ const SinglePost = ({ postId, currentUserId }) => {
   useEffect(() => {
     const getCommentData = async () => {
       try {
+        if (!singlePostData) {
+          return;
+        }
         setCommentsData(singlePostData.comments);
       } catch (error) {
         // eslint-disable-next-line no-console
