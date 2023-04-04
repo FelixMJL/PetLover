@@ -41,6 +41,7 @@
 
 .singlePost_post-container {
     margin-top: 70px;
+    margin-bottom: 50px;
     display: flex;
     flex-direction: column;
 }
@@ -55,7 +56,7 @@
     height: fit-content;
     display: flex;
     flex-wrap: nowrap;
-    gap: 20px;
+    gap: 10px;
 }
 
 .singlePost_avatar {
@@ -87,10 +88,9 @@
 .singlePost_content-container {
     margin-top: 10px;
 }
+
 .singlePost_content-text {
-    gap: 10px;
-    line-height: 18px;
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .singlePost_content-image {
@@ -128,28 +128,37 @@
 
 .singlePost_reply-post {
     border-top: 1px solid #EDE7E7;
+    border-bottom: 1px solid #EDE7E7;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 10px 0px;
+    gap: 10px;
 }
 
-.singlePost_reply-input {
+.singlePost_reply-textarea {
     width: 55vw;
     font-size: 20px;
     border: 0;
     outline: none;
+    resize: none;
+    height: 26px;
 }
 
 .singlePost_reply-btn {
     border: 0;
     outline: none;
-    background-color: #9fcef8;
+    background-color: #a0cdf8;
     font-size: 16px;
     color: white;
     border-radius: 20px;
-    height: 35px;
-    width: 70px;
+    height: 40px;
+    width: 80px;
     margin: auto 0px;
+}
+
+.singlePost_reply-btn-active {
+    background-color: #1b9bf0;
 }
 
 .singlePost_replying-to {
@@ -157,5 +166,17 @@
 }
 
 .singlePost_replying-to-user-nick-name {
+    text-decoration: underline;
+    color: blue;
+}
+
+.singlePost_comment-inner-container {
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid #EDE7E7;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #000000;
     text-decoration: none;
+    overflow-x: hidden;
 }
