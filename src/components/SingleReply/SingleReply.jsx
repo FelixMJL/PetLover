@@ -119,8 +119,6 @@ const SingleReply = ({ replyId, currentUserId }) => {
 
   const browserNavigate = useNavigate();
 
-  // eslint-disable-next-line no-console
-  console.log(singleReplyData);
   if (!singleReplyData) return null;
   return (
     <div className="singlePost_container">
