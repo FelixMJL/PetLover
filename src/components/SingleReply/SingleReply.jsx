@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import './SingleComment.css';
+import './SingleReply.css';
 import moment from 'moment';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { getUserData } from '../../services/getUserData';
 import DeleteItem from '../DeleteItem/DeleteItem';
+// import SendReply from '../SendReply/SendReply';
 import back from '../../assets/left-arrow.png';
 import replyLogo from '../../assets/reply.png';
 import Footer from '../Footer/Footer';
 import SendReply from '../SendReply/SendReply';
 
-const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData }) => {
-  const [singleCommentData, setSingleCommentData] = useState();
+const SingleReply = ({ replyId, currentUserId }) => {
+  const [singleReplyData, setSingleReplyData] = useState();
   const navigate = useNavigate();
   const [currentUserData, setUserData] = useState(0);
   const [inputReply, setInputReply] = useState('');
@@ -20,42 +21,17 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
   const [showSendReply, setShowSendReply] = useState(false);
   const [replyCurrentItem, setShowReplyCurrentItem] = useState(false);
 
-  const getUser = () =>
-    axios.get(
-      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}`,
-      getUserData().config,
-    );
+  const replyCurrentItemClickHandler = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowReplyCurrentItem(true);
+  };
 
-  useEffect(() => {
-    // eslint-disable-next-line consistent-return,no-shadow
-    const getUserData = async () => {
-      try {
-        const user = await getUser();
-        setUserData(user.data);
-      } catch (error) {
-        return error.message;
-      }
-    };
-    getUserData();
-  }, []);
-
-  useEffect(() => {
-    const getSingleCommentData = async () => {
-      try {
-        const getSingleComment = await axios.get(
-          `${process.env.REACT_APP_API_ENDPOINT}/api/v1/comments/${commentId}`,
-          getUserData().config,
-        );
-        setSingleCommentData(getSingleComment.data);
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error.message);
-      }
-    };
-    getSingleCommentData();
-  }, []);
-
-  const browserNavigate = useNavigate();
+  const replyClickHandler = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowSendReply(true);
+  };
 
   const replyAuthorId = currentUserData.id || '';
 
@@ -77,7 +53,7 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
         `${process.env.REACT_APP_API_ENDPOINT}/api/v1/replies`,
         {
           author: replyAuthorId,
-          reply_to: commentId,
+          reply_to: replyId,
           reply: inputReply,
         },
         getUserData().config,
@@ -91,34 +67,61 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
     }
   };
 
+  const getUser = () =>
+    axios.get(
+      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/users/${currentUserId}`,
+      getUserData().config,
+    );
+
+  useEffect(() => {
+    // eslint-disable-next-line consistent-return,no-shadow
+    const getUserData = async () => {
+      try {
+        const user = await getUser();
+        setUserData(user.data);
+      } catch (error) {
+        return error.message;
+      }
+    };
+    getUserData();
+  }, []);
+
+  useEffect(() => {
+    const getSingleReplyData = async () => {
+      try {
+        const getSingleReply = await axios.get(
+          `${process.env.REACT_APP_API_ENDPOINT}/api/v1/replies/${replyId}`,
+          getUserData().config,
+        );
+        setSingleReplyData(getSingleReply.data);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log(error.message);
+      }
+    };
+    getSingleReplyData();
+  }, []);
+
   useEffect(() => {
     const getReplyData = async () => {
       try {
-        if (!singleCommentData) {
+        if (!singleReplyData) {
           return;
         }
-        setRepliesData(singleCommentData.replies);
+        setRepliesData(singleReplyData.replies);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error.message);
       }
     };
     getReplyData();
-  }, [singleCommentData]);
+  }, [singleReplyData]);
 
-  const replyCurrentItemClickHandler = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setShowReplyCurrentItem(true);
-  };
+  const browserNavigate = useNavigate();
 
-  const replyClickHandler = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setShowSendReply(true);
-  };
-
-  if (!singleCommentData) return null;
+  // eslint-disable-next-line no-console
+  console.log(singleReplyData);
+  if (!singleReplyData) return null;
   return (
     <div className="singlePost_container">
       <div className="singlePost_inner-container">
@@ -129,49 +132,40 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
             alt="back"
             onClick={() => browserNavigate(-1)}
           />
-          <span>Comment</span>
+          <span>Reply</span>
         </div>
         <div className="singlePost_post-container">
           <div className="singlePost_author-header-container">
             <div className="singlePost_author-info-container">
-              <img
-                src={singleCommentData.author.avatar}
-                className="singlePost_avatar"
-                alt="avatar"
-              />
+              <img src={singleReplyData.author.avatar} className="singlePost_avatar" alt="avatar" />
               <div className="singlePost_author-names-container">
                 <span className="singlePost_author-nick-name">
-                  {singleCommentData.author.nickname}
+                  {singleReplyData.author.nickname}
                 </span>
                 <span className="singlePost_author-user-name">
-                  @{singleCommentData.author.username}
+                  @{singleReplyData.author.username}
                 </span>
                 <div className="singlePost_time">
-                  <span>· {moment(singleCommentData.created_at).fromNow()}</span>
+                  <span>· {moment(singleReplyData.created_at).fromNow()}</span>
                 </div>
               </div>
             </div>
             <div>
-              {singleCommentData.author.id === currentUserId ? (
-                <DeleteItem
-                  commentId={commentId}
-                  setCommentsData={setCommentsData}
-                  commentsData={commentsData}
-                  onCommentPage
-                />
+              {singleReplyData.author.id === currentUserId ? (
+                <DeleteItem replyId={replyId} onReplyPage />
               ) : (
                 ''
               )}
             </div>
           </div>
           <div className="singlePost_content-container">
-            {singleCommentData.comment && (
+            {singleReplyData.reply && (
               <div className="singlePost_content-text">
-                <div>{singleCommentData.comment}</div>
+                <div>{singleReplyData.reply}</div>
               </div>
             )}
             <div className="singlePost_time">
-              <span>{singleCommentData.created_at}</span>
+              <span>{singleReplyData.created_at}</span>
             </div>
             <div className="singlePost_comments">
               <img
@@ -179,8 +173,8 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
                 alt="replyLogo"
                 className="singlePost_comments-replyLogo"
                 onClick={replyCurrentItemClickHandler}
-              />
-              <span className="singlePost_comments-count">{singleCommentData.replies.length}</span>
+              />{' '}
+              <span className="singlePost_comments-count">{singleReplyData.replies.length}</span>
             </div>
           </div>
           <div className="singlePost_reply-post">
@@ -230,16 +224,9 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
                           <div className="singlePost_replying-to">
                             Replying to
                             <span className="singlePost_replying-to-user-nick-name">
-                              @{singleCommentData.author.nickname}
+                              @{singleReplyData.author.nickname}
                             </span>
                           </div>
-                        </div>
-                        <div>
-                          {replyData.author.id === currentUserId ? (
-                            <DeleteItem ReplyId={replyData._id} />
-                          ) : (
-                            ''
-                          )}
                         </div>
                       </div>
                       <div className="post_content-container">
@@ -284,7 +271,7 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
       </div>
       <Footer />
       <SendReply
-        itemData={singleCommentData}
+        itemData={singleReplyData}
         currentUserData={currentUserData}
         setShowSendReply={setShowReplyCurrentItem}
         showSendReply={replyCurrentItem}
@@ -293,4 +280,4 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
   );
 };
 
-export default SingleComment;
+export default SingleReply;

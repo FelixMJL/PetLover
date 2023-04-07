@@ -6,15 +6,19 @@ import './DeleteItem.css';
 import DeletePostConfirmation from './DeleteItemConfirmation';
 import { getUserData } from '../../services/getUserData';
 
-const DeletePost = ({
+const DeleteItem = ({
   postId,
   commentId,
+  replyId,
   setPostData,
   setCommentsData,
+  setRepliesData,
   postData,
   commentsData,
+  repliesData,
   onPostPage,
   onCommentPage,
+  onReplyPage,
 }) => {
   const [showDeleteItemConfirmation, setShowDeleteItemConfirmation] = useState(false);
   const navigate = useNavigate();
@@ -55,10 +59,26 @@ const DeletePost = ({
     }
   };
 
+  const toDeleteReply = () => {
+    if (onReplyPage) {
+      axios.delete(
+        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/replies/${replyId}`,
+        getUserData().config,
+      );
+      setShowDeleteItemConfirmation(false);
+      navigate(-1);
+    } else {
+      axios.delete(
+        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/replies/${replyId}`,
+        getUserData().config,
+      );
+      setRepliesData(repliesData.filter((reply) => reply._id !== replyId));
+      setShowDeleteItemConfirmation(false);
+    }
+  };
   const deleteClickHandler = (e) => {
     e.preventDefault();
     e.stopPropagation();
-
     setShowDeleteItemConfirmation(true);
   };
 
@@ -74,11 +94,13 @@ const DeletePost = ({
         }}
         handleDeletePost={toDeletePost}
         handleDeleteComment={toDeleteComment}
+        handleDeleteReply={toDeleteReply}
         postId={postId}
         commentId={commentId}
+        replyId={replyId}
       />
     </div>
   );
 };
 
-export default DeletePost;
+export default DeleteItem;
