@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // import axios from 'axios';
 import UserPost from './post/UserPost';
-import DeleteItem from '../DeletePost/DeleteItem';
+import DeleteItem from '../DeleteItem/DeleteItem';
 import SendComment from '../SendComment/SendComment';
 // import { getUserData } from '../../services/getUserData';
 
