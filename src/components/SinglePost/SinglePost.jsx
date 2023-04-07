@@ -4,11 +4,12 @@ import moment from 'moment';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { getUserData } from '../../services/getUserData';
-import DeleteItem from '../DeletePost/DeleteItem';
+import DeleteItem from '../DeleteItem/DeleteItem';
 import back from '../../assets/left-arrow.png';
 import replyLogo from '../../assets/reply.png';
 import Footer from '../Footer/Footer';
 import SendComment from '../SendComment/SendComment';
+import SendReply from '../SendReply/SendReply';
 
 const SinglePost = ({ postId, currentUserId }) => {
   const [singlePostData, setSinglePostData] = useState();
@@ -18,6 +19,13 @@ const SinglePost = ({ postId, currentUserId }) => {
   const [isValidComment, setIsValidComment] = useState(false);
   const [commentsData, setCommentsData] = useState([]);
   const [showSendComment, setShowSendComment] = useState(false);
+  const [showSendReply, setShowSendReply] = useState(false);
+
+  const avatarClickHandler = (e, id) => {
+    e.stopPropagation();
+    e.preventDefault();
+    navigate(`/profile/${id}`);
+  };
 
   const getUser = () =>
     axios.get(
@@ -111,6 +119,12 @@ const SinglePost = ({ postId, currentUserId }) => {
     setShowSendComment(true);
   };
 
+  const replyClickHandler = (e, commentId) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowSendReply(commentId);
+  };
+
   if (!singlePostData) return null;
   return (
     <div className="singlePost_container">
@@ -127,12 +141,20 @@ const SinglePost = ({ postId, currentUserId }) => {
         <div className="singlePost_post-container">
           <div className="singlePost_author-header-container">
             <div className="singlePost_author-info-container">
-              <img src={singlePostData.author.avatar} className="singlePost_avatar" alt="avatar" />
+              <img
+                src={singlePostData.author.avatar}
+                className="singlePost_avatar"
+                alt="avatar"
+                onClick={(e) => avatarClickHandler(e, singlePostData.author.id)}
+              />
               <div className="singlePost_author-names-container">
                 <span className="singlePost_author-nick-name">
                   {singlePostData.author.nickname}
                 </span>
-                <span className="singlePost_author-user-name">
+                <span
+                  className="singlePost_author-user-name"
+                  onClick={(e) => avatarClickHandler(e, singlePostData.author.id)}
+                >
                   @{singlePostData.author.username}
                 </span>
                 <div className="singlePost_time">
@@ -211,9 +233,7 @@ const SinglePost = ({ postId, currentUserId }) => {
                       src={commentData.author.avatar}
                       className="post_avatar"
                       alt="avatar"
-                      onClick={() => {
-                        navigate(`/profile/${commentData.author.id}`);
-                      }}
+                      onClick={(e) => avatarClickHandler(e, commentData.author.id)}
                     />
                     <div className="post_content-container">
                       <div className="post_info-container">
@@ -221,15 +241,21 @@ const SinglePost = ({ postId, currentUserId }) => {
                           <span className="post_author-nick-name">
                             {commentData.author.nickname}
                           </span>
-                          <span className="post_author-user-name">
+                          <span
+                            className="post_author-user-name"
+                            onClick={(e) => avatarClickHandler(e, commentData.author.id)}
+                          >
                             @{commentData.author.username}
                           </span>
                           <div className="post_time">
                             <span>· {moment(commentData.created_at).fromNow()}</span>
                           </div>
                           <div className="singlePost_replying-to">
-                            Replying to{' '}
-                            <span className="singlePost_replying-to-user-nick-name" to={` `}>
+                            Replying to
+                            <span
+                              className="singlePost_replying-to-user-nick-name"
+                              onClick={(e) => avatarClickHandler(e, singlePostData.author.id)}
+                            >
                               @{singlePostData.author.nickname}
                             </span>
                           </div>
@@ -246,12 +272,19 @@ const SinglePost = ({ postId, currentUserId }) => {
                             src={replyLogo}
                             alt="replyLogo"
                             className="post_comments-replyLogo"
+                            onClick={(e) => replyClickHandler(e, commentData._id)}
                           />
                           <span className="post_comments-count">{commentData.replies.length}</span>
                         </div>
                       </div>
                     </div>
                   </Link>
+                  <SendReply
+                    itemData={commentData}
+                    currentUserData={currentUserData}
+                    setShowSendReply={setShowSendReply}
+                    showSendReply={showSendReply === commentData._id}
+                  />
                   <div>
                     {commentData.author.id === currentUserId ? (
                       <DeleteItem

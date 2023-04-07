@@ -6,8 +6,10 @@ const DeleteItemConfirmation = ({
   onClose,
   handleDeletePost,
   handleDeleteComment,
+  handleDeleteReply,
   postId,
   commentId,
+  replyId,
 }) => {
   const handleDeleteItem = () => {
     if (postId) {
@@ -15,6 +17,9 @@ const DeleteItemConfirmation = ({
     }
     if (commentId) {
       return handleDeleteComment();
+    }
+    if (replyId) {
+      return handleDeleteReply();
     }
     return null;
   };
@@ -31,6 +36,9 @@ const DeleteItemConfirmation = ({
               }
               if (commentId) {
                 return <strong>Delete Comment?</strong>;
+              }
+              if (replyId) {
+                return <strong>Delete Reply?</strong>;
               }
               return null;
             })()}
