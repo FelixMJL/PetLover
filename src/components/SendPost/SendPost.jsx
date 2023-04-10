@@ -9,7 +9,7 @@ import back from '../../assets/left-arrow.png';
 import { getUserData } from '../../services/getUserData';
 import Footer from '../Footer/Footer';
 
-const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
+const SendPost = ({ updatedAvatar, user, setShowSendPost, setPosts, posts }) => {
   const [imageUrl, setImageUrl] = useState('');
   const [content, setContent] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
@@ -125,7 +125,7 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
           </button>
         </div>
         <div className="sendPost__content-body">
-          <img className="sendPost_avatar" src={user.avatar} alt="" />
+          <img className="sendPost_avatar" src={updatedAvatar || user.avatar} alt="" />
           <div className="sendPost__content-wrapper">
             <textarea placeholder="What to enjoy?" rows="3" onChange={contentChangeHandler} />
             <input
