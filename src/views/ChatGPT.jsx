@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Footer from '../components/Footer/Footer';
-import { getUserData } from '../services/getUserData';
 import './ChatGPT.css';
 
 const ChatGPT = () => {
@@ -16,9 +15,8 @@ const ChatGPT = () => {
   };
   const chatGpt = async () => {
     const response = await axios.post(
-      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/openai/chatGpt`,
+      'https://b27ifyfcv8.execute-api.us-east-1.amazonaws.com/prod/api/v1/openai/chatgpt',
       { question: input },
-      getUserData().config,
     );
     setResult(response.data);
   };
@@ -32,7 +30,7 @@ const ChatGPT = () => {
         }
         return prevTextLength;
       });
-    }, 100);
+    }, 50);
     return () => clearInterval(interval);
   }, [result]);
 
