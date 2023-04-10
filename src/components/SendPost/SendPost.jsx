@@ -127,7 +127,7 @@ const SendPost = ({ user, setShowSendPost, setPosts, posts }) => {
         <div className="sendPost__content-body">
           <img className="sendPost_avatar" src={user.avatar} alt="" />
           <div className="sendPost__content-wrapper">
-            <textarea placeholder="What to enjoy?" rows="5" onChange={contentChangeHandler} />
+            <textarea placeholder="What to enjoy?" rows="3" onChange={contentChangeHandler} />
             <input
               id="imageInput"
               type="file"
