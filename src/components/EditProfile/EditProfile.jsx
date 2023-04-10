@@ -22,7 +22,7 @@ const EditProfile = ({
   updatedWebsiteUrl,
 }) => {
   const [file_url, setFile_Url] = useState(updatedAvatar);
-  const [imageSelected, setImageSeleted] = useState(null);
+  const [imageSelected, setImageSelected] = useState(null);
   const [showImageCropper, setShowImageCropper] = useState(false);
   const [details, setDetails] = useState({
     nickname: updatedNickname,
@@ -59,7 +59,7 @@ const EditProfile = ({
     reader.readAsDataURL(event.target.files[0]);
     // eslint-disable-next-line func-names
     reader.onload = function () {
-      setImageSeleted(reader.result);
+      setImageSelected(reader.result);
     };
     setShowImageCropper(true);
     // eslint-disable-next-line no-param-reassign
