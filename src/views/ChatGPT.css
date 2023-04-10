@@ -1,7 +1,7 @@
-.chatGPT {
-    margin: 20px 8vw;
-}
-
-.chatGPT h1 {
-    font-size: 16px;
+.chatGPT__result {
+    padding: 2vw 2vh;
+    width: 100%;
+    resize: none;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 82, .15);
 }
