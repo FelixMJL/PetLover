@@ -101,7 +101,9 @@ const SendComment = ({
             <div className="sendComment_content-container">
               <div className="sendComment_author-info-container">
                 <span className="post_author-nick-name">{postAuthor.nickname}</span>
-                <span className="post_author-user-name">@{postAuthor.username}</span>
+                <span className="post_author-user-name" onClick={avatarClickHandler}>
+                  @{postAuthor.username}
+                </span>
                 <div className="post_time">
                   <span>· {moment(postCreated_at).fromNow()}</span>
                 </div>

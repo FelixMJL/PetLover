@@ -70,7 +70,9 @@ const PostContent = ({
           <div className="post_info-container">
             <div className="post_author-info-container">
               <span className="post_author-nick-name">{author.nickname}</span>
-              <span className="post_author-user-name">@{author.username}</span>
+              <span className="post_author-user-name" onClick={avatarClickHandler}>
+                @{author.username}
+              </span>
               <div className="post_time">
                 <span>· {moment(created_at).fromNow()}</span>
               </div>
