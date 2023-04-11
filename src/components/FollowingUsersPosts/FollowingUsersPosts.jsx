@@ -25,6 +25,12 @@ const FollowingUsersPosts = ({ user }) => {
     setShowSendComment(postId);
   };
 
+  const avatarClickHandler = (e, id) => {
+    e.stopPropagation();
+    e.preventDefault();
+    navigate(`/profile/${id}`);
+  };
+
   const [status, setStatus] = useState(loading);
   useEffect(() => {
     const getPostData = async () => {
@@ -49,16 +55,22 @@ const FollowingUsersPosts = ({ user }) => {
               className="post_avatar"
               src={post.author.avatar}
               alt=""
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                navigate(`/profile/${post.author.id}`);
-              }}
+              onClick={(e) => avatarClickHandler(e, post.author.id)}
             />
             <div className="post-content-container">
               <div className="post_author-info-container">
-                <span className="post_author-nick-name">{post.author.nickname}</span>
-                <span className="post_author-user-name">@{post.author.username}</span>
+                <span
+                  className="post_author-nick-name"
+                  onClick={(e) => avatarClickHandler(e, post.author.id)}
+                >
+                  {post.author.nickname}
+                </span>
+                <span
+                  className="post_author-user-name"
+                  onClick={(e) => avatarClickHandler(e, post.author.id)}
+                >
+                  @{post.author.username}
+                </span>
                 <div className="post_time">
                   <span>·{moment(post.created_at).fromNow()}</span>
                 </div>
