@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './SingleReply.css';
 import moment from 'moment';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getUserData } from '../../services/getUserData';
 import DeleteItem from '../DeleteItem/DeleteItem';
-// import SendReply from '../SendReply/SendReply';
 import back from '../../assets/left-arrow.png';
 import replyLogo from '../../assets/reply.png';
 import Footer from '../Footer/Footer';
@@ -31,6 +30,12 @@ const SingleReply = ({ replyId, currentUserId }) => {
     e.preventDefault();
     e.stopPropagation();
     setShowSendReply(true);
+  };
+
+  const avatarClickHandler = (e, id) => {
+    e.stopPropagation();
+    e.preventDefault();
+    navigate(`/profile/${id}`);
   };
 
   const replyAuthorId = currentUserData.id || '';
@@ -135,12 +140,23 @@ const SingleReply = ({ replyId, currentUserId }) => {
         <div className="singlePost_post-container">
           <div className="singlePost_author-header-container">
             <div className="singlePost_author-info-container">
-              <img src={singleReplyData.author.avatar} className="singlePost_avatar" alt="avatar" />
+              <img
+                src={singleReplyData.author.avatar}
+                className="singlePost_avatar"
+                alt="avatar"
+                onClick={(e) => avatarClickHandler(e, singleReplyData.author.id)}
+              />
               <div className="singlePost_author-names-container">
-                <span className="singlePost_author-nick-name">
+                <span
+                  className="singlePost_author-nick-name"
+                  onClick={(e) => avatarClickHandler(e, singleReplyData.author.id)}
+                >
                   {singleReplyData.author.nickname}
                 </span>
-                <span className="singlePost_author-user-name">
+                <span
+                  className="singlePost_author-user-name"
+                  onClick={(e) => avatarClickHandler(e, singleReplyData.author.id)}
+                >
                   @{singleReplyData.author.username}
                 </span>
                 <div className="singlePost_time">
@@ -197,23 +213,44 @@ const SingleReply = ({ replyId, currentUserId }) => {
             {repliesData &&
               repliesData.map((replyData) => (
                 <div key={replyData._id} className="post_container">
-                  <Link
+                  <div
                     className="singlePost_comment-inner-container"
-                    to={`/reply/${replyData._id}`}
+                    onClick={() => {
+                      navigate(`/reply/${replyData._id}`);
+                      window.location.reload();
+                    }}
                   >
                     <img
                       src={replyData.author.avatar}
                       className="post_avatar"
                       alt="avatar"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
                         navigate(`/profile/${replyData.author.id}`);
                       }}
                     />
                     <div className="post_content-container">
                       <div className="post_info-container">
                         <div className="post_author-info-container">
-                          <span className="post_author-nick-name">{replyData.author.nickname}</span>
-                          <span className="post_author-user-name">
+                          <span
+                            className="post_author-nick-name"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              e.preventDefault();
+                              navigate(`/profile/${replyData.author.id}`);
+                            }}
+                          >
+                            {replyData.author.nickname}
+                          </span>
+                          <span
+                            className="post_author-user-name"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              e.preventDefault();
+                              navigate(`/profile/${replyData.author.id}`);
+                            }}
+                          >
                             @{replyData.author.username}
                           </span>
                           <div className="post_time">
@@ -221,7 +258,10 @@ const SingleReply = ({ replyId, currentUserId }) => {
                           </div>
                           <div className="singlePost_replying-to">
                             Replying to
-                            <span className="singlePost_replying-to-user-nick-name">
+                            <span
+                              className="singlePost_replying-to-user-nick-name"
+                              onClick={(e) => avatarClickHandler(e, singleReplyData.author.id)}
+                            >
                               @{singleReplyData.author.nickname}
                             </span>
                           </div>
@@ -244,7 +284,7 @@ const SingleReply = ({ replyId, currentUserId }) => {
                         </div>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                   <div>
                     {replyData.author.id === currentUserId ? (
                       <DeleteItem

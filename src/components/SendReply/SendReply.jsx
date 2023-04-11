@@ -90,8 +90,12 @@ const SendReply = ({ itemData, currentUserData, setShowSendReply, showSendReply 
             </div>
             <div className="sendComment_content-container">
               <div className="sendComment_author-info-container">
-                <span className="post_author-nick-name">{itemData.author.nickname}</span>
-                <span className="post_author-user-name">@{itemData.author.username}</span>
+                <span className="post_author-nick-name" onClick={avatarClickHandler}>
+                  {itemData.author.nickname}
+                </span>
+                <span className="post_author-user-name" onClick={avatarClickHandler}>
+                  @{itemData.author.username}
+                </span>
                 <div className="post_time">
                   <span>· {moment(itemData.created_at).fromNow()}</span>
                 </div>
