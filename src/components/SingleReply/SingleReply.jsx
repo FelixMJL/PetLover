@@ -147,10 +147,16 @@ const SingleReply = ({ replyId, currentUserId }) => {
                 onClick={(e) => avatarClickHandler(e, singleReplyData.author.id)}
               />
               <div className="singlePost_author-names-container">
-                <span className="singlePost_author-nick-name">
+                <span
+                  className="singlePost_author-nick-name"
+                  onClick={(e) => avatarClickHandler(e, singleReplyData.author.id)}
+                >
                   {singleReplyData.author.nickname}
                 </span>
-                <span className="singlePost_author-user-name">
+                <span
+                  className="singlePost_author-user-name"
+                  onClick={(e) => avatarClickHandler(e, singleReplyData.author.id)}
+                >
                   @{singleReplyData.author.username}
                 </span>
                 <div className="singlePost_time">
@@ -227,7 +233,16 @@ const SingleReply = ({ replyId, currentUserId }) => {
                     <div className="post_content-container">
                       <div className="post_info-container">
                         <div className="post_author-info-container">
-                          <span className="post_author-nick-name">{replyData.author.nickname}</span>
+                          <span
+                            className="post_author-nick-name"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              e.preventDefault();
+                              navigate(`/profile/${replyData.author.id}`);
+                            }}
+                          >
+                            {replyData.author.nickname}
+                          </span>
                           <span
                             className="post_author-user-name"
                             onClick={(e) => {

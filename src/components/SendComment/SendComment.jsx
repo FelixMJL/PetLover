@@ -100,7 +100,9 @@ const SendComment = ({
             </div>
             <div className="sendComment_content-container">
               <div className="sendComment_author-info-container">
-                <span className="post_author-nick-name">{postAuthor.nickname}</span>
+                <span className="post_author-nick-name" onClick={avatarClickHandler}>
+                  {postAuthor.nickname}
+                </span>
                 <span className="post_author-user-name" onClick={avatarClickHandler}>
                   @{postAuthor.username}
                 </span>

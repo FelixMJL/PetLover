@@ -148,7 +148,10 @@ const SinglePost = ({ postId, currentUserId }) => {
                 onClick={(e) => avatarClickHandler(e, singlePostData.author.id)}
               />
               <div className="singlePost_author-names-container">
-                <span className="singlePost_author-nick-name">
+                <span
+                  className="singlePost_author-nick-name"
+                  onClick={(e) => avatarClickHandler(e, singlePostData.author.id)}
+                >
                   {singlePostData.author.nickname}
                 </span>
                 <span
@@ -238,7 +241,10 @@ const SinglePost = ({ postId, currentUserId }) => {
                     <div className="post_content-container">
                       <div className="post_info-container">
                         <div className="post_author-info-container">
-                          <span className="post_author-nick-name">
+                          <span
+                            className="post_author-nick-name"
+                            onClick={(e) => avatarClickHandler(e, commentData.author.id)}
+                          >
                             {commentData.author.nickname}
                           </span>
                           <span

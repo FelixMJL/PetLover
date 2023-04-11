@@ -147,7 +147,10 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
                 onClick={(e) => avatarClickHandler(e, singleCommentData.author.id)}
               />
               <div className="singlePost_author-names-container">
-                <span className="singlePost_author-nick-name">
+                <span
+                  className="singlePost_author-nick-name"
+                  onClick={(e) => avatarClickHandler(e, singleCommentData.author.id)}
+                >
                   {singleCommentData.author.nickname}
                 </span>
                 <span
@@ -232,7 +235,16 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
                     <div className="post_content-container">
                       <div className="post_info-container">
                         <div className="post_author-info-container">
-                          <span className="post_author-nick-name">{replyData.author.nickname}</span>
+                          <span
+                            className="post_author-nick-name"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              e.preventDefault();
+                              navigate(`/profile/${replyData.author.id}`);
+                            }}
+                          >
+                            {replyData.author.nickname}
+                          </span>
                           <span
                             className="post_author-user-name"
                             onClick={(e) => {
