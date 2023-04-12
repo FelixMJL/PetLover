@@ -8,6 +8,7 @@ import emailIcon from '../assets/email.png';
 import rightArrowIcon from '../assets/right-arrow.svg';
 import openEye from '../assets/eye-solid.svg';
 import closeEye from '../assets/eye-slash-solid.svg';
+import dog from '../assets/dog.mp4';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -73,54 +74,58 @@ const Login = () => {
 
   return (
     <div className="signUpBox">
-      <div className="logoContainer">
-        <img src={imgURL} alt="" />
-      </div>
-      <h2 className="welcomeTitle">Welcome to Pet Lover</h2>
-      <form className="inputContainer" onSubmit={login}>
-        <div className="inputWrapper">
-          <div className="inputBox">
-            <img className="icon" src={emailIcon} alt="" />
-            <input
-              type="email"
-              name="email"
-              defaultValue={userDetails.email}
-              placeholder="E-mail"
-              onChange={onChangeHandler}
-            />
-          </div>
-          <div className="inputBox">
-            <img className="icon" src={passwordIcon} alt="password" />
-            <input
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              placeholder="Password"
-              defaultValue={userDetails.password}
-              onChange={onChangeHandler}
-            />
-            <img
-              className="showPasswordIcon"
-              src={showPassword ? closeEye : openEye}
-              alt="Toggle password visibility"
-              onClick={toggleShowPassword}
-            />
-          </div>
+      <video className="videoBackground" src={dog} autoPlay loop muted />
+      <div className="signUpBox__des" />
+      <div className="signUpBox__container">
+        <div className="logoContainer">
+          <img src={imgURL} alt="" />
+        </div>
+        <h2 className="welcomeTitle">Welcome to Pet Lover</h2>
+        <form className="inputContainer" onSubmit={login}>
+          <div className="inputWrapper">
+            <div className="inputBox">
+              <img className="icon" src={emailIcon} alt="" />
+              <input
+                type="email"
+                name="email"
+                defaultValue={userDetails.email}
+                placeholder="E-mail"
+                onChange={onChangeHandler}
+              />
+            </div>
+            <div className="inputBox">
+              <img className="icon" src={passwordIcon} alt="password" />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                placeholder="Password"
+                defaultValue={userDetails.password}
+                onChange={onChangeHandler}
+              />
+              <img
+                className="showPasswordIcon"
+                src={showPassword ? closeEye : openEye}
+                alt="Toggle password visibility"
+                onClick={toggleShowPassword}
+              />
+            </div>
 
-          <div className="error-message">{errorMessage}</div>
+            <div className="error-message">{errorMessage}</div>
+          </div>
+          <div className="buttonBox">
+            <div className="buttonText">Sign in</div>
+            <button type="submit">
+              <img src={rightArrowIcon} alt="" />
+            </button>
+          </div>
+        </form>
+        <div className="pageSwitch">
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
+          <span>Don't have an account?</span>
+          <Link className="pageSwitch-link" to="/signup">
+            Create
+          </Link>
         </div>
-        <div className="buttonBox">
-          <div className="buttonText">Sign in</div>
-          <button type="submit">
-            <img src={rightArrowIcon} alt="" />
-          </button>
-        </div>
-      </form>
-      <div className="pageSwitch">
-        {/* eslint-disable-next-line react/no-unescaped-entities */}
-        <span>Don't have an account?</span>
-        <Link className="pageSwitch-link" to="/signup">
-          Create
-        </Link>
       </div>
     </div>
   );
