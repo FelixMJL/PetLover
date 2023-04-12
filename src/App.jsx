@@ -15,6 +15,8 @@ import ChatGPT from './views/ChatGPT';
 import Team from './views/Team';
 import Post from './views/Post';
 import Comment from './views/Comment';
+import Terms from './views/Terms';
+import Privacy from './views/Privacy';
 import Reply from './views/Reply';
 
 const App = () => {
@@ -24,6 +26,14 @@ const App = () => {
   useEffect(() => {
     if (location.pathname === '/signup') {
       navigate('/signup');
+      return;
+    }
+    if (location.pathname === '/privacy') {
+      navigate('/privacy');
+      return;
+    }
+    if (location.pathname === '/terms') {
+      navigate('/terms');
       return;
     }
     if (!currentUser) {
@@ -56,6 +66,8 @@ const App = () => {
           <Route path="/team" element={<Team />} />
           <Route path="/post/:postId" element={<Post />} />
           <Route path="/comment/:commentId" element={<Comment />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="/reply/:replyId" element={<Reply />} />
         </Routes>
       </div>
