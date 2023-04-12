@@ -47,13 +47,13 @@ const FollowingUser = () => {
             <p>@{userData.nickname}</p>
           </div>
         </div>
-        <div className="recommended">
-          <div className="item">
-            <NavLink to="/followingUser/following">Following</NavLink>
-          </div>
-          <div className="item">
-            <NavLink to="/followingUser/follower">Followers</NavLink>
-          </div>
+      </div>
+      <div className="recommended">
+        <div className="item">
+          <NavLink to="/followingUser/following">Following</NavLink>
+        </div>
+        <div className="item">
+          <NavLink to="/followingUser/follower">Followers</NavLink>
         </div>
       </div>
       <div className="connectUsers">

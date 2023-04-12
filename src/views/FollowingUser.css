@@ -8,14 +8,16 @@
   padding: 10px;
 }
 .followingUserBox .headerBox {
-  width: 90vw;
+  width: 100vw;
+  border-bottom: 1px solid rgba(0,0,0,.05);
 }
 .followingUserBox .btnArrow img {
   width: 9vw;
   margin-right: 20px;
 }
 
-.followingUserBox .headerBox .recommended {
+.followingUserBox .recommended {
+    width: 100vw;
   display: flex;
   align-items: center;
   justify-content: space-around;

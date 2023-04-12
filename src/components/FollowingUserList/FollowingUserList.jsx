@@ -22,7 +22,7 @@ const FollowingUserList = ({ userType, userIds, users }) => {
   const [status, setStatus] = useState(loading);
 
   useEffect(() => {
-    if (userType === ':following') {
+    if (userType === 'following') {
       setCount(count + 1);
       setIsFollowing(userIds);
     }
@@ -113,7 +113,7 @@ const FollowingUserList = ({ userType, userIds, users }) => {
       ) : (
         <div className="following-error-message_wrapper">
           {/* eslint-disable-next-line react/no-unescaped-entities */}
-          {userType === ':following' ? (
+          {userType === 'following' ? (
             <>
               <p>Be in the Know</p>
               <p className="following-errorMessage">
