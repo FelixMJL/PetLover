@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './ConnectUser.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import loading from '../../assets/loading.svg';
 import { getUserData } from '../../services/getUserData';
 import Popup from './Popup';
@@ -18,6 +19,7 @@ const ConnectUser = ({ users }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const selectedUser = userData.find((user) => user.id === selectedUserId);
+  const navigate = useNavigate();
 
   const handleMouseEnter = (userId) => {
     if (isFollowing.includes(userId)) {
@@ -27,6 +29,10 @@ const ConnectUser = ({ users }) => {
 
   const handleMouseLeave = (userId) => {
     setShowUnfollow((prev) => prev.filter((id) => id !== userId));
+  };
+
+  const avatarClickHandler = (id) => {
+    navigate(`/profile/${id}`);
   };
 
   const toggleFollow = async (userId) => {
@@ -74,13 +80,28 @@ const ConnectUser = ({ users }) => {
           {filteredUserData.map((user) => (
             <div className="connect-user" key={user.id}>
               <div className="connect-user__avatar">
-                <img className="connect-user__avatar--img" src={user.avatar} alt="avatar" />
+                <img
+                  className="connect-user__avatar--img"
+                  src={user.avatar}
+                  alt="avatar"
+                  onClick={() => avatarClickHandler(user.id)}
+                />
               </div>
               <div className="connect-user__description">
                 <div className="connect-user__description--top">
                   <div className="connect-user__description--name">
-                    <div className="connect-user__nickname">{user.nickname}</div>
-                    <div className="connect-user__username">@{user.username}</div>
+                    <div
+                      className="connect-user__nickname"
+                      onClick={() => avatarClickHandler(user.id)}
+                    >
+                      {user.nickname}
+                    </div>
+                    <div
+                      className="connect-user__username"
+                      onClick={() => avatarClickHandler(user.id)}
+                    >
+                      @{user.username}
+                    </div>
                   </div>
                   {/* eslint-disable-next-line react/button-has-type */}
                   <button
