@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './SingleComment.css';
+import './SingleReply.css';
 import moment from 'moment';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getUserData } from '../../services/getUserData';
 import DeleteItem from '../DeleteItem/DeleteItem';
 import back from '../../assets/left-arrow.png';
@@ -10,8 +10,8 @@ import replyLogo from '../../assets/reply.png';
 import Footer from '../Footer/Footer';
 import SendReply from '../SendReply/SendReply';
 
-const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData }) => {
-  const [singleCommentData, setSingleCommentData] = useState();
+const SingleReply = ({ replyId, currentUserId }) => {
+  const [singleReplyData, setSingleReplyData] = useState();
   const navigate = useNavigate();
   const [currentUserData, setUserData] = useState(0);
   const [inputReply, setInputReply] = useState('');
@@ -19,6 +19,58 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
   const [repliesData, setRepliesData] = useState([]);
   const [showSendReply, setShowSendReply] = useState(false);
   const [replyCurrentItem, setShowReplyCurrentItem] = useState(false);
+
+  const replyCurrentItemClickHandler = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowReplyCurrentItem(true);
+  };
+
+  const replyClickHandler = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowSendReply(true);
+  };
+
+  const avatarClickHandler = (e, id) => {
+    e.stopPropagation();
+    e.preventDefault();
+    navigate(`/profile/${id}`);
+  };
+
+  const replyAuthorId = currentUserData.id || '';
+
+  const replyChangeHandler = (e) => {
+    setInputReply(e.target.value);
+  };
+
+  useEffect(() => {
+    if (inputReply) {
+      setIsValidReply(true);
+    } else {
+      setIsValidReply(false);
+    }
+  }, [inputReply]);
+
+  const sendReply = async () => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/replies`,
+        {
+          author: replyAuthorId,
+          reply_to: replyId,
+          reply: inputReply,
+        },
+        getUserData().config,
+      );
+      if (response.status === 201) {
+        window.location.reload();
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Error in post function:', error);
+    }
+  };
 
   const getUser = () =>
     axios.get(
@@ -40,91 +92,39 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
   }, []);
 
   useEffect(() => {
-    const getSingleCommentData = async () => {
+    const getSingleReplyData = async () => {
       try {
-        const getSingleComment = await axios.get(
-          `${process.env.REACT_APP_API_ENDPOINT}/api/v1/comments/${commentId}`,
+        const getSingleReply = await axios.get(
+          `${process.env.REACT_APP_API_ENDPOINT}/api/v1/replies/${replyId}`,
           getUserData().config,
         );
-        setSingleCommentData(getSingleComment.data);
+        setSingleReplyData(getSingleReply.data);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error.message);
       }
     };
-    getSingleCommentData();
+    getSingleReplyData();
   }, []);
-
-  const browserNavigate = useNavigate();
-
-  const replyAuthorId = currentUserData.id || '';
-
-  const replyChangeHandler = (e) => {
-    setInputReply(e.target.value);
-  };
-
-  const avatarClickHandler = (e, id) => {
-    e.stopPropagation();
-    e.preventDefault();
-    navigate(`/profile/${id}`);
-  };
-
-  useEffect(() => {
-    if (inputReply) {
-      setIsValidReply(true);
-    } else {
-      setIsValidReply(false);
-    }
-  }, [inputReply]);
-
-  const sendReply = async () => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_ENDPOINT}/api/v1/replies`,
-        {
-          author: replyAuthorId,
-          reply_to: commentId,
-          reply: inputReply,
-        },
-        getUserData().config,
-      );
-      if (response.status === 201) {
-        window.location.reload();
-      }
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Error in post function:', error);
-    }
-  };
 
   useEffect(() => {
     const getReplyData = async () => {
       try {
-        if (!singleCommentData) {
+        if (!singleReplyData) {
           return;
         }
-        setRepliesData(singleCommentData.replies);
+        setRepliesData(singleReplyData.replies);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error.message);
       }
     };
     getReplyData();
-  }, [singleCommentData]);
+  }, [singleReplyData]);
 
-  const replyCurrentItemClickHandler = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setShowReplyCurrentItem(true);
-  };
+  const browserNavigate = useNavigate();
 
-  const replyClickHandler = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setShowSendReply(true);
-  };
-
-  if (!singleCommentData) return null;
+  if (!singleReplyData) return null;
   return (
     <div className="singlePost_container">
       <div className="singlePost_inner-container">
@@ -135,56 +135,51 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
             alt="back"
             onClick={() => browserNavigate(-1)}
           />
-          <span>Comment</span>
+          <span>Reply</span>
         </div>
         <div className="singlePost_post-container">
           <div className="singlePost_author-header-container">
             <div className="singlePost_author-info-container">
               <img
-                src={singleCommentData.author.avatar}
+                src={singleReplyData.author.avatar}
                 className="singlePost_avatar"
                 alt="avatar"
-                onClick={(e) => avatarClickHandler(e, singleCommentData.author.id)}
+                onClick={(e) => avatarClickHandler(e, singleReplyData.author.id)}
               />
               <div className="singlePost_author-names-container">
                 <span
                   className="singlePost_author-nick-name"
-                  onClick={(e) => avatarClickHandler(e, singleCommentData.author.id)}
+                  onClick={(e) => avatarClickHandler(e, singleReplyData.author.id)}
                 >
-                  {singleCommentData.author.nickname}
+                  {singleReplyData.author.nickname}
                 </span>
                 <span
                   className="singlePost_author-user-name"
-                  onClick={(e) => avatarClickHandler(e, singleCommentData.author.id)}
+                  onClick={(e) => avatarClickHandler(e, singleReplyData.author.id)}
                 >
-                  @{singleCommentData.author.username}
+                  @{singleReplyData.author.username}
                 </span>
                 <div className="singlePost_time">
-                  <span>· {moment(singleCommentData.created_at).fromNow()}</span>
+                  <span>· {moment(singleReplyData.created_at).fromNow()}</span>
                 </div>
               </div>
             </div>
             <div>
-              {singleCommentData.author.id === currentUserId ? (
-                <DeleteItem
-                  commentId={commentId}
-                  setCommentsData={setCommentsData}
-                  commentsData={commentsData}
-                  onCommentPage
-                />
+              {singleReplyData.author.id === currentUserId ? (
+                <DeleteItem replyId={replyId} onReplyPage />
               ) : (
                 ''
               )}
             </div>
           </div>
           <div className="singlePost_content-container">
-            {singleCommentData.comment && (
+            {singleReplyData.reply && (
               <div className="singlePost_content-text">
-                <div>{singleCommentData.comment}</div>
+                <div>{singleReplyData.reply}</div>
               </div>
             )}
             <div className="singlePost_time">
-              <span>{singleCommentData.created_at}</span>
+              <span>{singleReplyData.created_at}</span>
             </div>
             <div className="singlePost_comments">
               <img
@@ -192,8 +187,8 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
                 alt="replyLogo"
                 className="singlePost_comments-replyLogo"
                 onClick={replyCurrentItemClickHandler}
-              />
-              <span className="singlePost_comments-count">{singleCommentData.replies.length}</span>
+              />{' '}
+              <span className="singlePost_comments-count">{singleReplyData.replies.length}</span>
             </div>
           </div>
           <div className="singlePost_reply-post">
@@ -218,9 +213,12 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
             {repliesData &&
               repliesData.map((replyData) => (
                 <div key={replyData._id} className="post_container">
-                  <Link
+                  <div
                     className="singlePost_comment-inner-container"
-                    to={`/reply/${replyData._id}`}
+                    onClick={() => {
+                      navigate(`/reply/${replyData._id}`);
+                      window.location.reload();
+                    }}
                   >
                     <img
                       src={replyData.author.avatar}
@@ -262,18 +260,11 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
                             Replying to
                             <span
                               className="singlePost_replying-to-user-nick-name"
-                              onClick={(e) => avatarClickHandler(e, singleCommentData.author.id)}
+                              onClick={(e) => avatarClickHandler(e, singleReplyData.author.id)}
                             >
-                              @{singleCommentData.author.nickname}
+                              @{singleReplyData.author.nickname}
                             </span>
                           </div>
-                        </div>
-                        <div>
-                          {replyData.author.id === currentUserId ? (
-                            <DeleteItem ReplyId={replyData._id} />
-                          ) : (
-                            ''
-                          )}
                         </div>
                       </div>
                       <div className="post_content-container">
@@ -293,7 +284,7 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
                         </div>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                   <div>
                     {replyData.author.id === currentUserId ? (
                       <DeleteItem
@@ -318,7 +309,7 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
       </div>
       <Footer />
       <SendReply
-        itemData={singleCommentData}
+        itemData={singleReplyData}
         currentUserData={currentUserData}
         setShowSendReply={setShowReplyCurrentItem}
         showSendReply={replyCurrentItem}
@@ -327,4 +318,4 @@ const SingleComment = ({ commentId, currentUserId, setCommentsData, commentsData
   );
 };
 
-export default SingleComment;
+export default SingleReply;

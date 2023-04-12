@@ -17,16 +17,14 @@ const ImageGeneration = () => {
   const inputChangeHandler = (e) => {
     setInput(e.target.value);
   };
-  /* const textareaChangeHandler = (e) => {
-    setResult(e.target.value);
-  }; */
+
   const chatImage = async () => {
     if (input === '') {
       return;
     }
     setIsLoading(true);
     const response = await axios.post(
-      `${process.env.REACT_APP_API_ENDPOINT}/api/v1/openai/imageEdits`,
+      'https://36r2b81nr9.execute-api.us-east-1.amazonaws.com/prod/api/v1/openai/imagegeneration',
       { question: input },
       getUserData().config,
     );
@@ -52,7 +50,7 @@ const ImageGeneration = () => {
   }, []);
 
   return (
-    <div className="imageGeneraterBox">
+    <div className="imageGenerationBox">
       <div className="headerBox">
         <div className="connect-title-line">
           <div className="btn btn-back" onClick={btnClickHandler}>
@@ -66,15 +64,15 @@ const ImageGeneration = () => {
       </div>
       <div className="descriptionBox">
         <p className="descriptionTips">Start with a detailed description</p>
-        <div className="descripContainer">
+        <div className="descriptionContainer">
           <textarea
             value={input}
             rows="7"
             onChange={inputChangeHandler}
             placeholder="For Example: An Impressionist oil painting of sunflowers in a purple vase..."
           />
-          <button type="button" onClick={chatImage}>
-            {isLoading ? <img src={loading} alt="loading" /> : 'Suprise me'}
+          <button type="button" onClick={chatImage} className="imageGenerationBtn">
+            {isLoading ? <img src={loading} alt="loading" /> : 'Surprise me'}
           </button>
         </div>
       </div>
@@ -82,11 +80,11 @@ const ImageGeneration = () => {
         {result.length ? (
           <>
             <div className="resultTitle">
-              <p className="reslutContentJustify">RESULT</p>
+              <p className="resultContentJustify">RESULT</p>
               <div className="line"> </div>
             </div>
             <>
-              <div className="reslutContent">
+              <div className="resultContent">
                 {result.map((img) => (
                   <img src={img.url} alt="" className="showResult" key={img.url} />
                 ))}
@@ -96,10 +94,10 @@ const ImageGeneration = () => {
         ) : (
           <>
             <div className="resultTitle">
-              <p className="reslutContentJustify">EXAMPLES</p>
+              <p className="resultContentJustify">EXAMPLES</p>
               <div className="line"> </div>
             </div>
-            <div className="reslutContent">
+            <div className="resultContent">
               <img
                 // eslint-disable-next-line max-len
                 src="https://cdn.openai.com/labs/images/3D%20render%20of%20a%20cute%20tropical%20fish%20in%20an%20aquarium%20on%20a%20dark%20blue%20background,%20digital%20art.webp?v=1"

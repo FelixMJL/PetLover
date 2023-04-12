@@ -66,6 +66,8 @@
 
 .sendPost__content-wrapper textarea {
     resize: none;
+    border-bottom: 1px solid #cec6c6;
+    outline: none;
 }
 
 .upload_image {

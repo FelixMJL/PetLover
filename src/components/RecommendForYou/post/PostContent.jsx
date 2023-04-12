@@ -2,7 +2,7 @@ import './PostContent.css';
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import { Link, useNavigate } from 'react-router-dom';
-import DeleteItem from '../../DeletePost/DeleteItem';
+import DeleteItem from '../../DeleteItem/DeleteItem';
 import { getUserData } from '../../../services/getUserData';
 import SendComment from '../../SendComment/SendComment';
 import replyLogo from '../../../assets/reply.png';
@@ -69,8 +69,12 @@ const PostContent = ({
         <div className="post_content-container">
           <div className="post_info-container">
             <div className="post_author-info-container">
-              <span className="post_author-nick-name">{author.nickname}</span>
-              <span className="post_author-user-name">@{author.username}</span>
+              <span className="post_author-nick-name" onClick={avatarClickHandler}>
+                {author.nickname}
+              </span>
+              <span className="post_author-user-name" onClick={avatarClickHandler}>
+                @{author.username}
+              </span>
               <div className="post_time">
                 <span>· {moment(created_at).fromNow()}</span>
               </div>

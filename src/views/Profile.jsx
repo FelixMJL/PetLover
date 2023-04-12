@@ -152,6 +152,7 @@ const Profile = () => {
       {showSendPost && (
         <SendPost
           className="sendPost"
+          updatedAvatar={updatedAvatar}
           user={userData}
           setShowSendPost={setShowSendPost}
           posts={posts}
