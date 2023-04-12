@@ -155,3 +155,18 @@
     color: black;
     font-weight: 700;
 }
+
+.displayClom {
+    width: 80vw;
+    font-size: 11px;
+    font-family: 'Quicksand', sans-serif;
+    color: grey;
+    text-align: center;
+   
+}
+
+.displayClom .pageSwitch-link {
+    color: black;
+    font-weight: 700;
+
+}

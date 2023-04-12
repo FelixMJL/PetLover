@@ -1,0 +1,80 @@
+.teamBox .headerBox {
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    width: 100vw;
+    
+  }
+  .teamBox .contentBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .query-form {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+.teamBox .title {
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: #86c2e7;
+    color: #f2f2f2;
+    font-weight: 700;
+}
+
+.query-form label span {
+    padding-right: 10px;
+}
+
+.query-table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 10px 0;
+}
+
+.query-table th,
+.query-table td {
+    text-align: center;
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+
+.query-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.query-table th {
+    background-color: #f2f2f2;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.addBottom{
+    height: 50px;
+}
+
+@media only screen and (max-width:420px) {
+    .query-table tr {
+        display: block;
+        margin-bottom: 1em;
+      }
+      
+      .query-table td {
+        display: block;
+      }
+      
+      .query-table th {
+        display: none;
+      }
+
+      .query-table tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+    .query-table tr:nth-child(even) {
+        background-color: #fff;
+    }
+    
+}
