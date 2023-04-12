@@ -1,21 +1,23 @@
 .teamBox .headerBox {
-    border-bottom: 1px solid rgba(0,0,0,.05);
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
     width: 100vw;
-    
-  }
-  .teamBox .contentBox{
+    padding-left: 5vw;
+}
+
+.teamBox .contentBox {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .query-form {
+.query-form {
     display: flex;
     align-items: center;
     gap: 30px;
     margin-bottom: 20px;
 }
+
 .teamBox .title {
     padding: 20px;
     width: 100%;
@@ -52,29 +54,31 @@
     padding-bottom: 12px;
 }
 
-.addBottom{
+.addBottom {
     height: 50px;
 }
 
-@media only screen and (max-width:420px) {
-    .query-table tr {
-        display: block;
-        margin-bottom: 1em;
-      }
-      
-      .query-table td {
-        display: block;
-      }
-      
-      .query-table th {
-        display: none;
-      }
+.team__linkedin-icon {
+    width: 40px;
+}
 
-      .query-table tr:nth-child(odd) {
-        background-color: #f2f2f2;
+.team__linkedin-icon:hover {
+    cursor: pointer;
+}
+
+.query-table td img {
+    display: block;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 450px) {
+    .query-table {
+        font-size: 0.8em;
+        table-layout: fixed;
+        word-wrap: break-word;
     }
-    .query-table tr:nth-child(even) {
-        background-color: #fff;
+
+    .email-column {
+        width: 55%;
     }
-    
 }

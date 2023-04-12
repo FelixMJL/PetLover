@@ -3,6 +3,7 @@ import React from 'react';
 import arrow from '../assets/left-arrow.png';
 import Footer from '../components/Footer/Footer';
 import './Team.css';
+import linkedin from '../assets/linkedin.svg';
 
 const Team = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Team = () => {
       member_id: 4,
       name: 'Liuqing Yang',
       email: 'liuqingyang000@gmail.com',
-      linkedin: 'linkedin.com/in/liuqing-yang-460b67192',
+      linkedin: 'https://linkedin.com/in/liuqing-yang-460b67192',
     },
     {
       member_id: 5,
@@ -67,7 +68,7 @@ const Team = () => {
       member_id: 3,
       name: 'Xiaobo Guo',
       email: 'gxbyunyun@gmail.com',
-      linkedin: 'www.linkedin.com/in/xiaobo-guo/',
+      linkedin: 'https://www.linkedin.com/in/xiaobo-guo/',
     },
     {
       member_id: 4,
@@ -80,6 +81,11 @@ const Team = () => {
   const btnClickHandler = () => {
     navigate(-1);
   };
+
+  const linkedinClickHandler = (linkedin_url) => {
+    window.open(linkedin_url, '_blank');
+  };
+
   return (
     <div className="teamBox">
       <div className="headerBox">
@@ -98,24 +104,44 @@ const Team = () => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Email</th>
               <th>Linkedin</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>name</td>
-              <td>email</td>
-              <td>linkedin</td>
+              <td>Kitman</td>
+              <td>
+                <img
+                  className="team__linkedin-icon"
+                  src={linkedin}
+                  alt="linkedin icon"
+                  onClick={() => linkedinClickHandler('https://www.linkedin.com/in/kitman-yiu')}
+                />
+              </td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td>William Dong</td>
+              <td>
+                <img
+                  className="team__linkedin-icon"
+                  src={linkedin}
+                  alt="linkedin icon"
+                  onClick={() =>
+                    linkedinClickHandler('https://www.linkedin.com/in/william-wj-dong')
+                  }
+                />
+              </td>
             </tr>
           </tbody>
         </table>
-        <div className="title">Developers</div>
+        <div className="title">Developer</div>
         <table className="query-table">
           <thead>
             <tr>
               <th>Name</th>
-              <th>Email</th>
+              <th className="email-column">Email</th>
               <th>Linkedin</th>
             </tr>
           </thead>
@@ -124,26 +150,33 @@ const Team = () => {
               teamMember.map((member) => (
                 <tr key={member.member_id}>
                   <td>{member.name}</td>
-                  <td>{member.email}</td>
-                  <td>{member.linkedin}</td>
+                  <td className="email-column">{member.email}</td>
+                  <td>
+                    <img
+                      className="team__linkedin-icon"
+                      src={linkedin}
+                      alt="linkedin icon"
+                      onClick={() => linkedinClickHandler(member.linkedin)}
+                    />
+                  </td>
                 </tr>
               ))}
           </tbody>
         </table>
-        <div className="title">Data Analyst</div>
+        <div className="title">Business Analyst</div>
         <table className="query-table">
           <thead>
             <tr>
               <th>Name</th>
-              <th>Email</th>
+              <th className="email-column">Email</th>
               <th>Linkedin</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th>Jia Ji</th>
-              <th>jasmineszdx@gmail.com</th>
-              <th> </th>
+              <td>Jia Ji</td>
+              <td className="email-column">jasmineszdx@gmail.com</td>
+              <td>&nbsp;&nbsp;</td>
             </tr>
           </tbody>
         </table>
@@ -152,7 +185,7 @@ const Team = () => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Email</th>
+              <th className="email-column">Email</th>
               <th>Linkedin</th>
             </tr>
           </thead>
@@ -161,8 +194,15 @@ const Team = () => {
               devops.map((member) => (
                 <tr key={member.member_id}>
                   <td>{member.name}</td>
-                  <td>{member.email}</td>
-                  <td>{member.linkedin}</td>
+                  <td className="email-column">{member.email}</td>
+                  <td>
+                    <img
+                      className="team__linkedin-icon"
+                      src={linkedin}
+                      alt="linkedin icon"
+                      onClick={() => linkedinClickHandler(member.linkedin)}
+                    />
+                  </td>
                 </tr>
               ))}
           </tbody>

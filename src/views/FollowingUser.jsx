@@ -33,7 +33,7 @@ const FollowingUser = () => {
   }, [userType]);
 
   const btnClickHandler = () => {
-    navigate(-1);
+    navigate('/');
   };
   return (
     <div className="followingUserBox">
