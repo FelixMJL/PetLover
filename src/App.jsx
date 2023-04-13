@@ -28,14 +28,14 @@ const App = () => {
       navigate('/signup');
       return;
     }
-    if (location.pathname === '/privacy') {
-      navigate('/privacy');
-      return;
-    }
-    if (location.pathname === '/terms') {
-      navigate('/terms');
-      return;
-    }
+    // if (location.pathname === '/privacy') {
+    //   navigate('/privacy');
+    //   return;
+    // }
+    // if (location.pathname === '/terms') {
+    //   navigate('/terms');
+    //   return;
+    // }
     if (!currentUser) {
       navigate('/login');
       return;
