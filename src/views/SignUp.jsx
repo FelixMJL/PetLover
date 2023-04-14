@@ -10,7 +10,6 @@ import nicknameIcon from '../assets/nickname.png';
 import rightArrowIcon from '../assets/right-arrow.svg';
 import openEye from '../assets/eye-solid.svg';
 import closeEye from '../assets/eye-slash-solid.svg';
-import dog from '../assets/dog.mp4';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -87,7 +86,13 @@ const SignUp = () => {
   };
   return (
     <div className="signUpBox signup">
-      <video className="videoBackground" src={dog} autoPlay loop muted />
+      <video
+        className="videoBackground"
+        src="https://dev-petlover.s3.ap-southeast-2.amazonaws.com/videos/dog.mp4"
+        autoPlay
+        loop
+        muted
+      />
       <div className="signUpBox__des" />
       <div className="signUpBox__container signup__container">
         <div className="logoContainer signup__logoContainer">
