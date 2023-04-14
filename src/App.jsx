@@ -18,6 +18,7 @@ import Comment from './views/Comment';
 import Terms from './views/Terms';
 import Privacy from './views/Privacy';
 import Reply from './views/Reply';
+import LandingPage from './views/LandingPage/LandingPage';
 
 const App = () => {
   const currentUser = JSON.parse(localStorage.getItem('userData'));
@@ -69,6 +70,7 @@ const App = () => {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/reply/:replyId" element={<Reply />} />
+          <Route path="/landingPage" element={<LandingPage />} />
         </Routes>
       </div>
     </ChakraProvider>
