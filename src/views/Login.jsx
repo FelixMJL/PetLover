@@ -73,54 +73,64 @@ const Login = () => {
 
   return (
     <div className="signUpBox">
-      <div className="logoContainer">
-        <img src={imgURL} alt="" />
-      </div>
-      <h2 className="welcomeTitle">Welcome to Pet Lover</h2>
-      <form className="inputContainer" onSubmit={login}>
-        <div className="inputWrapper">
-          <div className="inputBox">
-            <img className="icon" src={emailIcon} alt="" />
-            <input
-              type="email"
-              name="email"
-              defaultValue={userDetails.email}
-              placeholder="E-mail"
-              onChange={onChangeHandler}
-            />
-          </div>
-          <div className="inputBox">
-            <img className="icon" src={passwordIcon} alt="password" />
-            <input
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              placeholder="Password"
-              defaultValue={userDetails.password}
-              onChange={onChangeHandler}
-            />
-            <img
-              className="showPasswordIcon"
-              src={showPassword ? closeEye : openEye}
-              alt="Toggle password visibility"
-              onClick={toggleShowPassword}
-            />
-          </div>
+      <video
+        className="videoBackground"
+        src="https://dev-petlover.s3.ap-southeast-2.amazonaws.com/videos/dog.mp4"
+        autoPlay
+        loop
+        muted
+      />
+      <div className="signUpBox__des" />
+      <div className="signUpBox__container">
+        <div className="logoContainer">
+          <img src={imgURL} alt="" />
+        </div>
+        <h2 className="welcomeTitle">Welcome to Pet Lover</h2>
+        <form className="inputContainer" onSubmit={login}>
+          <div className="inputWrapper">
+            <div className="inputBox">
+              <img className="icon" src={emailIcon} alt="" />
+              <input
+                type="email"
+                name="email"
+                defaultValue={userDetails.email}
+                placeholder="E-mail"
+                onChange={onChangeHandler}
+              />
+            </div>
+            <div className="inputBox">
+              <img className="icon" src={passwordIcon} alt="password" />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                placeholder="Password"
+                defaultValue={userDetails.password}
+                onChange={onChangeHandler}
+              />
+              <img
+                className="showPasswordIcon"
+                src={showPassword ? closeEye : openEye}
+                alt="Toggle password visibility"
+                onClick={toggleShowPassword}
+              />
+            </div>
 
-          <div className="error-message">{errorMessage}</div>
+            <div className="error-message">{errorMessage}</div>
+          </div>
+          <div className="buttonBox">
+            <div className="buttonText">Sign in</div>
+            <button type="submit">
+              <img src={rightArrowIcon} alt="" />
+            </button>
+          </div>
+        </form>
+        <div className="pageSwitch">
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
+          <span>Don't have an account?</span>
+          <Link className="pageSwitch-link" to="/signup">
+            Create
+          </Link>
         </div>
-        <div className="buttonBox">
-          <div className="buttonText">Sign in</div>
-          <button type="submit">
-            <img src={rightArrowIcon} alt="" />
-          </button>
-        </div>
-      </form>
-      <div className="pageSwitch">
-        {/* eslint-disable-next-line react/no-unescaped-entities */}
-        <span>Don't have an account?</span>
-        <Link className="pageSwitch-link" to="/signup">
-          Create
-        </Link>
       </div>
     </div>
   );

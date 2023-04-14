@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FaArrowCircleUp } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import arrow from '../assets/left-arrow.png';
@@ -9,11 +8,11 @@ const Privacy = () => {
   const [showButton, setShowButton] = useState(false);
   const navigate = useNavigate();
   const btnClickHandler = () => {
-    navigate(-1);
+    navigate('/');
   };
 
   const handleScroll = () => {
-    if (window.pageYOffset > 200) {
+    if (window.scrollY > 200) {
       setShowButton(true);
     } else {
       setShowButton(false);
@@ -45,7 +44,7 @@ const Privacy = () => {
         <div className="contentWrapper">
           <p>
             This Privacy Policy describes how your personal information is collected, used, and
-            shared when you visit from xxxxxxx site address.
+            shared when you visit from https://petslovers.com.au.
           </p>
           <h2>What personal data we collect and why we collect it</h2>
           <p>
@@ -78,8 +77,8 @@ const Privacy = () => {
             browser.
           </p>
           <p>
-            When you log in, we will also set up several token to save your login information and
-            your screen display choices. Login token last for two days.
+            When you log in, we will also set up a token to save your login information. This login
+            token lasts for 24 hours.
           </p>
           <h3>Sharing of Personal Information</h3>
           <p>
@@ -115,7 +114,7 @@ const Privacy = () => {
           <h2>Our contact information</h2>
           <p>
             For more information about our privacy practices, if you have questions, or if you would
-            like to make a complaint, please contact us by e-mail at xxxxxxxxx .
+            like to make a complaint, please contact us by e-mail at fangweidong1985@gmail.com.
           </p>
           <h2>Changes</h2>
           <p>

@@ -79,7 +79,7 @@ const Team = () => {
   ];
 
   const btnClickHandler = () => {
-    navigate(-1);
+    navigate('/');
   };
 
   const linkedinClickHandler = (linkedin_url) => {
