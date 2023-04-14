@@ -8,7 +8,6 @@ import emailIcon from '../assets/email.png';
 import rightArrowIcon from '../assets/right-arrow.svg';
 import openEye from '../assets/eye-solid.svg';
 import closeEye from '../assets/eye-slash-solid.svg';
-import dog from '../assets/dog.mp4';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -74,7 +73,13 @@ const Login = () => {
 
   return (
     <div className="signUpBox">
-      <video className="videoBackground" src={dog} autoPlay loop muted />
+      <video
+        className="videoBackground"
+        src="https://dev-petlover.s3.ap-southeast-2.amazonaws.com/videos/dog.mp4"
+        autoPlay
+        loop
+        muted
+      />
       <div className="signUpBox__des" />
       <div className="signUpBox__container">
         <div className="logoContainer">
