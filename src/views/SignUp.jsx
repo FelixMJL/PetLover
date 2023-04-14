@@ -10,6 +10,7 @@ import nicknameIcon from '../assets/nickname.png';
 import rightArrowIcon from '../assets/right-arrow.svg';
 import openEye from '../assets/eye-solid.svg';
 import closeEye from '../assets/eye-slash-solid.svg';
+import dog from '../assets/dog.mp4';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -85,73 +86,77 @@ const SignUp = () => {
     });
   };
   return (
-    <div className="signUpBox">
-      <div className="logoContainer">
-        <img src={imgURL} alt="" />
-      </div>
-      <h2 className="welcomeTitle">Welcome to Pet Lover</h2>
-      <form className="inputContainer" onSubmit={handleSubmit}>
-        <div className="inputWrapper">
-          <div className="inputBox">
-            <img className="icon" src={emailIcon} alt="" />
-            <input
-              type="email"
-              name="email"
-              defaultValue={userDetails.email}
-              placeholder="E-mail"
-              onChange={onChangeHandler}
-            />
-          </div>
-          <div className="inputBox">
-            <img className="icon" src={passwordIcon} alt="password" />
-            <input
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              placeholder="Password"
-              defaultValue={userDetails.password}
-              onChange={onChangeHandler}
-            />
-            <img
-              className="showPasswordIcon"
-              src={showPassword ? closeEye : openEye}
-              alt="Toggle password visibility"
-              onClick={toggleShowPassword}
-            />
-          </div>
-          <div className="inputBox">
-            <img className="icon" src={usernameIcon} alt="" />
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              defaultValue={userDetails.username}
-              onChange={onChangeHandler}
-            />
-          </div>
-          <div className="inputBox">
-            <img className="icon" src={nicknameIcon} alt="" />
-            <input
-              type="text"
-              name="nickname"
-              placeholder="Nickname"
-              defaultValue={userDetails.nickname}
-              onChange={onChangeHandler}
-            />
-          </div>
-          <div className="error-message">{errorMessage}</div>
+    <div className="signUpBox signup">
+      <video className="videoBackground" src={dog} autoPlay loop muted />
+      <div className="signUpBox__des" />
+      <div className="signUpBox__container signup__container">
+        <div className="logoContainer signup__logoContainer">
+          <img src={imgURL} alt="" />
         </div>
-        <div className="buttonBox">
-          <div className="buttonText">Create</div>
-          <button type="submit">
-            <img src={rightArrowIcon} alt="" />
-          </button>
+        <h2 className="welcomeTitle signup__welcomeTitle">Welcome to Pet Lover</h2>
+        <form className="inputContainer signup__inputContainer" onSubmit={handleSubmit}>
+          <div className="inputWrapper">
+            <div className="inputBox signup__inputBox">
+              <img className="icon" src={emailIcon} alt="" />
+              <input
+                type="email"
+                name="email"
+                defaultValue={userDetails.email}
+                placeholder="E-mail"
+                onChange={onChangeHandler}
+              />
+            </div>
+            <div className="inputBox signup__inputBox">
+              <img className="icon" src={passwordIcon} alt="password" />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                placeholder="Password"
+                defaultValue={userDetails.password}
+                onChange={onChangeHandler}
+              />
+              <img
+                className="showPasswordIcon"
+                src={showPassword ? closeEye : openEye}
+                alt="Toggle password visibility"
+                onClick={toggleShowPassword}
+              />
+            </div>
+            <div className="inputBox signup__inputBox">
+              <img className="icon" src={usernameIcon} alt="" />
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                defaultValue={userDetails.username}
+                onChange={onChangeHandler}
+              />
+            </div>
+            <div className="inputBox signup__inputBox">
+              <img className="icon" src={nicknameIcon} alt="" />
+              <input
+                type="text"
+                name="nickname"
+                placeholder="Nickname"
+                defaultValue={userDetails.nickname}
+                onChange={onChangeHandler}
+              />
+            </div>
+            <div className="error-message signup__error-message">{errorMessage}</div>
+            <div className="buttonBox signup__buttonBox">
+              <div className="buttonText">Create</div>
+              <button type="submit">
+                <img src={rightArrowIcon} alt="" />
+              </button>
+            </div>
+          </div>
+        </form>
+        <div className="pageSwitch signup__pageSwitch">
+          <span>Already have an account?</span>
+          <Link className="pageSwitch-link" to="/login">
+            Login
+          </Link>
         </div>
-      </form>
-      <div className="pageSwitch">
-        <span>Already have an account?</span>
-        <Link className="pageSwitch-link" to="/login">
-          Login
-        </Link>
       </div>
       <br />
       <div className="displayClom">
