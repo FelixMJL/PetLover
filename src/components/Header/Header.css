@@ -135,6 +135,18 @@
     color: black;
 }
 
+.user-menu__logoutBtn.privacy {
+    bottom: 200px;
+    text-decoration: none;
+    color: black;
+}
+
+.user-menu__logoutBtn.terms {
+    bottom: 250px;
+    text-decoration: none;
+    color: black;
+}
+
 .user-menu__logoutBtn:hover {
     cursor: pointer;
 }

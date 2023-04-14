@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from '@chakra-ui/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -94,12 +94,16 @@ const UserInfo = ({
               )}
             </div>
             <div className="followInfo">
-              <p>
-                <strong>{following.length}</strong> <span>Followings</span>
-              </p>
-              <p>
-                <strong>{followers.length}</strong> <span>Followers</span>
-              </p>
+              <NavLink className="nav-link" to="/followingUser/following">
+                <p>
+                  <strong>{following.length}</strong> <span>Followings</span>
+                </p>
+              </NavLink>
+              <NavLink className="nav-link" to="/followingUser/follower">
+                <p>
+                  <strong>{followers.length}</strong> <span>Followers</span>
+                </p>
+              </NavLink>
             </div>
           </div>
         </div>

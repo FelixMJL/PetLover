@@ -158,6 +158,17 @@ const SignUp = () => {
           </Link>
         </div>
       </div>
+      <br />
+      <div className="displayClom">
+        <span>By signing up, you agree to the </span>
+        <Link className="pageSwitch-link" to="/terms">
+          Terms and Conditions
+        </Link>
+        <span> and </span>
+        <Link className="pageSwitch-link" to="/privacy">
+          Privacy Policy.
+        </Link>
+      </div>
     </div>
   );
 };

@@ -68,7 +68,7 @@
 
 .singlePost_author-user-name {
     margin-right: 10px;
-    color:#1b9bf0;
+    color: #1b9bf0;
     font-weight: 500;
 }
 
@@ -142,6 +142,7 @@
     outline: none;
     resize: none;
     height: 26px;
+    overflow: hidden;
 }
 
 .singlePost_reply-btn {
