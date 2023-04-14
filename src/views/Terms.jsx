@@ -9,11 +9,11 @@ const Terms = () => {
   const [showButton, setShowButton] = useState(false);
   const navigate = useNavigate();
   const btnClickHandler = () => {
-    navigate(-1);
+    navigate('/');
   };
 
   const handleScroll = () => {
-    if (window.pageYOffset > 200) {
+    if (window.scrollY > 200) {
       setShowButton(true);
     } else {
       setShowButton(false);
