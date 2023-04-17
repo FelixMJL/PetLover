@@ -1,7 +1,3 @@
-.videoBackground {
-    display: none;
-}
-
 .signUpBox {
     padding: 2vh 8vw;
     height: 100vh;
@@ -181,7 +177,14 @@
     display: none;
 }
 
-@media screen and (min-width: 450px) {
+
+@media screen and (max-width: 450px) {
+    .videoBackground {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 451px) {
     .signUpBox .buttonBox {
         margin-top: 10px;
     }
@@ -316,11 +319,10 @@
 
     .buttonBox.signup__buttonBox {
         margin-bottom: 0;
-        border: 1px solid red;
     }
 }
 
-@media screen and (min-width: 450px) and (min-height: 800px) {
+@media screen and (min-width: 451px) and (min-height: 800px) {
     .signUpBox {
         padding: 20vh;
     }
