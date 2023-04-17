@@ -33,7 +33,7 @@ const App = () => {
     }
 
     if (!currentUser) {
-      navigate('/login');
+      navigate('/landingPage');
       return;
     }
 

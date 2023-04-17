@@ -1,16 +1,21 @@
 .landingPageHeader_container {
-    padding: 10px 15px;
+    padding: 0px 15px;
 }
 
 .landingPageHeader_header-container {
     display: flex;
     justify-content: space-between;
+    background-color: white;
+    z-index: 5;
+    position: relative;
+    padding-bottom: 20px;
 }
 
 .landingPageHeader_logo {
     display: flex;
     width: 145px;
     position: relative;
+    background-color: #fff;
 }
 
 .landingPageHeader_logo img{
@@ -23,6 +28,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     font-size: 28px;
+    color: #605f5f;
 }
 
 .landingPageHeader_Menu-Icon {
@@ -37,15 +43,31 @@
 .landingPageHeader_expanded-menu {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin: auto 10px;
-    height: 100vh;
+    gap: 40px;
+    margin: 0px 10px 0px 10px;
+    font-family: Roboto,sans-serif;
 }
 
+.landingPageHeader_active-menu {
+    animation: expand-menu 0.2s ease-in-out;
+}
+
+@keyframes expand-menu {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+    
+}
 .landingPageHeader_expandable-item {
     display: flex;
     align-items: center;
     gap: 5px;
+    z-index: 3;
+    position: relative;
+    background-color: white;
 }
 
 .landingPageHeader_arrow {
@@ -68,7 +90,6 @@
     padding: 10px;
     font-size: 16px;
     font-weight: 600;
-    font-family: Roboto,sans-serif;
     row-gap: 20px;
 }
 
@@ -80,4 +101,35 @@
 
 .landingPageHeader_features-item img{
     height: 15px;
+}
+
+.landingPageHeader_image-reveal {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+  
+.landingPageHeader_image-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 2000;
+    transition: transform 0.3s ease-in-out;
+    width: 80%;
+    height: auto;
+}
+
+.reveal {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
