@@ -178,11 +178,11 @@
 }
 
 
-@media screen and (max-width: 450px) {
-    .videoBackground {
-        display: none;
-    }
-}
+/*@media screen and (max-width: 450px) {*/
+/*    .videoBackground {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
 
 @media screen and (min-width: 451px) {
     .signUpBox .buttonBox {
@@ -190,7 +190,7 @@
     }
 
     .videoBackground {
-        display: block;
+        /*display: block;*/
         position: fixed;
         top: 0;
         left: 0;

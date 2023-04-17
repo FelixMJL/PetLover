@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './SignUp.css';
@@ -14,7 +14,20 @@ import openAI from '../assets/openAI.svg';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const isVideoVisible = windowWidth > 450;
   const [userDetails, setUserDetails] = useState({
     email: '',
     password: '',
@@ -76,13 +89,15 @@ const Login = () => {
 
   return (
     <div className="signUpBox">
-      <video
-        className="videoBackground"
-        src="https://dev-petlover.s3.ap-southeast-2.amazonaws.com/videos/dog.mp4"
-        autoPlay
-        loop
-        muted
-      />
+      {isVideoVisible && (
+        <video
+          className="videoBackground"
+          src="https://dev-petlover.s3.ap-southeast-2.amazonaws.com/videos/dog.mp4"
+          autoPlay
+          loop
+          muted
+        />
+      )}
       <div className="signUpBox__des">
         <h1 className="signUpBox__des-title">Join the club</h1>
         <h3 className="signUpBox__des-subtitle">A Dedicated Platform for Pet Enthusiasts</h3>
