@@ -25,7 +25,7 @@ const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
-    const allowedPaths = ['/signup', '/privacy', '/terms', '/team'];
+    const allowedPaths = ['/signup', '/privacy', '/terms', '/team', '/login'];
 
     if (allowedPaths.includes(location.pathname)) {
       navigate(location.pathname);
@@ -42,11 +42,11 @@ const App = () => {
         await authToken();
       } catch (error) {
         localStorage.clear();
-        navigate('/login');
+        navigate('/landingPage');
       }
     };
     authTokenValidation();
-  }, [navigate]);
+  }, [navigate, location.pathname]);
 
   return (
     <ChakraProvider>

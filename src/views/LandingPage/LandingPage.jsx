@@ -18,7 +18,7 @@ const LandingPage = () => {
           <h1 className="landingPage_page-content-slogan">
             Connect, Share, Love Your Furry World!
           </h1>
-          <Link className="landingPage_page-content_button" to="/signup">
+          <Link className="landingPage_page-content_button" to="/login">
             Paw in!
           </Link>
         </div>

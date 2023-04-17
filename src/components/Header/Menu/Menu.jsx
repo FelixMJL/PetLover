@@ -13,7 +13,7 @@ const Menu = ({ profileMenu, closeMenu, userData, userId, darkBackground }) => {
   const navigate = useNavigate();
   const logout = () => {
     localStorage.clear();
-    navigate('/login');
+    navigate('/landingPage');
   };
   return (
     <div>
