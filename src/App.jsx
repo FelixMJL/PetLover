@@ -18,13 +18,14 @@ import Comment from './views/Comment';
 import Terms from './views/Terms';
 import Privacy from './views/Privacy';
 import Reply from './views/Reply';
+import LandingPage from './views/LandingPage/LandingPage';
 
 const App = () => {
   const currentUser = JSON.parse(localStorage.getItem('userData'));
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
-    const allowedPaths = ['/signup', '/privacy', '/terms', '/team'];
+    const allowedPaths = ['/signup', '/privacy', '/terms', '/team', '/login'];
 
     if (allowedPaths.includes(location.pathname)) {
       navigate(location.pathname);
@@ -32,7 +33,7 @@ const App = () => {
     }
 
     if (!currentUser) {
-      navigate('/login');
+      navigate('/landingPage');
       return;
     }
 
@@ -41,11 +42,11 @@ const App = () => {
         await authToken();
       } catch (error) {
         localStorage.clear();
-        navigate('/login');
+        navigate('/landingPage');
       }
     };
     authTokenValidation();
-  }, [navigate]);
+  }, [navigate, location.pathname]);
 
   return (
     <ChakraProvider>
@@ -66,6 +67,7 @@ const App = () => {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/reply/:replyId" element={<Reply />} />
+          <Route path="/landingPage" element={<LandingPage />} />
         </Routes>
       </div>
     </ChakraProvider>
