@@ -2,11 +2,10 @@ import '../RecommendForYou/post/PostContent.css';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import axios from 'axios';
 import UserPost from './post/UserPost';
 import DeleteItem from '../DeleteItem/DeleteItem';
 import SendComment from '../SendComment/SendComment';
-// import { getUserData } from '../../services/getUserData';
+import smallPuppy from '../../assets/small-puppy.jpg';
 
 const UserPosts = ({
   posts,
@@ -33,7 +32,7 @@ const UserPosts = ({
 
   return (
     <div className="post_profile-post-container">
-      {postData &&
+      {postData && postData.length > 0 ? (
         postData.map((post) => (
           <div key={post._id} className="post_container">
             <Link className="post_inner-container" to={`/post/${post._id}`}>
@@ -71,7 +70,13 @@ const UserPosts = ({
               )}
             </div>
           </div>
-        ))}
+        ))
+      ) : (
+        <div className="emptyPost">
+          <img className="emptyPost__image" src={smallPuppy} alt="puppy" />
+          <h1 className="emptyPost__title">Empty here, ready to post?</h1>
+        </div>
+      )}
     </div>
   );
 };
