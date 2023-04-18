@@ -78,8 +78,7 @@ const Menu = ({ profileMenu, closeMenu, userData, userId, darkBackground }) => {
             <img src={team} alt="our tem" />
             About Our Team
           </Link>
-          {/* eslint-disable-next-line react/button-has-type */}
-          <button className="user-menu__profile-list-items" onClick={logout}>
+          <button type="button" className="user-menu__profile-list-items" onClick={logout}>
             <img src={logoutIcon} alt="Logout icon" /> Logout
           </button>
         </div>
