@@ -208,7 +208,7 @@ const LandingPageHeader = ({ setShowPageContent }) => {
             </div>
           )}
 
-          <Link to="/privacy">Privacy</Link>
+          <Link to="/privacy">Privacy Policy</Link>
           <Link to="/terms">Terms and Conditions</Link>
           <Link to="/team">Our Team</Link>
           <Link to="/login">Login</Link>
