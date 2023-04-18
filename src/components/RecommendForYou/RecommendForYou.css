@@ -10,3 +10,10 @@
     border-radius: 50%;
     z-index: 9999;
 }
+
+.lazy-loading {
+    position: relative;
+    left: 50%;
+    margin-bottom: 60px;
+    transform: translateX(-50%);
+}
