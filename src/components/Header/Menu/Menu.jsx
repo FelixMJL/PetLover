@@ -66,20 +66,20 @@ const Menu = ({ profileMenu, closeMenu, userData, userId, darkBackground }) => {
             Image Generation
           </Link>
 
-          <Link className="user-menu__logoutBtn terms" to="/terms">
+          <Link className="user-menu__profile-list-items" to="/terms">
             <img src={terms} alt="terms and conditions" />
             Terms and Conditions
           </Link>
-          <Link className="user-menu__logoutBtn privacy" to="/privacy">
+          <Link className="user-menu__profile-list-items" to="/privacy">
             <img src={privacy} alt="privacy policy" />
             Privacy Policy
           </Link>
-          <Link className="user-menu__logoutBtn team" to="/team">
+          <Link className="user-menu__profile-list-items" to="/team">
             <img src={team} alt="our tem" />
             About Our Team
           </Link>
           {/* eslint-disable-next-line react/button-has-type */}
-          <button className="user-menu__logoutBtn" onClick={logout}>
+          <button className="user-menu__profile-list-items" onClick={logout}>
             <img src={logoutIcon} alt="Logout icon" /> Logout
           </button>
         </div>
