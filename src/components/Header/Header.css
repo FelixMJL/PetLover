@@ -152,5 +152,6 @@
 }
 
 .user-menu__profile-list img {
-    height: 120%;
+    width: 24px;
+    height: 24px;
 }
