@@ -30,6 +30,10 @@
     object-fit: cover;
 }
 
+.post-content-container {
+    width: 100%;
+}
+
 .post_author-info-container {
     align-items: center;
     flex-wrap: wrap;
