@@ -100,15 +100,25 @@
 }
 
 .following-error-message__wrapper {
+    margin: 0 5vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 100px;
+    padding-top: 30px;
+    border-top: 1px solid #e8e3e3;
+}
+
+.following-error-image {
+    width: 80%;
+    margin-bottom: 20px;
 }
 
 .following-error-message {
     font-weight: bold;
-    position: relative;
-    width: 300px;
-    top: 120px;
+    text-align: center;
 }
 
 .post_info-container {
