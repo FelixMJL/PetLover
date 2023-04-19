@@ -14,7 +14,7 @@ import exampleEditProfile from '../../assets/ExampleEditProfile.png';
 import exampleConnect from '../../assets/ExampleConnect.png';
 import exampleSendPost from '../../assets/ExampleSendPost.png';
 import exampleComment from '../../assets/ExampleComment.png';
-import exampleChatGPT from '../../assets/ExampleChatGPT.gif';
+import exampleChatGPT from '../../assets/ExampleChatGPT.png';
 import exampleImageGeneration from '../../assets/ExampleImageGeneration.png';
 import './LandingPageHeader.css';
 

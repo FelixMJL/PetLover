@@ -124,6 +124,20 @@ const SingleReply = ({ replyId, currentUserId }) => {
 
   const browserNavigate = useNavigate();
 
+  function formatCustomDateTime(date) {
+    const options = {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    };
+
+    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+    return formattedDate.replace(',', '');
+  }
+
   if (!singleReplyData) return null;
   return (
     <div className="singlePost_container">
@@ -179,7 +193,7 @@ const SingleReply = ({ replyId, currentUserId }) => {
               </div>
             )}
             <div className="singlePost_time">
-              <span>{singleReplyData.created_at}</span>
+              <span>{formatCustomDateTime(new Date(singleReplyData.created_at))}</span>
             </div>
             <div className="singlePost_comments">
               <img
