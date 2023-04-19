@@ -116,7 +116,8 @@
     transform: translate(-50%, -50%) scale(0);
     z-index: 2000;
     transition: transform 0.3s ease-in-out;
-    width: 80%;
+    width: 70%;
+    max-width: 250px;
     height: auto;
 }
 
@@ -133,3 +134,4 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
+
