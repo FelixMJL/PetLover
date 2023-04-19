@@ -166,7 +166,7 @@ const SignUp = () => {
             <div className="error-message signup__error-message">{errorMessage}</div>
             <div className="buttonBox signup__buttonBox">
               <div className="buttonText">Create</div>
-              <button type="submit">
+              <button type="submit" className="">
                 <img src={rightArrowIcon} alt="" />
               </button>
             </div>

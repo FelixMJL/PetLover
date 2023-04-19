@@ -8,6 +8,7 @@ import UserPost from '../UserProfile/post/UserPost';
 import post_icon from '../../assets/post_icon.svg';
 import SendPost from '../SendPost/SendPost';
 import SendComment from '../SendComment/SendComment';
+import lonelyDog from '../../assets/looking_for_followers.webp';
 
 const FollowingUsersPosts = ({ user }) => {
   const [postData, setPostData] = useState([]);
@@ -129,9 +130,9 @@ const FollowingUsersPosts = ({ user }) => {
 
   return (
     <div className="following-error-message__wrapper">
+      <img className="following-error-image" src={lonelyDog} alt="lonelyDog" />
       <p className="following-error-message">
-        {/* eslint-disable-next-line react/no-unescaped-entities */}
-        There's no posts here. Please follow some users first.
+        There&apos;s no posts here. Please follow some users first.
       </p>
     </div>
   );
