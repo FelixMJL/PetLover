@@ -1,0 +1,93 @@
+.headerBox {
+    display: flex;
+    height: 80px;
+    justify-content: space-between;
+    padding-top: 12px;
+    padding-left: 10px;
+    font-family: 'Quicksand', sans-serif;
+}
+.privacyBox {
+    font-family: 'Quicksand', sans-serif;
+    
+}
+.headerBox .webname {
+    color: #14171a;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.2rem;
+    letter-spacing: .12px;
+}
+.privacyBox .contentTitle {
+    width: 100%;
+    box-sizing: border-box;
+    background-image: url('/src/assets/Backgroud2.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+}
+.privacyBox .contentTitle h1{
+    font-size: 3.6rem;
+    font-weight: 700;
+    letter-spacing: -.025rem;
+    line-height: 3.6rem;
+    padding: 4.5rem 0;
+}
+.date{
+    width: 100%;
+    text-align: center;
+    align-content: center;
+    color: aliceblue;
+    font-size: .798rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.2rem;
+    letter-spacing: 0;
+    line-height: 1.2rem;
+    background-color: #14171a;
+    padding: 10px 0;
+}
+.privacyBox .contentBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.privacyBox .contentBox .contentWrapper{
+    width: 90vw;
+    padding: 10px 0;
+}
+
+.privacyBox .contentBox h2{
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -.025rem;
+    line-height: 1.8rem;
+    color: #14171a;
+    padding: 1rem 0;
+}
+.privacyBox .contentBox h3{
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.2rem;
+    padding: .5rem 0;
+}
+.privacyBox .contentBox p{
+
+    padding: .3rem 0;
+}
+.back-to-top {
+    position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
+  z-index: 0;
+  opacity:0.5;
+
+}
+

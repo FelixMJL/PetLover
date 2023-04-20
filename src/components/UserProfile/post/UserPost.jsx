@@ -1,8 +1,8 @@
-import '../../RecommendForYou/post/post.css';
+import '../../RecommendForYou/post/PostContent.css';
 import React, { useState, useEffect } from 'react';
 import replyLogo from '../../../assets/reply.png';
 
-const UserPost = ({ content, file_type, file_url, comments }) => {
+const UserPost = ({ content, file_type, file_url, comments, postId, commentClickHandler }) => {
   const [imageUrl, setImageUrl] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
   useEffect(() => {
@@ -33,7 +33,12 @@ const UserPost = ({ content, file_type, file_url, comments }) => {
         </video>
       )}
       <div className="post_comments">
-        <img src={replyLogo} alt="replyLogo" className="post_comments-replyLogo" />
+        <img
+          src={replyLogo}
+          alt="replyLogo"
+          className="post_comments-replyLogo"
+          onClick={(e) => commentClickHandler(e, postId)}
+        />
         <span className="post_comments-count">{comments.length}</span>
       </div>
     </div>

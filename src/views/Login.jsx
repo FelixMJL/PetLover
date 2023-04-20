@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './SignUp.css';
@@ -8,10 +8,26 @@ import emailIcon from '../assets/email.png';
 import rightArrowIcon from '../assets/right-arrow.svg';
 import openEye from '../assets/eye-solid.svg';
 import closeEye from '../assets/eye-slash-solid.svg';
+import postIcon from '../assets/post.svg';
+import connectIcon from '../assets/friends.svg';
+import openAI from '../assets/openAI.svg';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const isVideoVisible = windowWidth > 450;
   const [userDetails, setUserDetails] = useState({
     email: '',
     password: '',
@@ -43,19 +59,23 @@ const Login = () => {
   const login = (event) => {
     event.preventDefault();
     if (!userDetails.email) {
-      setErrorMessage('Email is required.');
+      setErrorMessage('Email is required');
       return;
     }
     if (!/\S+@\S+\.\S+/.test(userDetails.email)) {
-      setErrorMessage('Email is invalid.');
+      setErrorMessage('Email is invalid');
       return;
     }
     if (!userDetails.password) {
-      setErrorMessage('Password is required.');
+      setErrorMessage('Password is required');
       return;
     }
 
     verifyUser().then((res) => {
+      if (res.status === 404) {
+        setErrorMessage('This email does not exist');
+        return;
+      }
       if (res.status === 401) {
         setErrorMessage('Invalid email or password');
         return;
@@ -69,54 +89,98 @@ const Login = () => {
 
   return (
     <div className="signUpBox">
-      <div className="logoContainer">
-        <img src={imgURL} alt="" />
+      {isVideoVisible && (
+        <video
+          className="videoBackground"
+          src="https://dev-petlover.s3.ap-southeast-2.amazonaws.com/videos/dog.mp4"
+          autoPlay
+          loop
+          muted
+        />
+      )}
+      <div className="signUpBox__des">
+        <h1 className="signUpBox__des-title">Join the club</h1>
+        <h3 className="signUpBox__des-subtitle">A Dedicated Platform for Pet Enthusiasts</h3>
+        <ul className="signUpBox__des-list">
+          <li className="signUpBox__des-li">
+            <div className="signUpBox__postIcon-wrapper">
+              <img className="signUpBox__postIcon" src={postIcon} alt="post" />
+            </div>
+            <div>
+              <h4>Post</h4>
+              <p>Share your pet stories</p>
+            </div>
+          </li>
+          <li className="signUpBox__des-li">
+            <div className="signUpBox__postIcon-wrapper">
+              <img className="signUpBox__postIcon" src={connectIcon} alt="connect" />
+            </div>
+            <div>
+              <h4>Connect</h4>
+              <p>Make friends with pet owners</p>
+            </div>
+          </li>
+          <li className="signUpBox__des-li">
+            <div className="signUpBox__postIcon-wrapper">
+              <img className="signUpBox__postIcon" src={openAI} alt="openAI" />
+            </div>
+            <div>
+              <h4>OpenAI</h4>
+              <p>Using AI solve your problem</p>
+            </div>
+          </li>
+        </ul>
       </div>
-      <h2 className="welcomeTitle">Welcome to Pet Lover</h2>
-      <form className="inputContainer" onSubmit={login}>
-        <div className="inputWrapper">
-          <div className="inputBox">
-            <img className="icon" src={emailIcon} alt="" />
-            <input
-              type="email"
-              name="email"
-              defaultValue={userDetails.email}
-              placeholder="E-mail"
-              onChange={onChangeHandler}
-            />
-          </div>
-          <div className="inputBox">
-            <img className="icon" src={passwordIcon} alt="password" />
-            <input
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              placeholder="Password"
-              defaultValue={userDetails.password}
-              onChange={onChangeHandler}
-            />
-            <img
-              className="showPasswordIcon"
-              src={showPassword ? closeEye : openEye}
-              alt="Toggle password visibility"
-              onClick={toggleShowPassword}
-            />
-          </div>
+      <div className="signUpBox__container">
+        <div className="logoContainer">
+          <img src={imgURL} alt="" />
+        </div>
+        <h2 className="welcomeTitle">Welcome to Pet Lover</h2>
+        <form className="inputContainer" onSubmit={login}>
+          <div className="inputWrapper">
+            <div className="inputBox">
+              <img className="icon" src={emailIcon} alt="" />
+              <input
+                type="email"
+                name="email"
+                defaultValue={userDetails.email}
+                placeholder="E-mail"
+                onChange={onChangeHandler}
+              />
+            </div>
+            <div className="inputBox">
+              <img className="icon" src={passwordIcon} alt="password" />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                placeholder="Password"
+                defaultValue={userDetails.password}
+                onChange={onChangeHandler}
+              />
+              <img
+                className="showPasswordIcon"
+                src={showPassword ? closeEye : openEye}
+                alt="Toggle password visibility"
+                onClick={toggleShowPassword}
+              />
+            </div>
 
-          <div className="error-message">{errorMessage}</div>
+            <div className="error-message">{errorMessage}</div>
+          </div>
+          <div className="buttonBox">
+            <div className="buttonText">Sign in</div>
+            <button type="submit">
+              <img src={rightArrowIcon} alt="" />
+            </button>
+          </div>
+        </form>
+        <div className="pageSwitch">
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
+          <span>Don't have an account?</span>
+          <Link className="pageSwitch-link" to="/signup">
+            Create
+          </Link>
         </div>
-        <div className="buttonBox">
-          <div className="buttonText">Sign in</div>
-          <button type="submit">
-            <img src={rightArrowIcon} alt="" />
-          </button>
-        </div>
-      </form>
-      <div className="pageSwitch">
-        {/* eslint-disable-next-line react/no-unescaped-entities */}
-        <span>Don't have an account?</span>
-        <Link className="pageSwitch-link" to="/signup">
-          Create
-        </Link>
       </div>
     </div>
   );

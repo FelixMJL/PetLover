@@ -7,6 +7,7 @@ import './HomePage.css';
 
 const HomePage = () => {
   const [user, setUser] = useState(null);
+
   return (
     <div className="showAllPosts">
       <Header setUser={setUser} />

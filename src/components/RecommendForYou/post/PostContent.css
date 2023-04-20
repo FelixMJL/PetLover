@@ -1,21 +1,26 @@
 .post_ul {
-    margin-top: 115px;
+    margin-top: 100px;
     padding: 0;
 }
 
 .post_container {
     font-family: "Inter", sans-serif;
     font-size: 15px;
-    border-top: 1px solid #EDE7E7;
     box-sizing: border-box;
     background: #FFFFFF;
     position: relative;
+    text-decoration: none;
 }
 
 .post_inner-container {
-    margin: 15px 17px 10px 22px;
     display: flex;
     gap: 10px;
+    border-top: 1px solid #EDE7E7;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #000000;
+    text-decoration: none;
+    overflow-x: hidden;
 }
 
 .post_avatar {
@@ -25,15 +30,20 @@
     object-fit: cover;
 }
 
+.post-content-container {
+    width: 100%;
+}
+
 .post_author-info-container {
-    height: fit-content;
-    display: flex;
+    align-items: center;
     flex-wrap: wrap;
+    gap: 5px;
+    height: fit-content;
 }
 
 .post_author-user-name {
     margin-right: 10px;
-    color: #536471;
+    color: #1b9bf0;
     font-weight: 500;
 }
 
@@ -55,11 +65,15 @@
     margin-top: 10px;
 }
 
+.post_content-container {
+    width: 100%;
+}
+
 .post_content-image {
     margin-top: 15px;
     width: 100%;
     border: 1px solid #cfdade;
-    border-radius: 5%;
+    border-radius: 20px;
 }
 
 .post_content-video {
@@ -86,15 +100,25 @@
 }
 
 .following-error-message__wrapper {
+    margin: 0 5vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 100px;
+    padding-top: 30px;
+    border-top: 1px solid #e8e3e3;
+}
+
+.following-error-image {
+    width: 80%;
+    margin-bottom: 20px;
 }
 
 .following-error-message {
     font-weight: bold;
-    position: relative;
-    width: 300px;
-    top: 120px;
+    text-align: center;
 }
 
 .post_info-container {
@@ -105,4 +129,31 @@
 .post_bin-icon {
     width: 20px;
     height: 20px;
+}
+
+.post_profile-post-container {
+    margin: auto 5vw;
+}
+
+.recommend_post-container, .following_post-container {
+    margin: auto 5vw;
+}
+
+.emptyPost {
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.emptyPost__image {
+    margin-top: 20px;
+    width: 80%;
+}
+
+.emptyPost__title {
+    margin-top: 20px;
+    font-weight: 700;
+    font-size: 24px;
+    font-family: "Lemon", cursive;
 }

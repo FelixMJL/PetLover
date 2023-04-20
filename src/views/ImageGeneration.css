@@ -1,0 +1,133 @@
+.imageGenerationBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: calc(100vh - 50px);
+    min-height: 617px;
+    width: 100vw;
+    background-color: #f9f9fa;
+
+}
+
+.imageGenerationBox .headerBox .connect-title-line {
+    padding: 12px;
+}
+
+.imageGenerationBox .headerBox .connect-title-line .btn {
+    margin-left: 10px;
+}
+
+
+.imageGenerationBox .headerBox {
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    width: 100vw;
+
+}
+
+.imageGenerationBox .descriptionBox {
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.descriptionBox .descriptionTips {
+    margin-bottom: 10px;
+}
+
+.imageGenerationBox .descriptionBox .descriptionContainer {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 82, .15);
+    transition: box-shadow .2s ease-in-out;
+    overflow: hidden;
+    background: #fff;
+}
+
+.descriptionContainer textarea {
+    resize: none;
+}
+
+.imageGenerationBox .descriptionBox p {
+    font-size: 17px;
+    color: #777;
+    padding-top: 15px;
+}
+
+.imageGenerationBox .descriptionBox textarea {
+    font-size: 14px;
+    border: none;
+    display: block;
+    padding: 10px;
+    line-height: 1.4em;
+}
+
+.imageGenerationBox .descriptionBox textarea:focus-visible {
+    outline-offset: 0px;
+}
+
+.imageGenerationBox .descriptionBox textarea:focus {
+    outline: 0;
+}
+
+.imageGenerationBox .descriptionBox button {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, .05);
+    width: 100%;
+    background: #fff;
+    height: 3em;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 700;
+
+}
+
+.imageGenerationBox .resultBox {
+    width: 90vw;
+    padding-top: 2vh;
+
+}
+
+.imageGenerationBox .resultTitle {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin-bottom: 15px;
+    color: #bbb;
+}
+
+.imageGenerationBox .resultTitle .resultContentJustify {
+    padding-right: 10px;
+}
+
+.imageGenerationBox .resultTitle .line {
+    position: relative;
+}
+
+.imageGenerationBox .resultTitle .line::before {
+    left: 0;
+    border-top: 1px solid #bbb;
+    content: "";
+    position: absolute;
+    right: 0;
+    top: calc(50% - 1px);
+    z-index: 1;
+}
+
+.imageGenerationBox .resultBox .resultContent {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.imageGenerationBox .resultBox .resultContent img {
+    width: calc(50% - 5px);
+    margin-bottom: 10px;
+}
+
+.imageGenerationBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -7,9 +7,14 @@
     align-content: center;
 }
 
+.signUpBox__container {
+    background-color: white;
+}
+
 .signUpBox .logoContainer {
     display: flex;
     justify-content: center;
+    margin-bottom: 15px;
 }
 
 .signUpBox .logoContainer img {
@@ -22,7 +27,7 @@
     font-weight: 700;
     font-size: 22px;
     line-height: 28px;
-    /* identical to box height */
+    margin-bottom: 15px;
 
     text-align: center;
 }
@@ -98,7 +103,7 @@
 
 .signUpBox .buttonBox {
     display: flex;
-    height: 4.5vh;
+    height: 40px;
     width: 100%;
     justify-content: flex-end;
     align-items: center;
@@ -111,14 +116,13 @@
     font-weight: 700;
     font-size: 24px;
     line-height: 28px;
-    /* identical to box height */
-
     text-align: center;
     margin-right: 18px;
 }
 
 .signUpBox .inputContainer button {
     width: 60px;
+    height: 30px;
 }
 
 .signUpBox .inputContainer button img {
@@ -153,4 +157,174 @@
 .pageSwitch .pageSwitch-link {
     color: black;
     font-weight: 700;
+}
+
+.displayClom {
+    width: 80vw;
+    font-size: 11px;
+    font-family: 'Quicksand', sans-serif;
+    color: grey;
+    text-align: center;
+
+}
+
+.displayClom .pageSwitch-link {
+    color: black;
+    font-weight: 700;
+
+}
+
+.signUpBox__des {
+    display: none;
+}
+
+
+/*@media screen and (max-width: 450px) {*/
+/*    .videoBackground {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
+
+@media screen and (min-width: 451px) {
+    .signUpBox .buttonBox {
+        margin-top: 10px;
+    }
+
+    .videoBackground {
+        /*display: block;*/
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        object-fit: cover;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .signUpBox {
+        padding: 10vh;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .signUpBox__container {
+        width: 380px;
+        height: 100%;
+        padding: 20px 2vw;
+        background-color: #FFF;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        opacity: 0.95;
+    }
+
+    .signUpBox__des {
+        display: flex;
+        flex-direction: column;
+        width: 380px;
+        height: 100%;
+        color: #FFFFFF;
+        background-color: #b99905;
+        opacity: 0.5;
+        padding: 0 40px;
+        font-family: "Verdana", sans-serif;
+        justify-content: center;
+    }
+
+    .signUpBox__des-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .signUpBox__des-subtitle {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .signUpBox__des-list {
+        list-style: none;
+    }
+
+    .signUpBox__des-li {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .signUpBox__des-li h4 {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .signUpBox__des-li p {
+        font-size: 14px;
+    }
+
+    .signUpBox__postIcon-wrapper {
+        padding: 4px;
+        width: 50px;
+        height: 50px;
+        border: 2px solid #FFFFFF;
+        border-radius: 8px;
+    }
+
+    .signUpBox__postIcon {
+        width: 40px;
+    }
+
+    .error-message {
+        padding: 0;
+    }
+
+    .inputWrapper {
+        height: 140px;
+    }
+
+    .signUpBox.signup {
+        padding: 5vh;
+    }
+
+    .signUpBox__container.signup__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .inputContainer.signup__inputContainer {
+    }
+
+    .pageSwitch.signup__pageSwitch {
+        margin-top: 200px;
+    }
+
+    .logoContainer.signup__logoContainer {
+        margin-bottom: 5px;
+    }
+
+    .welcomeTitle.signup__welcomeTitle {
+        margin-bottom: 5px;
+    }
+
+    .inputBox.signup__inputBox {
+        height: 60px;
+    }
+
+    .error-message.signup__error-message {
+        margin-bottom: 5px;
+    }
+
+    .buttonBox.signup__buttonBox {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 451px) and (min-height: 800px) {
+    .signUpBox {
+        padding: 20vh;
+    }
 }

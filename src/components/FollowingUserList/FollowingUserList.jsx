@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import '../Connect/ConnectUser.css';
 import './FollowingUserList.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import loading from '../../assets/loading.svg';
 import { getUserData } from '../../services/getUserData';
 import Popup from '../Connect/Popup';
@@ -20,9 +20,10 @@ const FollowingUserList = ({ userType, userIds, users }) => {
   const [count, setCount] = useState(0);
   const selectedUser = userData.find((user) => user.id === selectedUserId);
   const [status, setStatus] = useState(loading);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (userType === ':following') {
+    if (userType === 'following') {
       setCount(count + 1);
       setIsFollowing(userIds);
     }
@@ -72,6 +73,10 @@ const FollowingUserList = ({ userType, userIds, users }) => {
     setShowPopup(false);
   };
 
+  const avatarClickHandler = (id) => {
+    navigate(`/profile/${id}`);
+  };
+
   return (
     // eslint-disable-next-line react/jsx-no-comment-textnodes
     <>
@@ -84,13 +89,28 @@ const FollowingUserList = ({ userType, userIds, users }) => {
           {filteredUserData.map((user) => (
             <div className="connect-user" key={user.id}>
               <div className="connect-user__avatar">
-                <img className="connect-user__avatar--img" src={user.avatar} alt="avatar" />
+                <img
+                  className="connect-user__avatar--img"
+                  src={user.avatar}
+                  alt="avatar"
+                  onClick={() => avatarClickHandler(user.id)}
+                />
               </div>
               <div className="connect-user__description">
                 <div className="connect-user__description--top">
                   <div className="connect-user__description--name">
-                    <div className="connect-user__nickname">{user.nickname}</div>
-                    <div className="connect-user__username">@{user.username}</div>
+                    <div
+                      className="connect-user__nickname"
+                      onClick={() => avatarClickHandler(user.id)}
+                    >
+                      {user.nickname}
+                    </div>
+                    <div
+                      className="connect-user__username"
+                      onClick={() => avatarClickHandler(user.id)}
+                    >
+                      @{user.username}
+                    </div>
                   </div>
                   {/* eslint-disable-next-line react/button-has-type */}
                   <button
@@ -113,7 +133,7 @@ const FollowingUserList = ({ userType, userIds, users }) => {
       ) : (
         <div className="following-error-message_wrapper">
           {/* eslint-disable-next-line react/no-unescaped-entities */}
-          {userType === ':following' ? (
+          {userType === 'following' ? (
             <>
               <p>Be in the Know</p>
               <p className="following-errorMessage">

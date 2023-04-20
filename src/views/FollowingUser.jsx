@@ -33,7 +33,7 @@ const FollowingUser = () => {
   }, [userType]);
 
   const btnClickHandler = () => {
-    navigate(-1);
+    navigate('/');
   };
   return (
     <div className="followingUserBox">
@@ -47,21 +47,19 @@ const FollowingUser = () => {
             <p>@{userData.nickname}</p>
           </div>
         </div>
-        <div className="recommended">
-          <div className="item">
-            <NavLink to="/followingUser/:following">Following</NavLink>
-          </div>
-          <div className="item">
-            <NavLink to="/followingUser/:follower">Followers</NavLink>
-          </div>
+      </div>
+      <div className="recommended">
+        <div className="item">
+          <NavLink to="/followingUser/following">Following</NavLink>
+        </div>
+        <div className="item">
+          <NavLink to="/followingUser/follower">Followers</NavLink>
         </div>
       </div>
       <div className="connectUsers">
         <FollowingUserList
           userType={userType}
-          userIds={
-            userType === ':following' ? userData?.following || [] : userData?.followers || []
-          }
+          userIds={userType === 'following' ? userData?.following || [] : userData?.followers || []}
           users={users}
         />
       </div>

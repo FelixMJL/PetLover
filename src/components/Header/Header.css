@@ -40,20 +40,19 @@
 }
 
 .profileMenu {
-    width: 60vw;
+    width: 80vw;
     height: 100vh;
     position: absolute;
     top: 0;
-    left: -70vw;
+    left: -80vw;
     transition: all 0.5s ease;
-    z-index: 99;
+    z-index: 999999;
     background-color: white;
-    padding-left: 5vw;
-    padding-right: 5vw;
+    padding: 2vh 5vw;
 }
 
 .active {
-    transform: translateX(70vw);
+    transform: translateX(80vw);
 }
 
 .darkBackground.show {
@@ -66,6 +65,8 @@
 .profileMenuHeader {
     display: flex;
     justify-content: space-between;
+    font-weight: 700;
+    font-size: 17px;
 }
 
 .closeProfileMenu {
@@ -134,10 +135,23 @@
     color: black;
 }
 
+.user-menu__logoutBtn.privacy {
+    bottom: 200px;
+    text-decoration: none;
+    color: black;
+}
+
+.user-menu__logoutBtn.terms {
+    bottom: 250px;
+    text-decoration: none;
+    color: black;
+}
+
 .user-menu__logoutBtn:hover {
     cursor: pointer;
 }
 
 .user-menu__profile-list img {
-    height: 120%;
+    width: 24px;
+    height: 24px;
 }
