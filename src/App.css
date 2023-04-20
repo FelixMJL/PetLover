@@ -1,8 +1,17 @@
-.App {
+.app {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
 
-h1 {
-    margin: 0;
+.loading {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: black;
 }
