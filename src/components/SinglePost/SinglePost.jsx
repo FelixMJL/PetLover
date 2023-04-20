@@ -125,6 +125,20 @@ const SinglePost = ({ postId, currentUserId }) => {
     setShowSendReply(commentId);
   };
 
+  function formatCustomDateTime(date) {
+    const options = {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    };
+
+    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+    return formattedDate.replace(',', '');
+  }
+
   if (!singlePostData) return null;
   return (
     <div className="singlePost_container">
@@ -192,7 +206,7 @@ const SinglePost = ({ postId, currentUserId }) => {
               </video>
             ) : null}
             <div className="singlePost_time">
-              <span>{singlePostData.created_at}</span>
+              <span>{formatCustomDateTime(new Date(singlePostData.created_at))}</span>
             </div>
             <div className="singlePost_comments">
               <img
