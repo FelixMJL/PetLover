@@ -13,7 +13,7 @@
 
 1. git pull // 先更新前端的develop
 2. npm install // 会自动安装dotenv, dotenv-cli, react-scripts三个包
-3. 根目录下添加.env 文件 里面加上 REACT_APP_API_ENDPOINT=https://uat-api.hellokitty.petlover2023.com
+3. 根目录下添加.env 文件 里面加上 REACT_APP_API_ENDPOINT=https://uat-api.petslovers.com.au
 4. 根目录下添加.env.local 文件 里面加上 REACT_APP_API_ENDPOINT=http://localhost:8080
 5. 启动后端server
 6. 前端执行 npm run dev
