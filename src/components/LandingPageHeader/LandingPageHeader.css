@@ -152,7 +152,8 @@
     }
     .landingPageHeader_expanded-menu {
         flex-direction: row;
-        font-size: 14px;
+        font-size: 18px;
+        gap: 20px;
         z-index: 10;
     }
     .landingPageHeader_features-items-container {
