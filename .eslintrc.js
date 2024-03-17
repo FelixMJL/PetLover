@@ -20,6 +20,9 @@ module.exports = {
     browser: true,
     jest: true,
   },
+  globals: {
+    cy: 'readonly',
+  },
   rules: {
     camelcase: 'off',
     'prettier/prettier': ['error'],
