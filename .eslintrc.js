@@ -46,5 +46,12 @@ module.exports = {
     'react/jsx-filename-extension': ['off'],
     'react/prop-types': ['off'],
     'no-return-assign': ['off'],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['cypress.config.js'],
+        optionalDependencies: false,
+      },
+    ],
   },
 };
