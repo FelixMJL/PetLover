@@ -22,6 +22,7 @@ module.exports = {
   },
   globals: {
     cy: 'readonly',
+    Cypress: 'readonly',
   },
   rules: {
     camelcase: 'off',

@@ -12,9 +12,7 @@ describe('Login Component Tests', () => {
         data: { userId: '123', token: 'abc123' },
       },
     }).as('loginRequest');
-    cy.get('input[name=email]').type('user@example.com');
-    cy.get('input[name=password]').type('password');
-    cy.get('form').submit();
+    cy.login('user@example.com', 'password');
     // check req, proceed res
     cy.wait('@loginRequest');
     cy.url().should('include', '/');
@@ -28,9 +26,8 @@ describe('Login Component Tests', () => {
         message: 'Invalid email or password',
       },
     }).as('loginFailRequest401');
-    cy.get('input[name=email]').type('wrong@example.com');
-    cy.get('input[name=password]').type('wrongpassword');
-    cy.get('form').submit();
+    cy.login('wrong@example.com', 'password');
+
     cy.wait('@loginFailRequest401');
     cy.get('.error-message').should('contain', 'Invalid email or password');
   });
@@ -42,9 +39,7 @@ describe('Login Component Tests', () => {
         message: 'The email address you entered does not exist',
       },
     }).as('loginFailRequest404');
-    cy.get('input[name=email]').type('notexist@example.com');
-    cy.get('input[name=password]').type('notexistpassword');
-    cy.get('form').submit();
+    cy.login('notexist@example.com', 'password');
     cy.wait('@loginFailRequest404');
     cy.get('.error-message').should('contain', 'This email does not exist');
   });
