@@ -22,14 +22,14 @@ describe('Signup Component Tests', () => {
     cy.url().should('include', '/');
   });
 
-  it('should navigate to sign up page when click login button', () => {
+  it('should navigate to login page when click login button', () => {
     cy.get('.pageSwitch-link').contains('Login').click();
     cy.url().should('include', '/login');
   });
 
   const viewports = [
-    { device: 'Mobile', width: 375, height: 667 }, // 代表移动设备
-    { device: 'Desktop', width: 768, height: 1024 }, // 代表桌面设备
+    { device: 'Mobile', width: 375, height: 667 },
+    { device: 'Desktop', width: 768, height: 1024 },
   ];
 
   viewports.forEach((viewport) => {
