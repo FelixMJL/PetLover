@@ -98,6 +98,8 @@ const SignUp = () => {
         navigate('/');
       } else {
         setErrorMessage(res.data);
+        // eslint-disable-next-line no-console
+        console.log(res.data);
       }
     });
   };

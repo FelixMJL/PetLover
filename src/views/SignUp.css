@@ -220,6 +220,7 @@
         justify-content: center;
         opacity: 0.95;
         align-items: center;
+        border-radius: 10px;
     }
 
     .signUpBox__postIcon-wrapper {
@@ -289,6 +290,7 @@
         padding: 0 40px;
         font-family: "Verdana", sans-serif;
         justify-content: center;
+        border-radius: 10px 0 0 10px;
     }
 
     .signUpBox__des-title {
@@ -320,6 +322,9 @@
 
     .signUpBox__des-li p {
         font-size: 14px;
+    }
+    .signUpBox__container {
+        border-radius: 0 10px 10px 0;
     }
 }
 
