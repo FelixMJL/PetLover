@@ -160,12 +160,12 @@
 }
 
 .displayClom {
-    width: 80vw;
+    width: 80%;
     font-size: 11px;
     font-family: 'Quicksand', sans-serif;
     color: grey;
     text-align: center;
-
+    margin: auto;
 }
 
 .displayClom .pageSwitch-link {
@@ -219,8 +219,66 @@
         flex-direction: column;
         justify-content: center;
         opacity: 0.95;
+        align-items: center;
+        border-radius: 10px;
     }
 
+    .signUpBox__postIcon-wrapper {
+        padding: 4px;
+        width: 50px;
+        height: 50px;
+        border: 2px solid #FFFFFF;
+        border-radius: 8px;
+    }
+
+    .signUpBox__postIcon {
+        width: 40px;
+    }
+
+    .error-message {
+        padding: 0;
+    }
+
+    .inputWrapper {
+        height: 140px;
+    }
+
+    .signUpBox.signup {
+        padding: 10vh;
+    }
+
+    .signUpBox__container.signup__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .pageSwitch.signup__pageSwitch {
+        margin-top: 175px;
+    }
+
+    .logoContainer.signup__logoContainer {
+        margin-bottom: 5px;
+    }
+
+    .welcomeTitle.signup__welcomeTitle {
+        margin-bottom: 5px;
+    }
+
+    .inputBox.signup__inputBox {
+        height: 60px;
+    }
+
+    .error-message.signup__error-message {
+        margin-bottom: 5px;
+    }
+
+    .buttonBox.signup__buttonBox {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 768px) {
     .signUpBox__des {
         display: flex;
         flex-direction: column;
@@ -232,6 +290,7 @@
         padding: 0 40px;
         font-family: "Verdana", sans-serif;
         justify-content: center;
+        border-radius: 10px 0 0 10px;
     }
 
     .signUpBox__des-title {
@@ -264,62 +323,8 @@
     .signUpBox__des-li p {
         font-size: 14px;
     }
-
-    .signUpBox__postIcon-wrapper {
-        padding: 4px;
-        width: 50px;
-        height: 50px;
-        border: 2px solid #FFFFFF;
-        border-radius: 8px;
-    }
-
-    .signUpBox__postIcon {
-        width: 40px;
-    }
-
-    .error-message {
-        padding: 0;
-    }
-
-    .inputWrapper {
-        height: 140px;
-    }
-
-    .signUpBox.signup {
-        padding: 5vh;
-    }
-
-    .signUpBox__container.signup__container {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-    }
-
-    .inputContainer.signup__inputContainer {
-    }
-
-    .pageSwitch.signup__pageSwitch {
-        margin-top: 200px;
-    }
-
-    .logoContainer.signup__logoContainer {
-        margin-bottom: 5px;
-    }
-
-    .welcomeTitle.signup__welcomeTitle {
-        margin-bottom: 5px;
-    }
-
-    .inputBox.signup__inputBox {
-        height: 60px;
-    }
-
-    .error-message.signup__error-message {
-        margin-bottom: 5px;
-    }
-
-    .buttonBox.signup__buttonBox {
-        margin-bottom: 0;
+    .signUpBox__container {
+        border-radius: 0 10px 10px 0;
     }
 }
 

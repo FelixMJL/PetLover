@@ -10,6 +10,9 @@ import nicknameIcon from '../assets/nickname.png';
 import rightArrowIcon from '../assets/right-arrow.svg';
 import openEye from '../assets/eye-solid.svg';
 import closeEye from '../assets/eye-slash-solid.svg';
+import postIcon from '../assets/post.svg';
+import connectIcon from '../assets/friends.svg';
+import openAI from '../assets/openAI.svg';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -95,6 +98,8 @@ const SignUp = () => {
         navigate('/');
       } else {
         setErrorMessage(res.data);
+        // eslint-disable-next-line no-console
+        console.log(res.data);
       }
     });
   };
@@ -109,7 +114,39 @@ const SignUp = () => {
           muted
         />
       )}
-      <div className="signUpBox__des" />
+      <div className="signUpBox__des">
+        <h1 className="signUpBox__des-title">Join the club</h1>
+        <h3 className="signUpBox__des-subtitle">A Dedicated Platform for Pet Enthusiasts</h3>
+        <ul className="signUpBox__des-list">
+          <li className="signUpBox__des-li">
+            <div className="signUpBox__postIcon-wrapper">
+              <img className="signUpBox__postIcon" src={postIcon} alt="post" />
+            </div>
+            <div>
+              <h4>Post</h4>
+              <p>Share your pet stories</p>
+            </div>
+          </li>
+          <li className="signUpBox__des-li">
+            <div className="signUpBox__postIcon-wrapper">
+              <img className="signUpBox__postIcon" src={connectIcon} alt="connect" />
+            </div>
+            <div>
+              <h4>Connect</h4>
+              <p>Make friends with pet owners</p>
+            </div>
+          </li>
+          <li className="signUpBox__des-li">
+            <div className="signUpBox__postIcon-wrapper">
+              <img className="signUpBox__postIcon" src={openAI} alt="openAI" />
+            </div>
+            <div>
+              <h4>OpenAI</h4>
+              <p>Using AI solve your problem</p>
+            </div>
+          </li>
+        </ul>
+      </div>
       <div className="signUpBox__container signup__container">
         <div className="logoContainer signup__logoContainer">
           <img src={imgURL} alt="" />
@@ -178,17 +215,17 @@ const SignUp = () => {
             Login
           </Link>
         </div>
-      </div>
-      <br />
-      <div className="displayClom">
-        <span>By signing up, you agree to the </span>
-        <Link className="pageSwitch-link" to="/terms">
-          Terms and Conditions
-        </Link>
-        <span> and </span>
-        <Link className="pageSwitch-link" to="/privacy">
-          Privacy Policy.
-        </Link>
+        <br />
+        <div className="displayClom">
+          <span>By signing up, you agree to the </span>
+          <Link className="pageSwitch-link" to="/terms">
+            Terms and Conditions
+          </Link>
+          <span> and </span>
+          <Link className="pageSwitch-link" to="/privacy">
+            Privacy Policy.
+          </Link>
+        </div>
       </div>
     </div>
   );
